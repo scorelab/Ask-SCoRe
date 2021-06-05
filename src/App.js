@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import AsyncStorage from '@react-native-community/async-storage';
 import { useEffect } from 'react';
+import { LAUNCHED } from './config/firstLaunch';
 
 const AppStack = createStackNavigator();
 
@@ -13,9 +14,9 @@ const App = () => {
     const [isFirstLaunch, setIsFirstLaunch] = React.useState(null);
 
     useEffect(() => {
-        AsyncStorage.getItem('alreadyLaunched').then(value => {
+        AsyncStorage.getItem(LAUNCHED).then(value => {
             if(value == null) {
-                AsyncStorage.setItem('alreadyLaunched', 'true');
+                AsyncStorage.setItem(LAUNCHED, 'true');
                 setIsFirstLaunch(true);
             } else {
                 setIsFirstLaunch(false);

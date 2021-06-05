@@ -6,7 +6,7 @@
 .prettierrc.js
 package-lock.json
 
-
+ios/Podfile.lock
 
 # Xcode
 #
