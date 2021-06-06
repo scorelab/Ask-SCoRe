@@ -3,10 +3,10 @@
 .DS_Store
 
 .eslintrc.js
-.prettierrc
+.prettierrc.js
 package-lock.json
 
-
+ios/Podfile.lock
 
 # Xcode
 #
