@@ -5,6 +5,7 @@ import LoginSignupScreen from '../LoginSignupScreen/LoginSignupScreen';
 import { Spinner, Button } from '../../components/common';
 import { firebase } from '../../config/config';
 import HomeScreen from '../HomeScreen/HomeScreen';
+import TabNavigator from '../TabNavigator/TabNavigator';
 
 class StartScreen extends Component { 
     state = {loggedIn : null};
@@ -24,7 +25,7 @@ class StartScreen extends Component {
             case true :
                 return( 
                     <>
-                        <HomeScreen />
+                        <TabNavigator />
                     </>
                     )
             case false : 
