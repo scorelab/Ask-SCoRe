@@ -5,6 +5,10 @@
 .eslintrc.js
 .prettierrc.js
 package-lock.json
+.env
+
+src/
+config/config.js
 
 ios/Podfile.lock
 
