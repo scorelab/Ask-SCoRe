@@ -1,8 +1,7 @@
-import React, { component } from 'react';
+import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import 'react-native-paper';
 import LoginSignupScreen from '../LoginSignupScreen/LoginSignupScreen';
-import { Component } from 'react';
 import { Spinner, Button } from '../../components/common';
 import { firebase } from '../../config/config';
 import HomeScreen from '../HomeScreen/HomeScreen';

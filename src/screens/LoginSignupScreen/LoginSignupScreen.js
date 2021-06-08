@@ -10,12 +10,16 @@ class LoginSignupScreen extends Component {
         switch(this.state.showingup){
             case true : 
                 return (
-                    <View>
+                    <View style={{width: "76%"}}>
                     <LoginForm />
                 </View>
                 )
             case false :
-                return <SignupForm />;
+                return ( 
+                <View style={{width: "76%"}}>
+                    <SignupForm />
+                </View>
+                )
             default : 
                 return <Text>Error</Text>
         }
