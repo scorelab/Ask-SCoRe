@@ -7,6 +7,7 @@ import ProfileScreen from '../ProfileScreen/ProfileScreen';
 import ForumScreen from '../ForumScreen/ForumScreen';
 import HomeScreen from '../HomeScreen/HomeScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { COLOR_PRIMARY } from '../../config/styles';
 
 
 const TabNavigator = createMaterialBottomTabNavigator(
@@ -61,7 +62,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
         initialRouteName: 'Home',
         activeColor: '#ffffff',
         inactiveColor: '#8cc971',
-        barStyle: { backgroundColor: '#51AD28' },
+        barStyle: { backgroundColor: COLOR_PRIMARY },
     }
 )
 

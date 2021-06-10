@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import 'react-native-paper';
 import LoginSignupScreen from '../LoginSignupScreen/LoginSignupScreen';
-import { Spinner, Button } from '../../components/common';
+import { Spinner } from '../../components/common';
 import { firebase } from '../../config/config';
-import HomeScreen from '../HomeScreen/HomeScreen';
 import TabNavigator from '../TabNavigator/TabNavigator';
 
 class StartScreen extends Component { 

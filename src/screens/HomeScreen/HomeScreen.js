@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { firebase } from '../../config/config';
+import { View, Text } from 'react-native';
 import styles from './styles';
 
 class HomeScreen extends React.Component {

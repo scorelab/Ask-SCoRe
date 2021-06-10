@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
+import { COLOR_PRIMARY } from '../../config/styles';
 
 export default StyleSheet.create({
     LoginButtonView : {
         width: "100%", 
         height: 50, 
-        backgroundColor: "#51AD28", 
+        backgroundColor: COLOR_PRIMARY, 
         justifyContent: 'center', 
         borderRadius: 20
       },
