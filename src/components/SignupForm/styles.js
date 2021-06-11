@@ -1,10 +1,10 @@
 import { StyleSheet } from 'react-native';
-import { COLOR_PRIMARY, COLOR_GRAY1, COLOR_GRAY } from '../../config/styles';
+import { COLOR_PRIMARY, COLOR_GRAY_PRIMARY, COLOR_GRAY_SECONDARY } from '../../config/styles';
 
 export default StyleSheet.create({
 
     ViewStyle: {
-        backgroundColor: COLOR_GRAY,
+        backgroundColor: COLOR_GRAY_PRIMARY,
         width: "100%",
         height: 310,
         borderRadius: 20,
@@ -48,7 +48,7 @@ export default StyleSheet.create({
         flex: 1,
         alignSelf: 'center',
         marginTop: 12,
-        color: COLOR_GRAY1,
+        color: COLOR_GRAY_SECONDARY,
         fontSize: 20,
         fontWeight: '800'
     },
