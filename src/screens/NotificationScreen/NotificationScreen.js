@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, SafeAreaView } from 'react-native';
+import HeaderBar from '../../components/HeaderBar/HeaderBar';
 
 class NotificationScreen extends Component {
     render(){
         return(
-             <View style={{justifyContent: 'center', flex: 1}}>
-                <Text style={{alignSelf: 'center'}}>
-                    Notification Screen
-                </Text>
-            </View>
+            <SafeAreaView>
+                <View>
+                    <HeaderBar image={require("../../../assets/Ask-SCORE-Logo.png")} title={"Notifications"} />
+                </View>
+            </SafeAreaView>
         );
     }
 }

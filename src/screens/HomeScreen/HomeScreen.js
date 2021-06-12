@@ -1,13 +1,16 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, SafeAreaView } from 'react-native';
 import styles from './styles';
+import HeaderBar from '../../components/HeaderBar/HeaderBar';
 
 class HomeScreen extends React.Component {
     render() {
         return(
-            <View style={styles.ViewStyle}>
-              <Text style={styles.TextStyle}>Home Screen</Text>
+            <SafeAreaView>
+            <View>
+              <HeaderBar image={require("../../../assets/Ask-SCORE-Logo.png")} title={"Queries"} />
             </View>
+          </SafeAreaView>
         )
     }
 }
