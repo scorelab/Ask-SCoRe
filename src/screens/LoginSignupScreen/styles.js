@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
+import { COLOR_PRIMARY, COLOR_GRAY_SECONDARY, COLOR_GRAY_PRIMARY } from '../../config/styles';
 
 export default StyleSheet.create({
     WholeTabBar : {
         width: 300,
         height: 40,
-        backgroundColor: '#dbdbdb',
+        backgroundColor: COLOR_GRAY_PRIMARY,
         alignSelf: 'center',
         borderRadius: 20,
         flexDirection: 'row'
@@ -13,14 +14,14 @@ export default StyleSheet.create({
     LoginTabBar : {
         height: "100%",
         width: "50%",
-        backgroundColor: "#dbdbdb",
+        backgroundColor: COLOR_GRAY_PRIMARY,
         borderRadius: 20
     },
 
     SignupTabBar : {
         height: "100%",
         width: "50%",
-        backgroundColor: "#51AD28",
+        backgroundColor: COLOR_PRIMARY,
         borderRadius: 20
     },
 
@@ -33,7 +34,7 @@ export default StyleSheet.create({
     BarStyle : {
         textAlign: 'center', 
         marginTop: 8, 
-        color: '#d4d4d4', 
+        color: COLOR_GRAY_SECONDARY, 
         fontSize: 20, 
         fontWeight: '800'
     },
@@ -41,7 +42,7 @@ export default StyleSheet.create({
     BarStyle1 : {
         textAlign: 'center', 
         marginTop: 8, 
-        color: '#51AD28', 
+        color: COLOR_PRIMARY, 
         fontSize: 20, 
         fontWeight: '800'
     },

@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { COLOR_LIGHT_PRIMARY } from '../../config/styles';
 
 export default StyleSheet.create({
     container: {
@@ -9,7 +10,7 @@ export default StyleSheet.create({
 
     buttonView : {
         marginHorizontal:10, 
-        backgroundColor: '#9cd683', 
+        backgroundColor: COLOR_LIGHT_PRIMARY, 
         width: 70, 
         height: 30, 
         borderRadius: 10, 

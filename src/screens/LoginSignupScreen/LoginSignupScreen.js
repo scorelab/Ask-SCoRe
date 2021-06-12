@@ -1,5 +1,5 @@
-import React, {useState, Component} from 'react';
-import {View, Button, Text, StyleSheet, TouchableOpacity, TextInput, ScrollView, Image} from 'react-native';
+import React, {Component} from 'react';
+import {View, Button, Text, TouchableOpacity, Image} from 'react-native';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import SignupForm from '../../components/SignupForm/SignupForm';
 import styles from './styles';
