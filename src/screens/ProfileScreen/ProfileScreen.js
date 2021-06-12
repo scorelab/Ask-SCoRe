@@ -131,12 +131,12 @@ const ProfileScreen = () => {
         
         <ScrollView style={{height: "100%"}} bounces={false}>   
         <View style={styles.ViewStyle}>
-            <View style = {{marginVertical: 10,}}>
+            <View style = {{marginVertical: 10}}>
               <Image style={styles.ImageProfileStyle} source={{uri: displayImage}} resizeMode={"cover"}/>
             
             { editfield ? 
             <TouchableOpacity onPress={takephotofrommlib}>
-                <Text style={{alignSelf: 'center', color: 'gray', paddingTop: 10}}>Pick Image</Text>
+                <Text style={styles.PickImageStyle}>Pick Image</Text>
             </TouchableOpacity>
             : null }
         </View>
@@ -146,7 +146,7 @@ const ProfileScreen = () => {
                 <Text style = {styles.title1}>Full Name</Text>
                 <View style={styles.line1} />
                     <View style = {styles.container3}>
-                        <View style={{width:'100%', alignSelf: 'center'}}>
+                        <View style={styles.ViewStyle2}>
                         <TextInput
                             style={{color:'black'}}
                             value={name}
@@ -227,7 +227,7 @@ const ProfileScreen = () => {
 
                 <View style={styles.line} />
 
-            <View style={{alignSelf: 'center', width : '90%', marginTop: 20}}>
+            <View style={styles.LogoutButtonStyle}>
               <TouchableOpacity style= {styles.LoginButtonView} onPress={() => firebase.auth().signOut()}>
                 <Text style={styles.LoginButtonText}>Logout</Text>
               </TouchableOpacity>

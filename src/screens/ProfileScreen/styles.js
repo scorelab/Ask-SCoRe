@@ -147,5 +147,17 @@ export default StyleSheet.create({
     ViewStyle2 : {
       width:'100%', 
       alignSelf: 'center'
+    },
+
+    PickImageStyle : {
+      alignSelf: 'center', 
+      color: 'gray', 
+      paddingTop: 10
+    },
+
+    LogoutButtonStyle : {
+      alignSelf: 'center', 
+      width : '90%', 
+      marginTop: 20
     }
   });
