@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
 import styles from './styles';
 import HeaderBar from '../../components/HeaderBar/HeaderBar';
-import { LOGO } from '../../config/routes';
+import { LOGO } from '../../config/styles.js';
 
 class HomeScreen extends React.Component {
     render() {

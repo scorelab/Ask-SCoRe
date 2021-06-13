@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, SafeAreaView } from 'react-native';
 import HeaderBar from '../../components/HeaderBar/HeaderBar';
-import { LOGO } from '../../config/routes.js';
+import { LOGO } from '../../config/styles.js';
 
 class ForumScreen extends Component {
     render(){

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, SafeAreaView, Image, ScrollView, Platform } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, SafeAreaView, Image, ScrollView, Platform, Alert } from 'react-native';
 import { firebase } from '../../config/config';
 import ImagePicker from 'react-native-image-crop-picker';
 import styles from './styles';
-import { LOGO, NO_IMAGE } from '../../config/routes.js';
+import { LOGO, NO_IMAGE } from '../../config/styles.js';
+import * as Progress from 'react-native-progress';
 
 const ProfileScreen = () => {
 
@@ -14,6 +15,7 @@ const ProfileScreen = () => {
     const [editfield, setEditfield] = useState(false)
     const [image, setImage] = useState(null)
     const [displayImage, setDisplayImage] = useState(null);
+    const [transferred, setTransferred] = useState(0);
 
     const userID1 = firebase.auth().currentUser.uid
     const ref = firebase.firestore().collection("users").doc(userID1);
@@ -35,6 +37,7 @@ const ProfileScreen = () => {
   }, [])
 
     const uploadImage = async () => {
+    
       if(image == null){
         savePostData(displayImage) 
         return
@@ -51,11 +54,9 @@ const ProfileScreen = () => {
             .child(childPath)
             .put(blob);
 
-
         const taskCompleted = () => {
             task.snapshot.ref.getDownloadURL().then((snapshot) => {
                 savePostData(snapshot);
-                alert("Image Uploaded Succesfully")
             }).catch((error) => {
               alert("Please Upload all the Information below")
             })
@@ -64,7 +65,12 @@ const ProfileScreen = () => {
         const taskError = snapshot => {
             alert("Error Occured")
         }
-        task.on("state_changed", taskProgress, taskError, taskCompleted);
+
+        task.on("state_changed", snapshot => {
+          setTransferred(
+            Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 10000
+          );
+        }, taskError, taskCompleted);   
     }
     
     const savePostData = (downloadURL) => {
@@ -122,10 +128,13 @@ const ProfileScreen = () => {
             <View style = {{marginVertical: 10}}>
               <Image style={styles.ImageProfileStyle} source={{uri: displayImage}} resizeMode={"cover"}/>
             
-            { editfield ? 
+            { editfield ?
+            <View> 
             <TouchableOpacity onPress={takephotofrommlib}>
                 <Text style={styles.PickImageStyle}>Pick Image</Text>
             </TouchableOpacity>
+            <Progress.Bar progress={transferred} width={180} style={{alignSelf: 'center'}}/>
+            </View>
             : null }
         </View>
 
@@ -144,7 +153,6 @@ const ProfileScreen = () => {
                         </View>
                     </View>
                 </View>
-
 
                 <View style={styles.line} />
 

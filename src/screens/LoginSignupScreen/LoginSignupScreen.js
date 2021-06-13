@@ -3,7 +3,7 @@ import {View, Button, Text, TouchableOpacity, Image} from 'react-native';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import SignupForm from '../../components/SignupForm/SignupForm';
 import styles from './styles';
-import { LOGO } from '../../config/routes.js';
+import { LOGO } from '../../config/styles.js';
   
 class LoginSignupScreen extends Component {
     state= { showingup: true};
