@@ -40,7 +40,7 @@ const ProfileScreen = () => {
         return
       }
         const uri = image;
-        const childPath = `post/${firebase.auth().currentUser.uid}/${Math.random().toString(36)}`;
+        const childPath = `post/${firebase.auth().currentUser.uid}/profile_picture.png`;
 
         const response = await fetch(uri);
         const blob = await response.blob();
@@ -51,10 +51,6 @@ const ProfileScreen = () => {
             .child(childPath)
             .put(blob);
 
-        const taskProgress = snapshot => {
-            // progress tracking purposes only.
-            // use console for tracking purpose.
-        }
 
         const taskCompleted = () => {
             task.snapshot.ref.getDownloadURL().then((snapshot) => {
