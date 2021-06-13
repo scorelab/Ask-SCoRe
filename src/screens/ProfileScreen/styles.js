@@ -51,7 +51,6 @@ export default StyleSheet.create({
     },
 
     container3: {
-      
       flexDirection:'row',
       marginLeft: 20
     },
@@ -64,18 +63,15 @@ export default StyleSheet.create({
       fontWeight:'bold',
       fontSize:15,
       textAlign: 'center'
-
     },
 
     line:{
-
       borderBottomColor: '#dfdfe5',
       borderBottomWidth: 1,
       margin:5,
     },
 
     line1:{
-
       borderBottomColor: '#dfdfe5',
       borderRightWidth: 1,
       marginVertical: 5,
@@ -96,7 +92,6 @@ export default StyleSheet.create({
       flex: 1,
       marginLeft: 10, 
       marginTop: 5
-
     },
 
     AskButtonStyle : {

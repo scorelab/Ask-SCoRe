@@ -61,9 +61,7 @@ class LoginSignupScreen extends Component {
                     </View>
                 </TouchableOpacity>}
             </View>
-
             {this.renderContent()}
-        
         </View>
         );
     }           

@@ -53,6 +53,5 @@ export default StyleSheet.create({
         justifyContent: 'center', 
         alignItems: 'center', 
         marginBottom: "20%"
-        
     }
 });
