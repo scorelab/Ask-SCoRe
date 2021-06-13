@@ -3,6 +3,7 @@ import {View, Button, Text, TouchableOpacity, Image} from 'react-native';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import SignupForm from '../../components/SignupForm/SignupForm';
 import styles from './styles';
+import { LOGO } from '../../config/routes.js';
   
 class LoginSignupScreen extends Component {
     state= { showingup: true};
@@ -29,7 +30,7 @@ class LoginSignupScreen extends Component {
     return (
         <View style= {styles.ViewStyle}>
             <View>
-                <Image source={require("../../../assets/Ask-SCORE-Logo.png")} style={styles.ImageView}/>
+                <Image source={LOGO} style={styles.ImageView}/>
             </View>
             <View style= {styles.WholeTabBar}>
                 {this.state.showingup ? <TouchableOpacity style={styles.SignupTabBar} onPress={() => {

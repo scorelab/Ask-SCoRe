@@ -3,6 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, SafeAreaView, Image, ScrollVie
 import { firebase } from '../../config/config';
 import ImagePicker from 'react-native-image-crop-picker';
 import styles from './styles';
+import { LOGO, NO_IMAGE } from '../../config/routes.js';
 
 const ProfileScreen = () => {
 
@@ -12,7 +13,7 @@ const ProfileScreen = () => {
     const [country, setCountry] = useState("")
     const [editfield, setEditfield] = useState(false)
     const [image, setImage] = useState(null)
-    const [displayImage, setDisplayImage] = useState("https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png");
+    const [displayImage, setDisplayImage] = useState(null);
 
     const userID1 = firebase.auth().currentUser.uid
     const ref = firebase.firestore().collection("users").doc(userID1);
@@ -20,19 +21,16 @@ const ProfileScreen = () => {
     useEffect(() => {
         ref.get().then((doc) => {
             if (doc.exists) {
-                console.log("Document data:", doc.data());
                 setName(doc.data().fullName);
                 setInterest(doc.data().interest)
                 setCountry(doc.data().country)
                 setOccupation(doc.data().occupation)
                 setDisplayImage(doc.data().downloadURL)
-                console.log(name);
-                
             } else {
-                console.log("No such document!");
+              alert("No Document Found")
             }
         }).catch((error) => {
-            console.log("Error getting document:", error);
+            alert(error)
         });     
   }, [])
 
@@ -43,7 +41,6 @@ const ProfileScreen = () => {
       }
         const uri = image;
         const childPath = `post/${firebase.auth().currentUser.uid}/${Math.random().toString(36)}`;
-        console.log(childPath)
 
         const response = await fetch(uri);
         const blob = await response.blob();
@@ -55,20 +52,21 @@ const ProfileScreen = () => {
             .put(blob);
 
         const taskProgress = snapshot => {
-            console.log(`transferred: ${snapshot.bytesTransferred}`)
+            // progress tracking purposes only.
+            // use console for tracking purpose.
         }
 
         const taskCompleted = () => {
             task.snapshot.ref.getDownloadURL().then((snapshot) => {
                 savePostData(snapshot);
-                console.log(snapshot)
+                alert("Image Uploaded Succesfully")
             }).catch((error) => {
-              console.log("Unknown Error Occured")
+              alert("Please Upload all the Information below")
             })
         }
 
         const taskError = snapshot => {
-            console.log(snapshot)
+            alert("Error Occured")
         }
         task.on("state_changed", taskProgress, taskError, taskCompleted);
     }
@@ -76,8 +74,6 @@ const ProfileScreen = () => {
     const savePostData = (downloadURL) => {
       setEditfield(false)
       setDisplayImage(downloadURL)
-      console.log("Image Data")
-      console.log(downloadURL)
         ref.update({
                 country,
                 occupation,
@@ -85,10 +81,9 @@ const ProfileScreen = () => {
                 downloadURL,
                 creation: firebase.firestore.FieldValue.serverTimestamp()
             }).then(() => {
-                console.log("Edit profile Completed")
                 alert("Updated Profile")
             }).catch((error) => {
-              console.log("Unknown Error Occured")
+              alert(error)
          })
     }
 
@@ -98,11 +93,8 @@ const ProfileScreen = () => {
       height: 300,
       cropping: true,
     }).then((image) => {
-      console.log(image);
       const imageUri = Platform.OS === 'ios' ? image.path : image.path;
       setImage(image.path);
-      console.log("image.path")
-      console.log(image.path)
     }).catch("Unknown Error Occured")
   };
 
@@ -111,7 +103,7 @@ const ProfileScreen = () => {
         <View style={{marginBottom: 20}}>
             <View style={{marginBottom: 15}}>
                 <View style={styles.HeaderStyle1}>
-                    <Image source={require("../../../assets/Ask-SCORE-Logo.png")} style={styles.ImageView} />
+                    <Image source={LOGO} style={styles.ImageView} />
                     <Text style={styles.HeaderStyle}>Profile</Text>
 
                     { editfield ? 

@@ -30,7 +30,8 @@ class SignupForm extends Component{
             const data = {
                 id : uid,
                 email,
-                fullName
+                fullName,
+                downloadURL: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png",
             };
             const userRef = firebase.firestore().collection('users')
             userRef.doc(uid).set(data).then(this.onSigninSuccess.bind(this))
