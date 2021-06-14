@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, SafeAreaView, Image, ScrollVie
 import { firebase } from '../../config/config';
 import ImagePicker from 'react-native-image-crop-picker';
 import styles from './styles';
-import { LOGO, NO_IMAGE } from '../../config/styles.js';
+import { LOGO } from '../../config/styles.js';
 import * as Progress from 'react-native-progress';
 
 const ProfileScreen = () => {
@@ -16,6 +16,8 @@ const ProfileScreen = () => {
     const [image, setImage] = useState(null)
     const [displayImage, setDisplayImage] = useState(null);
     const [transferred, setTransferred] = useState(0);
+    const [imageUpload, setImageUpload] = useState(true)
+    const [progressUpload, setProgressUpload] = useState(true)
 
     const userID1 = firebase.auth().currentUser.uid
     const ref = firebase.firestore().collection("users").doc(userID1);
@@ -37,7 +39,7 @@ const ProfileScreen = () => {
   }, [])
 
     const uploadImage = async () => {
-    
+      setProgressUpload(false)
       if(image == null){
         savePostData(displayImage) 
         return
@@ -84,6 +86,9 @@ const ProfileScreen = () => {
                 creation: firebase.firestore.FieldValue.serverTimestamp()
             }).then(() => {
                 alert("Updated Profile")
+                setImageUpload(true)
+                setProgressUpload(true)
+                setTransferred(0)
             }).catch((error) => {
               alert(error)
          })
@@ -97,6 +102,7 @@ const ProfileScreen = () => {
     }).then((image) => {
       const imageUri = Platform.OS === 'ios' ? image.path : image.path;
       setImage(image.path);
+      setImageUpload(false)
     }).catch("Unknown Error Occured")
   };
 
@@ -107,7 +113,6 @@ const ProfileScreen = () => {
                 <View style={styles.HeaderStyle1}>
                     <Image source={LOGO} style={styles.ImageView} />
                     <Text style={styles.HeaderStyle}>Profile</Text>
-
                     { editfield ? 
                       <TouchableOpacity onPress={uploadImage} style={styles.AskButtonStyle} >
                         <Text style = {styles.EditDoneStyle}>DONE</Text>
@@ -130,9 +135,11 @@ const ProfileScreen = () => {
             
             { editfield ?
             <View> 
+              { imageUpload ? 
             <TouchableOpacity onPress={takephotofrommlib}>
                 <Text style={styles.PickImageStyle}>Pick Image</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> : progressUpload ? <Text style={styles.PickImageStyle}>Uploading...</Text> : <Text style={styles.PickImageStyle}>In progress</Text>
+            }
             <Progress.Bar progress={transferred} width={180} style={{alignSelf: 'center'}}/>
             </View>
             : null }
