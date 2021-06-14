@@ -31,7 +31,7 @@ class SignupForm extends Component{
                 id : uid,
                 email,
                 fullName,
-                downloadURL: "https://firebasestorage.googleapis.com/v0/b/trydesign-f5380.appspot.com/o/post%2FULlLNW5WhdXNHszcAt1rwHwTB1W2%2F600px-No_image_available.svg.png?alt=media&token=4742f126-dfac-4ad6-a338-4c5d0c74943b",
+                isImagePresent : false,
             };
             const userRef = firebase.firestore().collection('users')
             userRef.doc(uid).set(data).then(this.onSigninSuccess.bind(this))

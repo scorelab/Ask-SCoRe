@@ -3,7 +3,7 @@ import { View, Text, TextInput, TouchableOpacity, SafeAreaView, Image, ScrollVie
 import { firebase } from '../../config/config';
 import ImagePicker from 'react-native-image-crop-picker';
 import styles from './styles';
-import { LOGO } from '../../config/styles.js';
+import { LOGO, NO_IMAGE } from '../../config/styles.js';
 import * as Progress from 'react-native-progress';
 
 const ProfileScreen = () => {
@@ -18,6 +18,7 @@ const ProfileScreen = () => {
     const [transferred, setTransferred] = useState(0);
     const [imageUpload, setImageUpload] = useState(true)
     const [progressUpload, setProgressUpload] = useState(true)
+    const [profilePresent, setProfilePresent] = useState(null)
 
     const userID1 = firebase.auth().currentUser.uid
     const ref = firebase.firestore().collection("users").doc(userID1);
@@ -30,6 +31,7 @@ const ProfileScreen = () => {
                 setCountry(doc.data().country)
                 setOccupation(doc.data().occupation)
                 setDisplayImage(doc.data().downloadURL)
+                setProfilePresent(doc.data().isImagePresent)
             } else {
               alert("No Document Found")
             }
@@ -83,7 +85,8 @@ const ProfileScreen = () => {
                 occupation,
                 interest,
                 downloadURL,
-                creation: firebase.firestore.FieldValue.serverTimestamp()
+                creation: firebase.firestore.FieldValue.serverTimestamp(),
+                isImagePresent: true,
             }).then(() => {
                 alert("Updated Profile")
                 setImageUpload(true)
@@ -131,7 +134,9 @@ const ProfileScreen = () => {
         <ScrollView style={{height: "100%"}} bounces={false}>   
         <View style={styles.ViewStyle}>
             <View style = {{marginVertical: 10}}>
-              <Image style={styles.ImageProfileStyle} source={{uri: displayImage}} resizeMode={"cover"}/>
+              <Image style={styles.ImageProfileStyle} source={
+                profilePresent ? 
+                {uri: displayImage} : NO_IMAGE } resizeMode={"cover"}/>
             
             { editfield ?
             <View> 
