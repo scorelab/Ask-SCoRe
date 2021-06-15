@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, SafeAreaView } from 'react-native';
+import HeaderBar from '../../components/HeaderBar/HeaderBar';
+import { LOGO } from '../../config/styles.js';
 
 class ForumScreen extends Component {
     render(){
         return(
-            <View style={{justifyContent: 'center', flex: 1}}>
-              <Text style={{alignSelf: 'center'}}>
-                Forum Screen
-              </Text>
+          <SafeAreaView>
+            <View>
+              <HeaderBar image={LOGO} title={"Forums"} />
             </View>
+          </SafeAreaView>
         );
     }
 }
