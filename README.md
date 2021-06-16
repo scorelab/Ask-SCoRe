@@ -4,7 +4,6 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/4fb5295fe71a4a589277065334f88a59)](https://www.codacy.com/app/shehand/TrackPal?utm_source=github.com&utm_medium=referral&utm_content=scorelab/TrackPal&utm_campaign=Badge_Grade) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
-
 ## About
 
 What Open Source Organisations aims is for more productivity, which can be achieved when the organisation's members promote, collaborates, co-operates with each other. And hence Ask-SCoRe application helps in achieving the motive.
@@ -19,6 +18,7 @@ This app aims to resolve queries by anyone in the organisation and let members c
 - [Setup and run](#setup-and-run)
     - [Run app on iOS](#run-app-on-iOS)
     - [Run app on Android](#run-app-on-Android)
+- [Configure Project](#Configure-Project)
 - [Contact](#Contact)
 
 ## Feature
@@ -46,6 +46,26 @@ This app aims to resolve queries by anyone in the organisation and let members c
 
 2.  ### Install npm Libraries by running a command given below in terminal / cmd
     `npm install`
+    
+## Configure Project
+
+- Rename file `.env.example` to `.env`
+
+- Setup your project on Firebase and copy the credentials
+- Replace the credentials in file `/src/config/config.example.js` given below-
+- ```
+  const firebaseConfig = {
+    apiKey: "",
+    authDomain: "",
+    projectId: "",
+    storageBucket: "",
+    messagingSenderId: "",
+    appId: "",
+    measurementId: "Y"
+  };
+  ```
+- Rename the `config.example.js` file to `config.js`
+- Enable authentication using email/password in Authentication Tab of Firebase Console.
 
 ### Run app on iOS
 
@@ -65,7 +85,7 @@ This app aims to resolve queries by anyone in the organisation and let members c
 - Run the project by command 
 
   `react-native run-android`
-
+  
 ## Contact
 
 You can reach the maintainers and our community on [scorelab on gitter](https://gitter.im/scorelab/scorelab). If you are interested in contributing to the Ask-SCoRe, we have a channel too [#Go-Social](https://gitter.im/scorelab/go-social), where you can ask questions and interact with the community, join with us!
