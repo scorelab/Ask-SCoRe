@@ -1,22 +1,23 @@
 import { StyleSheet } from 'react-native';
-import { COLOR_PRIMARY, COLOR_GRAY_SECONDARY, COLOR_GRAY_PRIMARY, COLOR_LIGHT_PRIMARY} from '../../config/styles';
+import { COLOR_LIGHT_PRIMARY} from '../../config/styles';
 
 export default StyleSheet.create({
     HeaderStyle : {
         fontSize: 30,
         flex: 1,
         marginLeft: 10, 
-        marginTop: 5
+        marginTop: 5,
+        marginBottom: 10
     },
 
     ImageView : {
-        width: 55,
-        height: 55,
-        marginHorizontal: 5
+        width: "13%",
+        height: "100%",
+        marginHorizontal: 5,
     },
 
     HeaderStyle1 : {
-        flexDirection: 'row',
+        flexDirection: 'row',  
     },
 
     DividerView : {
@@ -26,6 +27,13 @@ export default StyleSheet.create({
         marginHorizontal: 10
     },
 
+    DividerView1 : {
+        borderBottomColor: '#23598B',
+        borderBottomWidth: 1,
+        marginBottom:3,
+        marginHorizontal: 20
+    },
+    
     AskButtonStyle : {
         width: "16%",
         height: 32,
@@ -35,10 +43,10 @@ export default StyleSheet.create({
         justifyContent: 'center',
         marginTop: 7
     },
-
+  
     QuestionStyle : {
         width : "90%",
-        borderRadius: 5,
+        borderRadius: 10,
         borderWidth: 1,
         backgroundColor: Platform.OS === 'ios' ? '#fff' : null,
         borderColor: '#b8b8b8',
@@ -55,15 +63,24 @@ export default StyleSheet.create({
 
     nameHeadlineStyle : {
         width: "101%",
+        backgroundColor: COLOR_LIGHT_PRIMARY,
+        borderRadius: 7,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        top: 0
+    },
+
+    nameHeadlineStyle1 : {
+        width: "101%",
         paddingVertical: 2,
         backgroundColor: '#79AEE0',
-        borderRadius: 7,
+        borderRadius: 5,
         alignSelf: 'center',
         justifyContent: 'space-between',
         top: 0,
-        flexDirection: 'row',
+        flexDirection: 'row'
     },
-
+    
     AnswerButtonStyle : {
         width: "20%",
         paddingVertical: 2,
@@ -84,5 +101,15 @@ export default StyleSheet.create({
         bottom: 5,
         right: 5,
         justifyContent: 'center',
+    },
+
+    AnswerButtonStyle2 : {
+        width: "20%",
+        paddingVertical: 2,
+        borderRadius: 5,
+        alignSelf: 'flex-end',
+        bottom: 5,
+        right: 0,
+        justifyContent: 'flex-end',
     },
 });

@@ -6,14 +6,35 @@ import NotificationScreen from '../NotificationScreen/NotificationScreen';
 import ProfileScreen from '../ProfileScreen/ProfileScreen';
 import ForumScreen from '../ForumScreen/ForumScreen';
 import HomeScreen from '../HomeScreen/HomeScreen';
+import QuestionScreen from '../QuestionScreen/QuestionScreen';
+import AnswerScreen from '../AnswerScreen/AnswerScreen';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { COLOR_PRIMARY } from '../../config/styles';
+import { createStackNavigator } from "react-navigation-stack";
 
+const navOptionHandler = (navigation) => ({
+    headerShown : false,
+})
+
+const HomeStack = createStackNavigator({
+    Home : {
+        screen: HomeScreen,
+        navigationOptions: navOptionHandler
+    },
+    Question : {
+        screen: QuestionScreen,
+        navigationOptions: navOptionHandler
+    },
+    Answer : {
+        screen: AnswerScreen,
+        navigationOptions: navOptionHandler
+    }
+})
 
 const TabNavigator = createMaterialBottomTabNavigator(
     {
     Home : {
-        screen: HomeScreen,
+        screen: HomeStack,
         navigationOptions: ({navigation}) => ({
             tabBarIcon: ({ tintColor }) => (
                 <View>

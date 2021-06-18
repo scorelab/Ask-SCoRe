@@ -16,7 +16,7 @@ export default StyleSheet.create({
     },
 
     HeaderStyle1 : {
-        flexDirection: 'row',
+        flexDirection: 'row',    
     },
 
     DividerView : {
@@ -25,10 +25,22 @@ export default StyleSheet.create({
         marginBottom:3,
         marginHorizontal: 10
     },
+    
+    AskButtonStyle1 : {
+        width: 60,
+        height: 30,
+        backgroundColor: COLOR_LIGHT_PRIMARY,
+        borderRadius: 10,
+        right:20,
+        alignSelf:'flex-end',
+        justifyContent: 'center',
+        marginTop: 7,
+        marginLeft: 18
+    },
 
     AskButtonStyle : {
-        width: "16%",
-        height: 32,
+        width: 60,
+        height: 30,
         backgroundColor: COLOR_LIGHT_PRIMARY,
         borderRadius: 10,
         right: 10,
@@ -38,7 +50,7 @@ export default StyleSheet.create({
 
     QuestionStyle : {
         width : "90%",
-        borderRadius: 5,
+        borderRadius: 10,
         borderWidth: 1,
         backgroundColor: Platform.OS === 'ios' ? '#fff' : null,
         borderColor: '#b8b8b8',
@@ -55,34 +67,18 @@ export default StyleSheet.create({
 
     nameHeadlineStyle : {
         width: "101%",
-        paddingVertical: 2,
+        paddingVertical: 3,
         backgroundColor: '#79AEE0',
         borderRadius: 7,
         alignSelf: 'center',
-        justifyContent: 'space-between',
-        top: 0,
-        flexDirection: 'row',
-    },
-
-    AnswerButtonStyle : {
-        width: "20%",
-        paddingVertical: 2,
-        backgroundColor: COLOR_LIGHT_PRIMARY,
-        borderRadius: 5,
-        alignSelf: 'flex-end',
-        bottom: 5,
-        right: 5,
         justifyContent: 'center',
+        top: 0
     },
-
-    AnswerButtonStyle1 : {
-        width: "20%",
-        paddingVertical: 2,
-        backgroundColor: "#79AEE0",
-        borderRadius: 5,
-        alignSelf: 'flex-end',
-        bottom: 5,
-        right: 5,
+    AskButtonStyle2 : {
+        alignSelf:'flex-end',
         justifyContent: 'center',
+        marginTop: 7,
+        flexDirection: 'row'
     },
+   
 });
