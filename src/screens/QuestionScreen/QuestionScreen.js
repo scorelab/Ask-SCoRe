@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import ImagePicker from 'react-native-image-crop-picker';
 
 class QuestionScreen extends  React.Component {
-    state = {QueryInput : '', setimage : null, setDisplayImage: null};
+    state = {QueryInput : '', setimage : null, setDisplayImage: null, transferred: 0};
 
     takephotofrommlib = () => {
         const {setimage} = this.state
@@ -38,12 +38,9 @@ class QuestionScreen extends  React.Component {
               .ref()
               .child(childPath)
               .put(blob);
-  
-          const taskProgress = snapshot => {
-              console.log(`transferred: ${snapshot.bytesTransferred}`)
-          }
 
           const taskCompleted = () => {
+              const {transferred} = this.state
               task.snapshot.ref.getDownloadURL().then((snapshot) => {
                   this.setState({setDisplayImage: snapshot})
               }).catch((error) => {
@@ -52,10 +49,13 @@ class QuestionScreen extends  React.Component {
           }
   
           const taskError = snapshot => {
-              console.log(snapshot)
-          }
+            alert("Error Occured")
+        }
   
-          task.on("state_changed", taskProgress, taskError, taskCompleted);
+        task.on("state_changed", snapshot => {
+            const {transferred} = this.state
+            this.setState({ transferred: Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 10000})
+          }, taskError, taskCompleted);
       }
 
       show_alert = () => {
