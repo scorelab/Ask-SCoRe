@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, TouchableOpacity, SafeAreaView, TextInput, Alert, Linking } from 'react-native';
+import { View, Text, Image, TouchableOpacity, SafeAreaView, TextInput, Alert, Linking } from 'react-native';
 import { firebase } from '../../config/config';
 import { LOGO } from '../../config/styles.js';
 import styles from './styles';
@@ -17,11 +17,8 @@ class QuestionScreen extends  React.Component {
           height: 300,
           cropping: true,
         }).then((image) => {
-          console.log(image);
           const imageUri = Platform.OS === 'ios' ? image.path : image.path;
           this.setState({setimage: imageUri});
-          console.log("image.path")
-          console.log(setimage)
         }).catch("Unknown Error Occured")
       };
 
@@ -30,10 +27,8 @@ class QuestionScreen extends  React.Component {
         if(setimage == null){
           return
         }
-  
           const uri = setimage;
           const childPath = `post/${firebase.auth().currentUser.uid}/${Math.random().toString(36)}`;
-          console.log(childPath)
   
           const response = await fetch(uri);
           const blob = await response.blob();
@@ -47,13 +42,12 @@ class QuestionScreen extends  React.Component {
           const taskProgress = snapshot => {
               console.log(`transferred: ${snapshot.bytesTransferred}`)
           }
-  
+
           const taskCompleted = () => {
               task.snapshot.ref.getDownloadURL().then((snapshot) => {
-                  console.log(snapshot)
                   this.setState({setDisplayImage: snapshot})
               }).catch((error) => {
-                console.log("Unknown Error Occured")
+                alert(error)
               })
           }
   
@@ -147,11 +141,9 @@ class QuestionScreen extends  React.Component {
                         setDisplayImage: null
                     })
                     alert("Query has been Added")
-                    console.log("Document written with ID: ", docRef.id);
                 })
                 .catch((error) => {
                     alert("Error occured while adding your Query")
-                    console.error("Error adding document: ", error);
                 });
             } else {
                 alert("Please Enter Valid Query")

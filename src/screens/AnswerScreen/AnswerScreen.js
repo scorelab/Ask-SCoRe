@@ -19,11 +19,10 @@ class AnswerScreen extends React.Component {
 
     deletedata = () => {
         firebase.firestore().collection("queries").doc(this.state.data).delete().then(() => {
-            console.log("Question Deleted")
             this.props.navigation.navigate("Home")
             alert("Query Deleted")
         }).catch((error) => {
-            console.error("Error removing document: ", error);
+            alert(error)
         });
     }
 
@@ -166,7 +165,6 @@ class AnswerScreen extends React.Component {
                             })
                             .catch((error) => {
                                 alert("Error occured while adding your Answer")
-                                console.error("Error adding document: ", error);
                             });
                         } else {
                             alert("Please Enter Valid Answer")
