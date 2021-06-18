@@ -85,4 +85,42 @@ export default StyleSheet.create({
         right: 5,
         justifyContent: 'center',
     },
+
+    textStyle : {
+        color: "black", 
+        fontWeight: '400', 
+        textAlign: 'center', 
+        fontSize: 14 
+    },
+
+    AskStyle : {
+        color: "black", 
+        fontWeight: '500', 
+        textAlign: 'center', 
+        fontSize: 16 
+    },
+
+    itemnameStyle: {
+        marginLeft: 10, 
+        marginTop: 2 
+    },
+
+    postTimeStyle: {
+        fontSize: 10, 
+        marginTop: 3, 
+        marginRight: 5, 
+        color:'white'
+    },
+
+    QueryStyle: {
+        padding: 10, 
+        fontSize: 14
+    },
+
+    ImageStyle : {
+        borderRadius: 10, 
+        height: 100, 
+        aspectRatio: 1, 
+        alignSelf: 'center'
+    },
 });

@@ -112,4 +112,100 @@ export default StyleSheet.create({
         right: 0,
         justifyContent: 'flex-end',
     },
+
+    doneStyle: {
+        color: "black", 
+        fontWeight: '500', 
+        textAlign: 'center', 
+        fontSize: 16 
+    },
+
+    ViewStyle : {
+        flexDirection:'row', 
+        justifyContent: 'space-between'
+    },
+
+    QuestionlabelStyle : {
+        marginLeft: 10, 
+        paddingLeft: 5, 
+        marginTop: 5, 
+        fontWeight: "700"
+    },
+
+    TouchableIconStyle: { 
+        marginRight: 10, 
+        paddingLeft: 5, 
+        marginTop: 5, 
+        fontWeight: "700"
+    },
+
+    IconStyle : {
+        color: "gray", 
+        alignSelf: "flex-end" 
+    },
+
+    QuestionNameStyle : {
+        marginLeft: 10, 
+        marginRight:5, 
+        padding:5, 
+        marginBottom: 5
+    },
+
+    ImageStyle : {
+        height: 100, 
+        aspectRatio: 1, 
+        alignSelf: 'center', 
+        borderRadius: 10, 
+        marginBottom: 10
+    },
+
+    ViewStyle1 : {
+        backgroundColor:'white', 
+        borderRadius:10
+    },
+
+    textInputStyle : {
+        padding: 10, 
+        fontSize: 13, 
+        width: "100%", 
+        marginBottom:5, 
+        color: 'black' 
+    },
+
+    AnswerStyle : {
+        color: "black", 
+        fontWeight: '400', 
+        textAlign: 'center', 
+        fontSize: 14 
+    },
+
+    userAnsStyle : {
+        marginLeft: 10, 
+        marginTop: 2
+    },
+
+    ansTimeStyle : {
+        fontSize: 10, 
+        marginTop: 5, 
+        marginRight: 5, 
+        color:'white'
+    },
+
+    Q_ansStyle : {
+        padding: 10, 
+        fontSize: 13
+    },
+
+    LikeStyle : {
+        color: "black", 
+        fontWeight: '400', 
+        textAlign: 'center', 
+        fontSize: 14 
+    },
+
+    StarIconStyle : {
+        color: "gold", 
+        marginRight: 10, 
+        alignSelf: "flex-end" 
+    }
 });

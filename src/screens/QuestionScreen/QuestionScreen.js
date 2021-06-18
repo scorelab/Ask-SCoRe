@@ -89,7 +89,7 @@ class QuestionScreen extends  React.Component {
                     <Image source={LOGO} style={styles.ImageView} />
                     <Text style={styles.HeaderStyle}>Query</Text>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate("Home")} style={styles.AskButtonStyle} >
-                        <Text style = {{color: "black", fontWeight: '500', textAlign: 'center', fontSize: 16 }}>DONE</Text>
+                        <Text style = {styles.DoneStyle}>DONE</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.DividerView} />
@@ -100,9 +100,9 @@ class QuestionScreen extends  React.Component {
                     <View style={styles.nameHeadlineStyle}>
                         <Text style={{marginLeft: 10}}>Enter your Question here</Text>
                     </View>
-                    <View style={{backgroundColor:'white', borderRadius:10, minHeight: 80, marginBottom: 10}}>
+                    <View style={styles.ViewStyle}>
                         <TextInput 
-                        style={{padding: 10, fontSize: 13, width: "90%", color: 'black' }} 
+                        style={styles.TextInputStyle} 
                         multiline 
                         placeholderTextColor={'gray'}
                         value={this.state.QueryInput}
@@ -111,7 +111,7 @@ class QuestionScreen extends  React.Component {
                         />
                         {setDisplayImage ? 
                         <TouchableOpacity onPress={this.show_alert} >
-                            <Image source={{uri: setDisplayImage}} style={{height: 100, aspectRatio: 1, alignSelf: 'center', borderRadius: 10}}/>
+                            <Image source={{uri: setDisplayImage}} style={styles.ImageStyle}/>
                         </TouchableOpacity>
                         : null}
                     </View>
@@ -119,11 +119,11 @@ class QuestionScreen extends  React.Component {
             </View>
             <View style={styles.AskButtonStyle2}>
             {setDisplayImage ? null : setimage ? 
-                 <Progress.Bar progress={transferred} width={230} style={{alignSelf: 'flex-start', marginTop: 18, marginRight: "5%"}}/> : null}
+                 <Progress.Bar progress={transferred} width={230} style={styles.ProgressBarStyle}/> : null}
                 {setDisplayImage ? null : setimage ? 
-                <Icon style={{color: "black", marginRight: 10, alignSelf: "flex-end", }} size={30} name={'cloud-upload-outline'} onPress={this.uploadImage}/> 
+                <Icon style={styles.IconStyle} size={30} name={'cloud-upload-outline'} onPress={this.uploadImage}/> 
                 : 
-                <Icon style={{color: "black", marginRight: 10, alignSelf: "flex-end", }} size={30} name={'image-outline'} onPress={this.takephotofrommlib}/>}
+                <Icon style={styles.IconStyle} size={30} name={'image-outline'} onPress={this.takephotofrommlib}/>}
                 
             <TouchableOpacity 
             onPress={() => {
@@ -155,7 +155,7 @@ class QuestionScreen extends  React.Component {
             }   
             }} 
                 style={styles.AskButtonStyle1} >
-                        <Text style = {{color: "black", fontWeight: '500', textAlign: 'center', fontSize: 16 }}>POST</Text>
+                        <Text style = {styles.PostTextStyle}>POST</Text>
                     </TouchableOpacity>
                     </View>
                     

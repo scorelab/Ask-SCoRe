@@ -107,7 +107,7 @@ class AnswerScreen extends React.Component {
                     <Image source={LOGO} style={styles.ImageView} />
                     <Text style={styles.HeaderStyle}>Answer Query</Text>
                     <TouchableOpacity onPress={() => this.props.navigation.navigate("Home")} style={styles.AskButtonStyle} >
-                        <Text style = {{color: "black", fontWeight: '500', textAlign: 'center', fontSize: 16 }}>DONE</Text>
+                        <Text style = {styles.doneStyle}>DONE</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.DividerView} />
@@ -118,24 +118,24 @@ class AnswerScreen extends React.Component {
                 <View style = {styles.QuestionStyle}>
                     <View style={styles.nameHeadlineStyle}>
 
-                        <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
-                            <Text style={{marginLeft: 10, paddingLeft: 5, marginTop: 5, fontWeight: "700"}}>Question:-</Text>  
-                            {user_uid === Questionid ? <TouchableOpacity onPress={this.show_alert} style={{ marginRight: 10, paddingLeft: 5, marginTop: 5, fontWeight: "700"}}>
-                                <Icon style={{color: "gray", alignSelf: "flex-end", }} size={20} name={'trash-outline'} />
+                        <View style={styles.ViewStyle}>
+                            <Text style={styles.QuestionlabelStyle}>Question:-</Text>  
+                            {user_uid === Questionid ? <TouchableOpacity onPress={this.show_alert} style={styles.TouchableIconStyle}>
+                                <Icon style={styles.IconStyle} size={20} name={'trash-outline'} />
                             </TouchableOpacity> : null}
                         </View>
-                        <Text style={{marginLeft: 10, marginRight:5, padding:5, marginBottom: 5}}>{Questionname}</Text>
+                        <Text style={styles.QuestionNameStyle}>{Questionname}</Text>
                         { 
                         q_image ? 
                         <TouchableOpacity onPress={() => Linking.openURL(q_image)}>
-                            <Image source={{uri: q_image}} style={{height: 100, aspectRatio: 1, alignSelf: 'center', borderRadius: 10, marginBottom: 10}}/>
+                            <Image source={{uri: q_image}} style={styles.ImageStyle}/>
                         </TouchableOpacity>
                          : null }
                     </View>
-                    <View style={{backgroundColor:'white', borderRadius:10}}>
+                    <View style={styles.ViewStyle1}>
                     <View style={styles.DividerView} />
                         <TextInput 
-                            style={{padding: 10, fontSize: 13, width: "100%", marginBottom:5, color: 'black' }} 
+                            style={styles.textInputStyle} 
                             multiline
                             placeholderTextColor={'gray'}  
                             placeholder = "Ask your query, by addressing your problem clearly!"
@@ -171,7 +171,7 @@ class AnswerScreen extends React.Component {
                             }
                         }}
                         >
-                            <Text style = {{color: "black", fontWeight: '400', textAlign: 'center', fontSize: 14 }}>Answer</Text>
+                            <Text style = {styles.AnswerStyle}>Answer</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -184,28 +184,28 @@ class AnswerScreen extends React.Component {
                                 <View style={{marginVertical: 10}}>                                        
                                         <View style = {styles.QuestionStyle}>
                                             <View style={styles.nameHeadlineStyle1}>
-                                                <Text style={{marginLeft: 10, marginTop: 2}}>{item.user_ans}</Text>
-                                                <Text style={{fontSize: 10, marginTop: 5, marginRight: 5, color:'white'}}>{item.and_time}</Text>
+                                                <Text style={styles.userAnsStyle}>{item.user_ans}</Text>
+                                                <Text style={styles.ansTimeStyle}>{item.and_time}</Text>
                                             </View>
                                             <View>
-                                                <Text style={{padding: 10, fontSize: 13}}>{item.q_ans}</Text>
+                                                <Text style={styles.Q_ansStyle}>{item.q_ans}</Text>
                                                 { 
                                                 this.user_uid === this.state.QuestionAskid ? 
                                                 item.liked_answer ? <View style={styles.AnswerButtonStyle1}>
                                                          <TouchableOpacity
                                                         onPress={() => this.ifDislikeButton(item.answer_uid, !item.liked_answer)}
                                                         >
-                                                            <Text style = {{color: "black", fontWeight: '400', textAlign: 'center', fontSize: 14 }}>Unlike</Text>
+                                                            <Text style = {styles.LikeStyle}>Unlike</Text>
                                                         </TouchableOpacity>
                                                     </View> : <View style={styles.AnswerButtonStyle}>
                                                          <TouchableOpacity
                                                         onPress={() => this.iflikedButton(item.answer_uid, !item.liked_answer)}
                                                         >
-                                                            <Text style = {{color: "black", fontWeight: '400', textAlign: 'center', fontSize: 14 }}>Like</Text>
+                                                            <Text style = {styles.LikeStyle}>Like</Text>
                                                         </TouchableOpacity>
                                                     </View>
                                                     : item.liked_answer ? <View style={styles.AnswerButtonStyle2}>
-                                                        <Icon style={{color: "gold", marginRight: 10, alignSelf: "flex-end", }} size={20} name={'star'} />
+                                                        <Icon style={styles.StarIconStyle} size={20} name={'star'} />
                                                     </View> : null
                                                 }
                                             </View>

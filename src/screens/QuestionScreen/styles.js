@@ -80,5 +80,51 @@ export default StyleSheet.create({
         marginTop: 7,
         flexDirection: 'row'
     },
-   
+
+    DoneStyle : {
+        color: "black", 
+        fontWeight: '500', 
+        textAlign: 'center', 
+        fontSize: 16 
+    },
+
+    ViewStyle : {
+        backgroundColor:'white', 
+        borderRadius:10, 
+        minHeight: 80, 
+        marginBottom: 10
+    },
+
+    TextInputStyle : {
+        padding: 10, 
+        fontSize: 13, 
+        width: "90%", 
+        color: 'black' 
+    },
+
+    ImageStyle : {
+        height: 100, 
+        aspectRatio: 1, 
+        alignSelf: 'center', 
+        borderRadius: 10
+    },
+
+    ProgressBarStyle : {
+        alignSelf: 'flex-start', 
+        marginTop: 18, 
+        marginRight: "5%"
+    },
+
+    IconStyle : {
+        color: "black", 
+        marginRight: 10, 
+        alignSelf: "flex-end" 
+    },
+
+    PostTextStyle : {
+        color: "black", 
+        fontWeight: '500', 
+        textAlign: 'center', 
+        fontSize: 16 
+    }
 });

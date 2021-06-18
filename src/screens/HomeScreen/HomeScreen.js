@@ -52,7 +52,7 @@ class HomeScreen extends React.Component{
                     <Image source={LOGO} style={styles.ImageView} />
                     <Text style={styles.HeaderStyle}>Community</Text>
                     <TouchableOpacity onPress={() => this.props.navigation.push("Question")} style={styles.AskButtonStyle} >
-                        <Text style = {{color: "black", fontWeight: '500', textAlign: 'center', fontSize: 16 }}>ASK</Text>
+                        <Text style = {styles.AskStyle}>ASK</Text>
                     </TouchableOpacity>
                 </View>
                 <View style={styles.DividerView} />
@@ -70,17 +70,17 @@ class HomeScreen extends React.Component{
                             <View style={{marginVertical: 10}}>     
                                     <View style = {styles.QuestionStyle}>
                                         <View style={styles.nameHeadlineStyle}>
-                                            <Text style={{marginLeft: 10, marginTop: 2}}>{item.name}</Text>
-                                            <Text style={{fontSize: 10, marginTop: 3, marginRight: 5, color:'white'}}>{item.post_time}</Text>
+                                            <Text style={styles.itemnameStyle}>{item.name}</Text>
+                                            <Text style={styles.postTimeStyle}>{item.post_time}</Text>
                                         </View>
                                         <View>
-                                            <Text style={{padding: 10, fontSize: 14}}>{item.QueryInput}</Text>
-                                            { item.q_image ? <Image source={{uri: item.q_image}} style={{height: 100, width:300, alignSelf: 'center', borderRadius: 10}} resizeMode="contain"/> : null}
+                                            <Text style={styles.QueryStyle}>{item.QueryInput}</Text>
+                                            { item.q_image ? <Image source={{uri: item.q_image}} style={styles.ImageStyle} /> : null}
                                             {item.answer_present ? 
                                             <View style={styles.AnswerButtonStyle1}>
-                                                <Text style = {{color: "black", fontWeight: '400', textAlign: 'center', fontSize: 14 }}>Answered</Text>
+                                                <Text style = {styles.textStyle}>Answered</Text>
                                             </View> : <View style={styles.AnswerButtonStyle}>
-                                                <Text style = {{color: "black", fontWeight: '400', textAlign: 'center', fontSize: 14 }}>Answer</Text>
+                                                <Text style = {styles.textStyle}>Answer</Text>
                                             </View>
                                             }
                                         </View>
