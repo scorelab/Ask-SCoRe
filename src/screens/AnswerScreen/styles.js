@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { COLOR_LIGHT_PRIMARY} from '../../config/styles';
+import { COLOR_LIGHT_PRIMARY, COLOR_LIGHT_SECONDARY} from '../../config/styles';
 
 export default StyleSheet.create({
     HeaderStyle : {
@@ -73,7 +73,7 @@ export default StyleSheet.create({
     nameHeadlineStyle1 : {
         width: "101%",
         paddingVertical: 2,
-        backgroundColor: '#79AEE0',
+        backgroundColor: COLOR_LIGHT_SECONDARY,
         borderRadius: 5,
         alignSelf: 'center',
         justifyContent: 'space-between',
@@ -95,7 +95,7 @@ export default StyleSheet.create({
     AnswerButtonStyle1 : {
         width: "20%",
         paddingVertical: 2,
-        backgroundColor: "#79AEE0",
+        backgroundColor: COLOR_LIGHT_SECONDARY,
         borderRadius: 5,
         alignSelf: 'flex-end',
         bottom: 5,
