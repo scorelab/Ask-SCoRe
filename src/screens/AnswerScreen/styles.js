@@ -50,10 +50,10 @@ export default StyleSheet.create({
         borderWidth: 1,
         backgroundColor: Platform.OS === 'ios' ? '#fff' : null,
         borderColor: '#b8b8b8',
-        shadowColor: Platform.OS === 'ios' ? '#000000' : '#000000',
+        shadowColor: '#000000',
         shadowOffset: {
-        width: Platform.OS === 'ios' ? 0 : 0,
-        height: Platform.OS === 'ios' ? 2 : 2,
+        width: 0,
+        height: 2,
         },
         shadowOpacity: Platform.OS === 'ios' ? 0.9 : 0.8,
         shadowRadius: Platform.OS === 'ios' ? 3 : 40,

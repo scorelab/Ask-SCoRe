@@ -19,7 +19,7 @@ class QuestionScreen extends  React.Component {
           height: 300,
           cropping: true,
         }).then((image) => {
-          const imageUri = Platform.OS === 'ios' ? image.path : image.path;
+          const imageUri = image.path;
           this.setState({setimage: imageUri});
         }).catch("Unknown Error Occured")
       };

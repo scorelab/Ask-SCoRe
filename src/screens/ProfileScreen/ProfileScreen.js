@@ -103,7 +103,6 @@ const ProfileScreen = () => {
       height: 300,
       cropping: true,
     }).then((image) => {
-      const imageUri = Platform.OS === 'ios' ? image.path : image.path;
       setImage(image.path);
       setImageUpload(false)
     }).catch("Unknown Error Occured")
