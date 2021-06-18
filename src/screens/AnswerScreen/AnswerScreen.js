@@ -58,7 +58,7 @@ class AnswerScreen extends React.Component {
         })
     }
 
-    iflikedButton(ansuid, lb) {
+    likedButton(ansuid, lb) {
         firebase.firestore().collection("queries").doc(this.state.data).collection("answers").doc(ansuid).update({
             "LikeButton": lb,
         })
@@ -83,7 +83,7 @@ class AnswerScreen extends React.Component {
       );  
     }
 
-    ifDislikeButton(ansuid, lb) {
+    DislikeButton(ansuid, lb) {
         firebase.firestore().collection("queries").doc(this.state.data).collection("answers").doc(ansuid).update({
             "LikeButton": lb,
         })
@@ -192,13 +192,13 @@ class AnswerScreen extends React.Component {
                                                 this.user_uid === this.state.QuestionAskid ? 
                                                 item.liked_answer ? <View style={styles.AnswerButtonStyle1}>
                                                          <TouchableOpacity
-                                                        onPress={() => this.ifDislikeButton(item.answer_uid, !item.liked_answer)}
+                                                        onPress={() => this.DislikeButton(item.answer_uid, !item.liked_answer)}
                                                         >
                                                             <Text style = {styles.LikeStyle}>Unlike</Text>
                                                         </TouchableOpacity>
                                                     </View> : <View style={styles.AnswerButtonStyle}>
                                                          <TouchableOpacity
-                                                        onPress={() => this.iflikedButton(item.answer_uid, !item.liked_answer)}
+                                                        onPress={() => this.likedButton(item.answer_uid, !item.liked_answer)}
                                                         >
                                                             <Text style = {styles.LikeStyle}>Like</Text>
                                                         </TouchableOpacity>
