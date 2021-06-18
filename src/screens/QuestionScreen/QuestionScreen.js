@@ -6,12 +6,14 @@ import styles from './styles';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/Ionicons';
 import ImagePicker from 'react-native-image-crop-picker';
+import * as Progress from 'react-native-progress';
 
 class QuestionScreen extends  React.Component {
     state = {QueryInput : '', setimage : null, setDisplayImage: null, transferred: 0};
 
     takephotofrommlib = () => {
         const {setimage} = this.state
+        this.setState({transferred: 0})
         ImagePicker.openPicker({
           width: 300,
           height: 300,
@@ -78,7 +80,7 @@ class QuestionScreen extends  React.Component {
         );  
       }
     render() {
-        const {setDisplayImage, setimage} = this.state
+        const {setDisplayImage, setimage, transferred} = this.state
     return(
     <SafeAreaView>
         <View>
@@ -116,6 +118,8 @@ class QuestionScreen extends  React.Component {
                 </View> 
             </View>
             <View style={styles.AskButtonStyle2}>
+            {setDisplayImage ? null : setimage ? 
+                 <Progress.Bar progress={transferred} width={230} style={{alignSelf: 'flex-start', marginTop: 18, marginRight: "5%"}}/> : null}
                 {setDisplayImage ? null : setimage ? 
                 <Icon style={{color: "black", marginRight: 10, alignSelf: "flex-end", }} size={30} name={'cloud-upload-outline'} onPress={this.uploadImage}/> 
                 : 
@@ -138,7 +142,8 @@ class QuestionScreen extends  React.Component {
                 .then((docRef) => {
                     this.setState({
                         QueryInput: '',
-                        setDisplayImage: null
+                        setDisplayImage: null,
+                        setimage: null
                     })
                     alert("Query has been Added")
                 })
