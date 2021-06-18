@@ -158,7 +158,6 @@ class AnswerScreen extends React.Component {
                                 this.setState({
                                     AnswerQuery: ''
                             })
-                                alert("Answer has been Added")
                                 firebase.firestore().collection("queries").doc(this.state.data).collection("answers").doc(docRef.id).update({
                                     Answer_id: docRef.id
                                 });

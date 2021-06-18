@@ -145,7 +145,6 @@ class QuestionScreen extends  React.Component {
                         setDisplayImage: null,
                         setimage: null
                     })
-                    alert("Query has been Added")
                 })
                 .catch((error) => {
                     alert("Error occured while adding your Query")
