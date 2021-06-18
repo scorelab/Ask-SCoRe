@@ -14,26 +14,26 @@ class HomeScreen extends React.Component{
             var queryArray = []
             querySnapshot.forEach((doc) => {
                 q_data = {
-                    "id": doc.data().id,
+                    "uid": doc.data().id,
                     "QueryInput": doc.data().QueryInput,
                     "postTime": doc.data().postTime,
-                    "q_id": doc.id,
+                    "id": doc.id,
                     "postdatetime": doc.data().postdatetime,
-                    "answer_present": doc.data().answer_present,
-                    "q_image" : doc.data().query_image
+                    "answerpresent": doc.data().answer_present,
+                    "queryimage" : doc.data().query_image
                 }
                 queryArray.push(q_data);
             });
           
             queryArray.forEach((query) => {
-                firebase.firestore().collection("users").doc(query.id).get().then((userObject) => {
-                    data = {"name": userObject.data().fullName,
+                firebase.firestore().collection("users").doc(query.uid).get().then((userObject) => {
+                    data = {"fullName": userObject.data().fullName,
                     "QueryInput": query.QueryInput,
-                    "Q_id": query.q_id,
-                    "post_time": query.postTime,
+                    "id": query.id,
+                    "postTime": query.postTime,
                     "postdatetime": query.postdatetime,
-                    "answer_present": query.answer_present,
-                    "q_image": query.q_image
+                    "answerpresent": query.answerpresent,
+                    "qimage": query.queryimage
                 }
                 newentity.push(data)
                 this.setState({querydetail : newentity})
@@ -64,19 +64,19 @@ class HomeScreen extends React.Component{
                 renderItem = {({item}) => {
                     return (
                             <TouchableOpacity onPress={() => this.props.navigation.push("Answer", {
-                                data: item.Q_id,
+                                data: item.id,
                                 q_data: item.QueryInput
                               })}>
                             <View style={{marginVertical: 10}}>     
                                     <View style = {styles.QuestionStyle}>
                                         <View style={styles.nameHeadlineStyle}>
-                                            <Text style={styles.itemnameStyle}>{item.name}</Text>
-                                            <Text style={styles.postTimeStyle}>{item.post_time}</Text>
+                                            <Text style={styles.itemnameStyle}>{item.fullName}</Text>
+                                            <Text style={styles.postTimeStyle}>{item.postTime}</Text>
                                         </View>
                                         <View>
                                             <Text style={styles.QueryStyle}>{item.QueryInput}</Text>
-                                            { item.q_image ? <Image source={{uri: item.q_image}} style={styles.ImageStyle} /> : null}
-                                            {item.answer_present ? 
+                                            { item.qimage ? <Image source={{uri: item.qimage}} style={styles.ImageStyle} /> : null}
+                                            {item.answerpresent ? 
                                             <View style={styles.AnswerButtonStyle1}>
                                                 <Text style = {styles.textStyle}>Answered</Text>
                                             </View> : <View style={styles.AnswerButtonStyle}>

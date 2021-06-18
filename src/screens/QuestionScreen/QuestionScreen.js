@@ -30,7 +30,7 @@ class QuestionScreen extends  React.Component {
           return
         }
           const uri = setimage;
-          const childPath = `post/${firebase.auth().currentUser.uid}/${Math.random().toString(36)}`;
+          const childPath = `post/${firebase.auth().currentUser.uid}//${Math.random().toString(36)}`;
   
           const response = await fetch(uri);
           const blob = await response.blob();
