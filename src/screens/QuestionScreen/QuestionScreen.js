@@ -85,7 +85,7 @@ class QuestionScreen extends  React.Component {
         if(queryInput && queryInput.length > 0){
             firebase.firestore().collection("queries").add({
                 id: Useruid,
-                queryInput,
+                queryInput: queryInput,
                 postDateTime: firebase.firestore.FieldValue.serverTimestamp(),
                 postTime: timeDate.format('lll'),
                 answerPresent: false,
