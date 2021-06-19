@@ -79,6 +79,33 @@ class QuestionScreen extends  React.Component {
             ]  
         );  
       }
+
+    addQuery = () => {
+        const {setDisplayImage, setimage, QueryInput} = this.state
+        var timeDate = moment()
+        const Useruid = firebase.auth().currentUser.uid
+        if(QueryInput && QueryInput.length > 0){
+            firebase.firestore().collection("queries").add({
+                id: Useruid,
+                QueryInput,
+                postdatetime: firebase.firestore.FieldValue.serverTimestamp(),
+                postTime: timeDate.format('lll'),
+                answer_present: false,
+                query_image: setDisplayImage
+            }).then((docRef) => {
+                this.setState({
+                    QueryInput: '',
+                    setDisplayImage: null,
+                    setimage: null
+                })
+            }).catch((error) => {
+                alert("Error occured while adding your Query")
+            });
+        } else {
+             alert("Please Enter Valid Query")
+        }
+    }
+
     render() {
         const {setDisplayImage, setimage, transferred} = this.state
     return(
@@ -126,33 +153,7 @@ class QuestionScreen extends  React.Component {
                 <Icon style={styles.IconStyle} size={30} name={'image-outline'} onPress={this.takephotofrommlib}/>}
                 
             <TouchableOpacity 
-            onPress={() => {
-                var timeDate = moment()
-                const Useruid = firebase.auth().currentUser.uid
-                const {QueryInput} = this.state
-                if(QueryInput && QueryInput.length > 0){
-                firebase.firestore().collection("queries").add({
-                    id: Useruid,
-                    QueryInput,
-                    postdatetime: firebase.firestore.FieldValue.serverTimestamp(),
-                    postTime: timeDate.format('lll'),
-                    answer_present: false,
-                    query_image: setDisplayImage
-                })
-                .then((docRef) => {
-                    this.setState({
-                        QueryInput: '',
-                        setDisplayImage: null,
-                        setimage: null
-                    })
-                })
-                .catch((error) => {
-                    alert("Error occured while adding your Query")
-                });
-            } else {
-                alert("Please Enter Valid Query")
-            }   
-            }} 
+            onPress={this.addQuery} 
                 style={styles.AskButtonStyle1} >
                         <Text style = {styles.PostTextStyle}>POST</Text>
                     </TouchableOpacity>

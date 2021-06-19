@@ -92,6 +92,31 @@ class AnswerScreen extends React.Component {
         })
     }
 
+    addAnswer = () => {
+        var timeDate = moment()
+        const {AnswerQuery, LikeButton} = this.state
+        if(AnswerQuery && AnswerQuery.length > 0){
+            firebase.firestore().collection("queries").doc(this.state.data).collection("answers").add({
+                id: firebase.auth().currentUser.uid,
+                AnswerQuery,
+                AnsTime: timeDate.format('lll'),
+                LikeButton,
+                ans_data_time: firebase.firestore.FieldValue.serverTimestamp()
+            }).then((docRef) => {
+                this.setState({
+                    AnswerQuery: ''
+                })
+                firebase.firestore().collection("queries").doc(this.state.data).collection("answers").doc(docRef.id).update({
+                    Answer_id: docRef.id
+                });
+            }).catch((error) => {
+                alert("Error occured while adding your Answer")
+            });
+        } else {
+            alert("Please Enter Valid Answer")
+        }
+    }
+
     componentDidMount(){
         this.getData()
     }
@@ -144,31 +169,7 @@ class AnswerScreen extends React.Component {
                         />
                         <TouchableOpacity 
                         style={styles.AnswerButtonStyle}
-                        onPress={() => {
-                            var timeDate = moment()
-                            const {AnswerQuery} = this.state
-                            if(AnswerQuery && AnswerQuery.length > 0){
-                            firebase.firestore().collection("queries").doc(this.state.data).collection("answers").add({
-                                id: firebase.auth().currentUser.uid,
-                                AnswerQuery,
-                                AnsTime: timeDate.format('lll'),
-                                LikeButton,
-                                ans_data_time: firebase.firestore.FieldValue.serverTimestamp()
-                            }).then((docRef) => {
-                                this.setState({
-                                    AnswerQuery: ''
-                            })
-                                firebase.firestore().collection("queries").doc(this.state.data).collection("answers").doc(docRef.id).update({
-                                    Answer_id: docRef.id
-                                });
-                            })
-                            .catch((error) => {
-                                alert("Error occured while adding your Answer")
-                            });
-                        } else {
-                            alert("Please Enter Valid Answer")
-                            }
-                        }}
+                        onPress={this.addAnswer}
                         >
                             <Text style = {styles.AnswerStyle}>Answer</Text>
                         </TouchableOpacity>
