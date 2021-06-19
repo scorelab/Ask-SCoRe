@@ -15,9 +15,7 @@ class QuestionScreen extends  React.Component {
         const {setImage} = this.state
         this.setState({transferred: 0})
         ImagePicker.openPicker({
-          width: 300,
-          height: 300,
-          cropping: true,
+          cropping: false,
         }).then((image) => {
           const imageUri = image.path;
           this.setState({setImage: imageUri});
