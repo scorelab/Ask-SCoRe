@@ -124,64 +124,64 @@ class AnswerScreen extends React.Component {
     render() {
         const { answerDetail, questionName, questionAskId, likeButton, queryImage, questionId } = this.state
         userUid = firebase.auth().currentUser.uid
-    return(
-        <SafeAreaView>
-        <View>
-        <View style={{marginBottom: 15}}>
-                <View style={styles.HeaderStyle1}>
-                    <Image source={LOGO} style={styles.ImageView} />
-                    <Text style={styles.HeaderStyle}>Answer Query</Text>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate("Home")} style={styles.AskButtonStyle} >
-                        <Text style = {styles.doneStyle}>DONE</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.DividerView} />
-                <View style={styles.DividerView} />
-            </View>
-
-            <View style={{marginVertical: 15}}>
-                <View style = {styles.QuestionStyle}>
-                    <View style={styles.nameHeadlineStyle}>
-
-                        <View style={styles.ViewStyle}>
-                            <Text style={styles.QuestionlabelStyle}>Question:-</Text>  
-                            {userUid === questionId ? <TouchableOpacity onPress={this.showAlert} style={styles.TouchableIconStyle}>
-                                <Icon style={styles.IconStyle} size={20} name={'trash-outline'} />
-                            </TouchableOpacity> : null}
+        return(
+            <SafeAreaView>
+                <View>
+                    <View style={{marginBottom: 15}}>
+                            <View style={styles.HeaderStyle1}>
+                                <Image source={LOGO} style={styles.ImageView} />
+                                <Text style={styles.HeaderStyle}>Answer Query</Text>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate("Home")} style={styles.AskButtonStyle} >
+                                    <Text style = {styles.doneStyle}>DONE</Text>
+                                </TouchableOpacity>
+                            </View>
+                            <View style={styles.DividerView} />
+                            <View style={styles.DividerView} />
                         </View>
-                        <Text style={styles.QuestionNameStyle}>{questionName}</Text>
-                        { 
-                        queryImage ? 
-                        <TouchableOpacity onPress={() => Linking.openURL(queryImage)}>
-                            <Image source={{uri: queryImage}} style={styles.ImageStyle}/>
-                        </TouchableOpacity>
-                         : null }
+
+                    <View style={{marginVertical: 15}}>
+                        <View style = {styles.QuestionStyle}>
+                            <View style={styles.nameHeadlineStyle}>
+
+                                <View style={styles.ViewStyle}>
+                                    <Text style={styles.QuestionlabelStyle}>Question:-</Text>  
+                                    {userUid === questionId ? <TouchableOpacity onPress={this.showAlert} style={styles.TouchableIconStyle}>
+                                        <Icon style={styles.IconStyle} size={20} name={'trash-outline'} />
+                                    </TouchableOpacity> : null}
+                                </View>
+                                <Text style={styles.QuestionNameStyle}>{questionName}</Text>
+                                { 
+                                queryImage ? 
+                                <TouchableOpacity onPress={() => Linking.openURL(queryImage)}>
+                                    <Image source={{uri: queryImage}} style={styles.ImageStyle}/>
+                                </TouchableOpacity>
+                                : null }
+                            </View>
+                            <View style={styles.ViewStyle1}>
+                            <View style={styles.DividerView} />
+                                <TextInput 
+                                    style={styles.textInputStyle} 
+                                    multiline
+                                    placeholderTextColor={'gray'}  
+                                    placeholder = "Ask your query, by addressing your problem clearly!"
+                                    value = {this.state.answerQuery} 
+                                    onChangeText={(answerQuery) => this.setState({answerQuery})}
+                                />
+                                <TouchableOpacity 
+                                style={styles.AnswerButtonStyle}
+                                onPress={this.addAnswer}
+                                >
+                                    <Text style = {styles.AnswerStyle}>Answer</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </View>
                     </View>
-                    <View style={styles.ViewStyle1}>
-                    <View style={styles.DividerView} />
-                        <TextInput 
-                            style={styles.textInputStyle} 
-                            multiline
-                            placeholderTextColor={'gray'}  
-                            placeholder = "Ask your query, by addressing your problem clearly!"
-                            value = {this.state.answerQuery} 
-                            onChangeText={(answerQuery) => this.setState({answerQuery})}
-                        />
-                        <TouchableOpacity 
-                        style={styles.AnswerButtonStyle}
-                        onPress={this.addAnswer}
-                        >
-                            <Text style = {styles.AnswerStyle}>Answer</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            </View>
-            <View style={styles.DividerView1} />
-                <FlatList
-                    data={answerDetail}
-                    renderItem = {({item}) => {
-                        return (
-                                <View style={{marginVertical: 10}}>                                        
+                    <View style={styles.DividerView1} />
+                        <FlatList
+                            data={answerDetail}
+                            renderItem = {({item}) => {
+                                return(
+                                    <View style={{marginVertical: 10}}>                                        
                                         <View style = {styles.QuestionStyle}>
                                             <View style={styles.nameHeadlineStyle1}>
                                                 <Text style={styles.userAnsStyle}>{item.userAnswer}</Text>
@@ -192,13 +192,13 @@ class AnswerScreen extends React.Component {
                                                 { 
                                                 this.userUid === this.state.questionAskId ? 
                                                 item.likeAnswer ? <View style={styles.AnswerButtonStyle1}>
-                                                         <TouchableOpacity
+                                                        <TouchableOpacity
                                                         onPress={() => this.dislikeButton(item.answerUid, !item.likeAnswer)}
                                                         >
                                                             <Text style = {styles.LikeStyle}>Unlike</Text>
                                                         </TouchableOpacity>
                                                     </View> : <View style={styles.AnswerButtonStyle}>
-                                                         <TouchableOpacity
+                                                        <TouchableOpacity
                                                         onPress={() => this.likedButton(item.answerUid, !item.likeAnswer)}
                                                         >
                                                             <Text style = {styles.LikeStyle}>Like</Text>
@@ -211,14 +211,14 @@ class AnswerScreen extends React.Component {
                                             </View>
                                         </View>
                                     </View>
-                        )
-                    }}
-                    keyExtractor={(item, index) => 'key'+index}
-                    ListFooterComponent={<View style={{height: 520}}/>}
-                />
-        </View>  
-        </SafeAreaView>
-    )
+                                )
+                            }}
+                            keyExtractor={(item, index) => 'key'+index}
+                            ListFooterComponent={<View style={{height: 520}}/>}
+                        />
+                </View>  
+            </SafeAreaView>
+        )
     }
 };
 

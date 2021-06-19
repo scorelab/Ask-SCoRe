@@ -44,57 +44,57 @@ class HomeScreen extends React.Component{
 
     render() {
         const { queryDetail } = this.state
-    return(
-        <SafeAreaView>
-        <View>
-            <View style={{marginBottom: 15}}>
-                <View style={styles.HeaderStyle1}>
-                    <Image source={LOGO} style={styles.ImageView} />
-                    <Text style={styles.HeaderStyle}>Community</Text>
-                    <TouchableOpacity onPress={() => this.props.navigation.push("Question")} style={styles.AskButtonStyle} >
-                        <Text style = {styles.AskStyle}>ASK</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.DividerView} />
-                <View style={styles.DividerView} />
-            </View>
-
-            <FlatList
-                data={queryDetail}
-                renderItem = {({item}) => {
-                    return (
-                            <TouchableOpacity onPress={() => this.props.navigation.push("Answer", {
-                                data: item.id,
-                                qData: item.queryInput
-                              })}>
-                            <View style={{marginVertical: 10}}>     
-                                    <View style = {styles.QuestionStyle}>
-                                        <View style={styles.nameHeadlineStyle}>
-                                            <Text style={styles.itemnameStyle}>{item.fullName}</Text>
-                                            <Text style={styles.postTimeStyle}>{item.postTime}</Text>
-                                        </View>
-                                        <View>
-                                            <Text style={styles.QueryStyle}>{item.queryInput}</Text>
-                                            { item.queryImage ? <Image source={{uri: item.queryImage}} style={styles.ImageStyle} /> : null}
-                                            {item.answerPresent ? 
-                                            <View style={styles.AnswerButtonStyle1}>
-                                                <Text style = {styles.textStyle}>Answered</Text>
-                                            </View> : <View style={styles.AnswerButtonStyle}>
-                                                <Text style = {styles.textStyle}>Answer</Text>
-                                            </View>
-                                            }
-                                        </View>
-                                    </View>
-                                </View>
+        return(
+            <SafeAreaView>
+                <View>
+                    <View style={{marginBottom: 15}}>
+                        <View style={styles.HeaderStyle1}>
+                            <Image source={LOGO} style={styles.ImageView} />
+                            <Text style={styles.HeaderStyle}>Community</Text>
+                            <TouchableOpacity onPress={() => this.props.navigation.push("Question")} style={styles.AskButtonStyle} >
+                                <Text style = {styles.AskStyle}>ASK</Text>
                             </TouchableOpacity>
-                    )
-                }}
-                keyExtractor={(item, index) => 'key'+index}
-                ListFooterComponent={<View style={{height: 170}}/>}
-            />
-        </View>
-        </SafeAreaView>
-      )
+                        </View>
+                        <View style={styles.DividerView} />
+                        <View style={styles.DividerView} />
+                    </View>
+
+                    <FlatList
+                        data={queryDetail}
+                        renderItem = {({item}) => {
+                            return (
+                                <TouchableOpacity onPress={() => this.props.navigation.push("Answer", {
+                                    data: item.id,
+                                    qData: item.queryInput
+                                })}>
+                                    <View style={{marginVertical: 10}}>     
+                                            <View style = {styles.QuestionStyle}>
+                                                <View style={styles.nameHeadlineStyle}>
+                                                    <Text style={styles.itemnameStyle}>{item.fullName}</Text>
+                                                    <Text style={styles.postTimeStyle}>{item.postTime}</Text>
+                                                </View>
+                                                <View>
+                                                    <Text style={styles.QueryStyle}>{item.queryInput}</Text>
+                                                    { item.queryImage ? <Image source={{uri: item.queryImage}} style={styles.ImageStyle} /> : null}
+                                                    {item.answerPresent ? 
+                                                    <View style={styles.AnswerButtonStyle1}>
+                                                        <Text style = {styles.textStyle}>Answered</Text>
+                                                    </View> : <View style={styles.AnswerButtonStyle}>
+                                                        <Text style = {styles.textStyle}>Answer</Text>
+                                                    </View>
+                                                    }
+                                                </View>
+                                            </View>
+                                    </View>
+                                </TouchableOpacity>
+                            )
+                        }}
+                        keyExtractor={(item, index) => 'key'+index}
+                        ListFooterComponent={<View style={{height: 170}}/>}
+                    />
+                </View>
+            </SafeAreaView>
+        )
     }
 };
 

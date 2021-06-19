@@ -108,59 +108,58 @@ class QuestionScreen extends  React.Component {
 
     render() {
         const {setDisplayImage, setImage, transferred} = this.state
-    return(
-    <SafeAreaView>
-        <View>
-        <View style={{marginBottom: 15}}>
-                <View style={styles.HeaderStyle1}>
-                    <Image source={LOGO} style={styles.ImageView} />
-                    <Text style={styles.HeaderStyle}>Query</Text>
-                    <TouchableOpacity onPress={() => this.props.navigation.navigate("Home")} style={styles.AskButtonStyle} >
-                        <Text style = {styles.DoneStyle}>DONE</Text>
-                    </TouchableOpacity>
-                </View>
-                <View style={styles.DividerView} />
-                <View style={styles.DividerView} />
-            </View>
-            <View style={{marginTop: 15}}>
-                <View style = {styles.QuestionStyle}>
-                    <View style={styles.nameHeadlineStyle}>
-                        <Text style={{marginLeft: 10}}>Enter your Question here</Text>
+        return(
+            <SafeAreaView>
+                <View>
+                    <View style={{marginBottom: 15}}>
+                        <View style={styles.HeaderStyle1}>
+                            <Image source={LOGO} style={styles.ImageView} />
+                            <Text style={styles.HeaderStyle}>Query</Text>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate("Home")} style={styles.AskButtonStyle} >
+                                <Text style = {styles.DoneStyle}>DONE</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View style={styles.DividerView} />
+                        <View style={styles.DividerView} />
                     </View>
-                    <View style={styles.ViewStyle}>
-                        <TextInput 
-                        style={styles.TextInputStyle} 
-                        multiline 
-                        placeholderTextColor={'gray'}
-                        value={this.state.queryInput}
-                        placeholder = "Ask your query, by addressing your problem clearly!"
-                        onChangeText={(queryInput) => this.setState({queryInput})}
-                        />
-                        {setDisplayImage ? 
-                        <TouchableOpacity onPress={this.showAlert} >
-                            <Image source={{uri: setDisplayImage}} style={styles.ImageStyle}/>
+                    <View style={{marginTop: 15}}>
+                        <View style = {styles.QuestionStyle}>
+                            <View style={styles.nameHeadlineStyle}>
+                                <Text style={{marginLeft: 10}}>Enter your Question here</Text>
+                            </View>
+                            <View style={styles.ViewStyle}>
+                                <TextInput 
+                                style={styles.TextInputStyle} 
+                                multiline 
+                                placeholderTextColor={'gray'}
+                                value={this.state.queryInput}
+                                placeholder = "Ask your query, by addressing your problem clearly!"
+                                onChangeText={(queryInput) => this.setState({queryInput})}
+                                />
+                                {setDisplayImage ? 
+                                <TouchableOpacity onPress={this.showAlert} >
+                                    <Image source={{uri: setDisplayImage}} style={styles.ImageStyle}/>
+                                </TouchableOpacity>
+                                : null}
+                            </View>
+                        </View> 
+                    </View>
+                    <View style={styles.AskButtonStyle2}>
+                    {setDisplayImage ? null : setImage ? 
+                        <Progress.Bar progress={transferred} width={230} style={styles.ProgressBarStyle}/> : null}
+                        {setDisplayImage ? null : setImage ? 
+                        <Icon style={styles.IconStyle} size={30} name={'cloud-upload-outline'} onPress={this.uploadImage}/> 
+                        : 
+                        <Icon style={styles.IconStyle} size={30} name={'image-outline'} onPress={this.takePhotoFromLib}/>}
+                        
+                        <TouchableOpacity 
+                            onPress={this.addQuery} 
+                            style={styles.AskButtonStyle1} >
+                                <Text style = {styles.PostTextStyle}>POST</Text>
                         </TouchableOpacity>
-                        : null}
-                    </View>
-                </View> 
-            </View>
-            <View style={styles.AskButtonStyle2}>
-            {setDisplayImage ? null : setImage ? 
-                 <Progress.Bar progress={transferred} width={230} style={styles.ProgressBarStyle}/> : null}
-                {setDisplayImage ? null : setImage ? 
-                <Icon style={styles.IconStyle} size={30} name={'cloud-upload-outline'} onPress={this.uploadImage}/> 
-                : 
-                <Icon style={styles.IconStyle} size={30} name={'image-outline'} onPress={this.takePhotoFromLib}/>}
-                
-            <TouchableOpacity 
-            onPress={this.addQuery} 
-                style={styles.AskButtonStyle1} >
-                        <Text style = {styles.PostTextStyle}>POST</Text>
-                    </TouchableOpacity>
-                    </View>
-                    
-        </View>
-        </SafeAreaView>
+                    </View>     
+                </View>
+            </SafeAreaView>
         );
     }
 };
