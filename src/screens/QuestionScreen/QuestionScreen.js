@@ -9,10 +9,10 @@ import ImagePicker from 'react-native-image-crop-picker';
 import * as Progress from 'react-native-progress';
 
 class QuestionScreen extends  React.Component {
-    state = {QueryInput : '', setimage : null, setDisplayImage: null, transferred: 0};
+    state = {queryInput : '', setImage : null, setDisplayImage: null, transferred: 0};
 
-    takephotofrommlib = () => {
-        const {setimage} = this.state
+    takePhotoFromLib = () => {
+        const {setImage} = this.state
         this.setState({transferred: 0})
         ImagePicker.openPicker({
           width: 300,
@@ -20,16 +20,16 @@ class QuestionScreen extends  React.Component {
           cropping: true,
         }).then((image) => {
           const imageUri = image.path;
-          this.setState({setimage: imageUri});
+          this.setState({setImage: imageUri});
         }).catch("Unknown Error Occured")
       };
 
       uploadImage = async () => {
-        const {setimage} = this.state
-        if(setimage == null){
+        const {setImage} = this.state
+        if(setImage == null){
           return
         }
-          const uri = setimage;
+          const uri = setImage;
           const childPath = `post/${firebase.auth().currentUser.uid}//${Math.random().toString(36)}`;
   
           const response = await fetch(uri);
@@ -60,8 +60,8 @@ class QuestionScreen extends  React.Component {
           }, taskError, taskCompleted);
       }
 
-      show_alert = () => {
-          const {setimage} = this.state
+      showAlert = () => {
+          const {setImage} = this.state
           const {setDisplayImage} = this.state
         Alert.alert(  
             'Alert Title',  
@@ -71,7 +71,7 @@ class QuestionScreen extends  React.Component {
                     text: 'Remove',  
                     onPress: () => {this.setState({
                         setDisplayImage: null,
-                        setimage: null
+                        setImage: null
                     })},  
                     style: 'cancel',  
                 },  
@@ -81,22 +81,22 @@ class QuestionScreen extends  React.Component {
       }
 
     addQuery = () => {
-        const {setDisplayImage, setimage, QueryInput} = this.state
+        const {setDisplayImage, setImage, queryInput} = this.state
         var timeDate = moment()
         const Useruid = firebase.auth().currentUser.uid
-        if(QueryInput && QueryInput.length > 0){
+        if(queryInput && queryInput.length > 0){
             firebase.firestore().collection("queries").add({
                 id: Useruid,
-                QueryInput,
-                postdatetime: firebase.firestore.FieldValue.serverTimestamp(),
+                queryInput,
+                postDateTime: firebase.firestore.FieldValue.serverTimestamp(),
                 postTime: timeDate.format('lll'),
-                answer_present: false,
-                query_image: setDisplayImage
+                answerPresent: false,
+                queryImage: setDisplayImage
             }).then((docRef) => {
                 this.setState({
-                    QueryInput: '',
+                    queryInput: '',
                     setDisplayImage: null,
-                    setimage: null
+                    setImage: null
                 })
             }).catch((error) => {
                 alert("Error occured while adding your Query")
@@ -107,7 +107,7 @@ class QuestionScreen extends  React.Component {
     }
 
     render() {
-        const {setDisplayImage, setimage, transferred} = this.state
+        const {setDisplayImage, setImage, transferred} = this.state
     return(
     <SafeAreaView>
         <View>
@@ -132,12 +132,12 @@ class QuestionScreen extends  React.Component {
                         style={styles.TextInputStyle} 
                         multiline 
                         placeholderTextColor={'gray'}
-                        value={this.state.QueryInput}
+                        value={this.state.queryInput}
                         placeholder = "Ask your query, by addressing your problem clearly!"
-                        onChangeText={(QueryInput) => this.setState({QueryInput})}
+                        onChangeText={(queryInput) => this.setState({queryInput})}
                         />
                         {setDisplayImage ? 
-                        <TouchableOpacity onPress={this.show_alert} >
+                        <TouchableOpacity onPress={this.showAlert} >
                             <Image source={{uri: setDisplayImage}} style={styles.ImageStyle}/>
                         </TouchableOpacity>
                         : null}
@@ -145,12 +145,12 @@ class QuestionScreen extends  React.Component {
                 </View> 
             </View>
             <View style={styles.AskButtonStyle2}>
-            {setDisplayImage ? null : setimage ? 
+            {setDisplayImage ? null : setImage ? 
                  <Progress.Bar progress={transferred} width={230} style={styles.ProgressBarStyle}/> : null}
-                {setDisplayImage ? null : setimage ? 
+                {setDisplayImage ? null : setImage ? 
                 <Icon style={styles.IconStyle} size={30} name={'cloud-upload-outline'} onPress={this.uploadImage}/> 
                 : 
-                <Icon style={styles.IconStyle} size={30} name={'image-outline'} onPress={this.takephotofrommlib}/>}
+                <Icon style={styles.IconStyle} size={30} name={'image-outline'} onPress={this.takePhotoFromLib}/>}
                 
             <TouchableOpacity 
             onPress={this.addQuery} 

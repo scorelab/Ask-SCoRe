@@ -7,17 +7,17 @@ import styles from './styles';
 import moment from 'moment';
 
 class AnswerScreen extends React.Component {
-    user_uid = firebase.auth().currentUser.uid
-    state = {AnswerQuery : '', answerdetail: [], Questionname: '', QuestionAskid : '', LikeButton: false, q_image: null, Questionid: ''};
+    userUid = firebase.auth().currentUser.uid
+    state = {answerQuery : '', answerDetail: [], questionName: '', questionAskId : '', likeButton: false, queryImage: null, questionId: ''};
     getData() {
         const data = this.props.navigation.getParam('data');
         this.setState({
             data,
-            q_data
-        }, this.renderdata);
+            qData
+        }, this.renderData);
     }
 
-    deletedata = () => {
+    deleteData = () => {
         firebase.firestore().collection("queries").doc(this.state.data).delete().then(() => {
             this.props.navigation.navigate("Home")
             alert("Query Deleted")
@@ -26,9 +26,9 @@ class AnswerScreen extends React.Component {
         });
     }
 
-    renderdata(){
-        const {answerdetail} = this.state
-        firebase.firestore().collection("queries").doc(this.state.data).collection("answers").orderBy('ans_data_time', 'desc').onSnapshot((answerSnapShot) => {
+    renderData(){
+        const {answerDetail} = this.state
+        firebase.firestore().collection("queries").doc(this.state.data).collection("answers").orderBy('answerDateTime', 'desc').onSnapshot((answerSnapShot) => {
             var ansEntity = []
             var ansArray = []
             answerSnapShot.forEach((doc) => {
@@ -36,38 +36,38 @@ class AnswerScreen extends React.Component {
             });
             ansArray.forEach((query) => {
                 firebase.firestore().collection("users").doc(query.id).onSnapshot((userObject) => {
-                    a_data = {
-                        "answer_uid" : query.Answer_id,
-                        "and_time" : query.AnsTime,
-                        "q_ans" : query.AnswerQuery,
-                        "user_ans" : userObject.data().fullName,
-                        "liked_answer" : query.LikeButton,
+                    answerData = {
+                        "answerUid" : query.answerUid,
+                        "answerTime" : query.answerTime,
+                        "answerQuery" : query.answerQuery,
+                        "userAnswer" : userObject.data().fullName,
+                        "likeAnswer" : query.likeButton,
                     }
-                ansEntity.push(a_data)
-                this.setState({answerdetail : ansEntity})
+                ansEntity.push(answerData)
+                this.setState({answerDetail : ansEntity})
                 })
             })
         })
         firebase.firestore().collection("queries").doc(this.state.data).get().then((doc) => {
-            this.setState({Questionname: doc.data().QueryInput})
-            this.setState({QuestionAskid: doc.data().id})
-            this.setState({q_image: doc.data().query_image})
+            this.setState({questionName: doc.data().queryInput})
+            this.setState({questionAskId: doc.data().id})
+            this.setState({queryImage: doc.data().queryImage})
         })
         firebase.firestore().collection("queries").doc(this.state.data).get().then((doc) => {
-            this.setState({Questionid: doc.data().id})
+            this.setState({questionId: doc.data().id})
         })
     }
 
-    likedButton(ansuid, lb) {
-        firebase.firestore().collection("queries").doc(this.state.data).collection("answers").doc(ansuid).update({
-            "LikeButton": lb,
+    likedButton(ansUid, lb) {
+        firebase.firestore().collection("queries").doc(this.state.data).collection("answers").doc(ansUid).update({
+            "likeButton": lb,
         })
         firebase.firestore().collection("queries").doc(this.state.data).update({
-            answer_present: true
+            answerPresent: true
         })  
     }
 
-    show_alert = () => {
+    showAlert = () => {
         const {setDisplayImage} = this.state
         Alert.alert(  
           'Alert Title',  
@@ -78,36 +78,36 @@ class AnswerScreen extends React.Component {
                   onPress: () => console.log('Cancel Pressed'),  
                   style: 'cancel',  
               },  
-              {text: 'Delete', onPress: this.deletedata},  
+              {text: 'Delete', onPress: this.deleteData},  
           ]  
       );  
     }
 
-    DislikeButton(ansuid, lb) {
-        firebase.firestore().collection("queries").doc(this.state.data).collection("answers").doc(ansuid).update({
-            "LikeButton": lb,
+    dislikeButton(ansUid, lb) {
+        firebase.firestore().collection("queries").doc(this.state.data).collection("answers").doc(ansUid).update({
+            "likeButton": lb,
         })
         firebase.firestore().collection("queries").doc(this.state.data).update({
-            answer_present: false
+            answerPresent: false
         })
     }
 
     addAnswer = () => {
         var timeDate = moment()
-        const {AnswerQuery, LikeButton} = this.state
-        if(AnswerQuery && AnswerQuery.length > 0){
+        const {answerQuery, likeButton} = this.state
+        if(answerQuery && answerQuery.length > 0){
             firebase.firestore().collection("queries").doc(this.state.data).collection("answers").add({
                 id: firebase.auth().currentUser.uid,
-                AnswerQuery,
-                AnsTime: timeDate.format('lll'),
-                LikeButton,
-                ans_data_time: firebase.firestore.FieldValue.serverTimestamp()
+                answerQuery,
+                answerTime: timeDate.format('lll'),
+                likeButton,
+                answerDateTime: firebase.firestore.FieldValue.serverTimestamp()
             }).then((docRef) => {
                 this.setState({
-                    AnswerQuery: ''
+                    answerQuery: ''
                 })
                 firebase.firestore().collection("queries").doc(this.state.data).collection("answers").doc(docRef.id).update({
-                    Answer_id: docRef.id
+                    answerUid: docRef.id
                 });
             }).catch((error) => {
                 alert("Error occured while adding your Answer")
@@ -122,8 +122,8 @@ class AnswerScreen extends React.Component {
     }
 
     render() {
-        const { answerdetail, Questionname, QuestionAskid, LikeButton, q_image, Questionid } = this.state
-        user_uid = firebase.auth().currentUser.uid
+        const { answerDetail, questionName, questionAskId, likeButton, queryImage, questionId } = this.state
+        userUid = firebase.auth().currentUser.uid
     return(
         <SafeAreaView>
         <View>
@@ -145,15 +145,15 @@ class AnswerScreen extends React.Component {
 
                         <View style={styles.ViewStyle}>
                             <Text style={styles.QuestionlabelStyle}>Question:-</Text>  
-                            {user_uid === Questionid ? <TouchableOpacity onPress={this.show_alert} style={styles.TouchableIconStyle}>
+                            {userUid === questionId ? <TouchableOpacity onPress={this.showAlert} style={styles.TouchableIconStyle}>
                                 <Icon style={styles.IconStyle} size={20} name={'trash-outline'} />
                             </TouchableOpacity> : null}
                         </View>
-                        <Text style={styles.QuestionNameStyle}>{Questionname}</Text>
+                        <Text style={styles.QuestionNameStyle}>{questionName}</Text>
                         { 
-                        q_image ? 
-                        <TouchableOpacity onPress={() => Linking.openURL(q_image)}>
-                            <Image source={{uri: q_image}} style={styles.ImageStyle}/>
+                        queryImage ? 
+                        <TouchableOpacity onPress={() => Linking.openURL(queryImage)}>
+                            <Image source={{uri: queryImage}} style={styles.ImageStyle}/>
                         </TouchableOpacity>
                          : null }
                     </View>
@@ -164,8 +164,8 @@ class AnswerScreen extends React.Component {
                             multiline
                             placeholderTextColor={'gray'}  
                             placeholder = "Ask your query, by addressing your problem clearly!"
-                            value = {this.state.AnswerQuery} 
-                            onChangeText={(AnswerQuery) => this.setState({AnswerQuery})}
+                            value = {this.state.answerQuery} 
+                            onChangeText={(answerQuery) => this.setState({answerQuery})}
                         />
                         <TouchableOpacity 
                         style={styles.AnswerButtonStyle}
@@ -178,33 +178,33 @@ class AnswerScreen extends React.Component {
             </View>
             <View style={styles.DividerView1} />
                 <FlatList
-                    data={answerdetail}
+                    data={answerDetail}
                     renderItem = {({item}) => {
                         return (
                                 <View style={{marginVertical: 10}}>                                        
                                         <View style = {styles.QuestionStyle}>
                                             <View style={styles.nameHeadlineStyle1}>
-                                                <Text style={styles.userAnsStyle}>{item.user_ans}</Text>
-                                                <Text style={styles.ansTimeStyle}>{item.and_time}</Text>
+                                                <Text style={styles.userAnsStyle}>{item.userAnswer}</Text>
+                                                <Text style={styles.ansTimeStyle}>{item.answerTime}</Text>
                                             </View>
                                             <View>
-                                                <Text style={styles.Q_ansStyle}>{item.q_ans}</Text>
+                                                <Text style={styles.Q_ansStyle}>{item.answerQuery}</Text>
                                                 { 
-                                                this.user_uid === this.state.QuestionAskid ? 
-                                                item.liked_answer ? <View style={styles.AnswerButtonStyle1}>
+                                                this.userUid === this.state.questionAskId ? 
+                                                item.likeAnswer ? <View style={styles.AnswerButtonStyle1}>
                                                          <TouchableOpacity
-                                                        onPress={() => this.DislikeButton(item.answer_uid, !item.liked_answer)}
+                                                        onPress={() => this.dislikeButton(item.answerUid, !item.likeAnswer)}
                                                         >
                                                             <Text style = {styles.LikeStyle}>Unlike</Text>
                                                         </TouchableOpacity>
                                                     </View> : <View style={styles.AnswerButtonStyle}>
                                                          <TouchableOpacity
-                                                        onPress={() => this.likedButton(item.answer_uid, !item.liked_answer)}
+                                                        onPress={() => this.likedButton(item.answerUid, !item.likeAnswer)}
                                                         >
                                                             <Text style = {styles.LikeStyle}>Like</Text>
                                                         </TouchableOpacity>
                                                     </View>
-                                                    : item.liked_answer ? <View style={styles.AnswerButtonStyle2}>
+                                                    : item.likeAnswer ? <View style={styles.AnswerButtonStyle2}>
                                                         <Icon style={styles.StarIconStyle} size={20} name={'star'} />
                                                     </View> : null
                                                 }

@@ -97,7 +97,7 @@ const ProfileScreen = () => {
          })
     }
 
-  const takephotofrommlib = () => {
+  const takePhotoFromLib = () => {
     ImagePicker.openPicker({
       width: 300,
       height: 300,
@@ -140,7 +140,7 @@ const ProfileScreen = () => {
             { editfield ?
             <View> 
               { imageUpload ? 
-            <TouchableOpacity onPress={takephotofrommlib}>
+            <TouchableOpacity onPress={takePhotoFromLib}>
                 <Text style={styles.PickImageStyle}>Pick Image</Text>
             </TouchableOpacity> : progressUpload ? <Text style={styles.PickImageStyle}>Uploading...</Text> : <Text style={styles.PickImageStyle}>In progress</Text>
             }

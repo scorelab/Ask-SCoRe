@@ -6,44 +6,44 @@ import { LOGO } from '../../config/styles.js';
 import styles from './styles';
 
 class HomeScreen extends React.Component{
-    state = {querydetail : []};
+    state = {queryDetail : []};
     componentDidMount() {
-        const {querydetail} = this.state
-        firebase.firestore().collection("queries").orderBy('postdatetime', 'desc').onSnapshot((querySnapshot) => {
-            var newentity = []
+        const {queryDetail} = this.state
+        firebase.firestore().collection("queries").orderBy('postDateTime', 'desc').onSnapshot((querySnapshot) => {
+            var newEntity = []
             var queryArray = []
             querySnapshot.forEach((doc) => {
-                q_data = {
+                qData = {
                     "uid": doc.data().id,
-                    "QueryInput": doc.data().QueryInput,
+                    "queryInput": doc.data().queryInput,
                     "postTime": doc.data().postTime,
                     "id": doc.id,
-                    "postdatetime": doc.data().postdatetime,
-                    "answerpresent": doc.data().answer_present,
-                    "queryimage" : doc.data().query_image
+                    "postdDteTime": doc.data().postDateTime,
+                    "answerPresent": doc.data().answerPresent,
+                    "queryImage" : doc.data().queryImage
                 }
-                queryArray.push(q_data);
+                queryArray.push(qData);
             });
           
             queryArray.forEach((query) => {
                 firebase.firestore().collection("users").doc(query.uid).get().then((userObject) => {
                     data = {"fullName": userObject.data().fullName,
-                    "QueryInput": query.QueryInput,
+                    "queryInput": query.queryInput,
                     "id": query.id,
                     "postTime": query.postTime,
-                    "postdatetime": query.postdatetime,
-                    "answerpresent": query.answerpresent,
-                    "qimage": query.queryimage
+                    "postDateTime": query.postDateTime,
+                    "answerPresent": query.answerPresent,
+                    "queryImage": query.queryImage
                 }
-                newentity.push(data)
-                this.setState({querydetail : newentity})
+                newEntity.push(data)
+                this.setState({queryDetail : newEntity})
                 })
             })
         })
     }
 
     render() {
-        const { querydetail } = this.state
+        const { queryDetail } = this.state
     return(
         <SafeAreaView>
         <View>
@@ -60,12 +60,12 @@ class HomeScreen extends React.Component{
             </View>
 
             <FlatList
-                data={querydetail}
+                data={queryDetail}
                 renderItem = {({item}) => {
                     return (
                             <TouchableOpacity onPress={() => this.props.navigation.push("Answer", {
                                 data: item.id,
-                                q_data: item.QueryInput
+                                qData: item.queryInput
                               })}>
                             <View style={{marginVertical: 10}}>     
                                     <View style = {styles.QuestionStyle}>
@@ -74,9 +74,9 @@ class HomeScreen extends React.Component{
                                             <Text style={styles.postTimeStyle}>{item.postTime}</Text>
                                         </View>
                                         <View>
-                                            <Text style={styles.QueryStyle}>{item.QueryInput}</Text>
-                                            { item.qimage ? <Image source={{uri: item.qimage}} style={styles.ImageStyle} /> : null}
-                                            {item.answerpresent ? 
+                                            <Text style={styles.QueryStyle}>{item.queryInput}</Text>
+                                            { item.queryImage ? <Image source={{uri: item.queryImage}} style={styles.ImageStyle} /> : null}
+                                            {item.answerPresent ? 
                                             <View style={styles.AnswerButtonStyle1}>
                                                 <Text style = {styles.textStyle}>Answered</Text>
                                             </View> : <View style={styles.AnswerButtonStyle}>
