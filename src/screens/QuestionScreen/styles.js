@@ -1,5 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
 import { COLOR_LIGHT_SECONDARY, COLOR_LIGHT_PRIMARY} from '../../config/styles';
+
+let deviceWidth = Dimensions.get('window').width;
+let deviceHeight = Dimensions.get('window').height;
 
 export default StyleSheet.create({
     HeaderStyle : {
@@ -27,7 +30,7 @@ export default StyleSheet.create({
     },
     
     AskButtonStyle1 : {
-        width: 60,
+        width: deviceWidth * 0.15,
         height: 30,
         backgroundColor: COLOR_LIGHT_PRIMARY,
         borderRadius: 10,
@@ -39,13 +42,13 @@ export default StyleSheet.create({
     },
 
     AskButtonStyle : {
-        width: 60,
+        width: deviceWidth * 0.15,
         height: 30,
         backgroundColor: COLOR_LIGHT_PRIMARY,
         borderRadius: 10,
         right: 10,
         justifyContent: 'center',
-        marginTop: 7
+        marginTop: 12
     },
 
     QuestionStyle : {
@@ -74,6 +77,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         top: 0
     },
+    
     AskButtonStyle2 : {
         alignSelf:'flex-end',
         justifyContent: 'center',
@@ -103,7 +107,7 @@ export default StyleSheet.create({
     },
 
     ImageStyle : {
-        height: 100, 
+        height: deviceHeight * 0.14, 
         aspectRatio: 1, 
         alignSelf: 'center', 
         borderRadius: 10

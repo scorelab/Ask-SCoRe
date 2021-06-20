@@ -32,6 +32,7 @@ class SignupForm extends Component{
                 email,
                 fullName,
                 isImagePresent : false,
+                postNumber: 0,
             };
             const userRef = firebase.firestore().collection('users')
             userRef.doc(uid).set(data).then(this.onSigninSuccess.bind(this))

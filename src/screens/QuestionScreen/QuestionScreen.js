@@ -9,7 +9,15 @@ import ImagePicker from 'react-native-image-crop-picker';
 import * as Progress from 'react-native-progress';
 
 class QuestionScreen extends  React.Component {
-    state = {queryInput : '', setImage : null, setDisplayImage: null, transferred: 0};
+    state = {queryInput : '', setImage : null, setDisplayImage: null, transferred: 0, postNumber: null};
+
+    getPostNumber(){
+        const {postNumber} = this.state
+        const Useruid = firebase.auth().currentUser.uid
+        firebase.firestore().collection("users").doc(Useruid).get().then((doc) => {
+            this.setState({postNumber: doc.data().postNumber})
+        })
+    }
 
     takePhotoFromLib = () => {
         const {setImage} = this.state
@@ -23,13 +31,12 @@ class QuestionScreen extends  React.Component {
       };
 
       uploadImage = async () => {
-        const {setImage} = this.state
+        const {setImage, postNumber} = this.state
         if(setImage == null){
           return
         }
           const uri = setImage;
-          const childPath = `post/${firebase.auth().currentUser.uid}/queries/${Math.random().toString(36)}`;
-  
+          const childPath = `post/${firebase.auth().currentUser.uid}/queries/${postNumber}/${Math.random().toString(36)}`;
           const response = await fetch(uri);
           const blob = await response.blob();
   
@@ -79,7 +86,7 @@ class QuestionScreen extends  React.Component {
       }
 
     addQuery = () => {
-        const {setDisplayImage, setImage, queryInput} = this.state
+        const {setDisplayImage, setImage, queryInput, postNumber} = this.state
         var timeDate = moment()
         const Useruid = firebase.auth().currentUser.uid
         if(queryInput && queryInput.length > 0){
@@ -94,7 +101,12 @@ class QuestionScreen extends  React.Component {
                 this.setState({
                     queryInput: '',
                     setDisplayImage: null,
-                    setImage: null
+                    setImage: null,
+                    postNumber: this.state.postNumber+1
+                })
+                console.log(postNumber)
+                firebase.firestore().collection("users").doc(Useruid).update({
+                   postNumber: postNumber+1
                 })
             }).catch((error) => {
                 alert("Error occured while adding your Query")
@@ -102,6 +114,10 @@ class QuestionScreen extends  React.Component {
         } else {
              alert("Please Enter Valid Query")
         }
+    }
+
+    componentDidMount(){
+        this.getPostNumber()
     }
 
     render() {
