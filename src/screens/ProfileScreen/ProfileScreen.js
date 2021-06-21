@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, SafeAreaView, Image, ScrollView, Platform, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, SafeAreaView, Image, ScrollView, Alert } from 'react-native';
 import { firebase } from '../../config/config';
 import ImagePicker from 'react-native-image-crop-picker';
 import styles from './styles';
@@ -142,7 +142,8 @@ const ProfileScreen = () => {
               { imageUpload ? 
             <TouchableOpacity onPress={takePhotoFromLib}>
                 <Text style={styles.PickImageStyle}>Pick Image</Text>
-            </TouchableOpacity> : progressUpload ? <Text style={styles.PickImageStyle}>Uploading...</Text> : <Text style={styles.PickImageStyle}>In progress</Text>
+            </TouchableOpacity> : progressUpload ? <Text style={styles.PickImageStyle}>Uploading...</Text> : 
+            <Text style={styles.PickImageStyle}>In progress</Text>
             }
             <Progress.Bar progress={transferred} width={180} style={{alignSelf: 'center'}}/>
             </View>

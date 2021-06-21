@@ -10,7 +10,9 @@ import * as Progress from 'react-native-progress';
 
 class AnswerScreen extends React.Component {
     userUid = firebase.auth().currentUser.uid
-    state = {answerQuery : '', answerDetail: [], questionName: '', questionAskId : '', likeButton: false, queryImage: null, questionId: '', transferred: 0, setImage: null, setDisplayImage: null, answerImage: null, answerPostNumber: null};
+    state = {answerQuery : '', answerDetail: [], questionName: '', questionAskId : '', likeButton: false,
+    queryImage: null, questionId: '', transferred: 0, setImage: null, setDisplayImage: null,answerImage: null,
+    answerPostNumber: null};
     getData() {
         const data = this.props.navigation.getParam('data');
         this.setState({
@@ -76,7 +78,8 @@ class AnswerScreen extends React.Component {
 
     renderData(){
         const {answerDetail} = this.state
-        firebase.firestore().collection("queries").doc(this.state.data).collection("answers").orderBy('answerDateTime', 'desc').onSnapshot((answerSnapShot) => {
+        firebase.firestore().collection("queries").doc(this.state.data).collection("answers")
+        .orderBy('answerDateTime', 'desc').onSnapshot((answerSnapShot) => {
             var ansEntity = []
             var ansArray = []
             answerSnapShot.forEach((doc) => {
@@ -159,7 +162,8 @@ class AnswerScreen extends React.Component {
                     setDisplayImage: null,
                     setImage: null,
                 })
-                firebase.firestore().collection("queries").doc(this.state.data).collection("answers").doc(docRef.id).update({
+                firebase.firestore().collection("queries").doc(this.state.data).collection("answers").doc(docRef.id)
+                .update({
                     answerUid: docRef.id
                 });
             }).catch((error) => {
@@ -175,7 +179,8 @@ class AnswerScreen extends React.Component {
     }
 
     render() {
-        const { answerDetail, questionName, questionAskId, likeButton, queryImage, questionId, setDisplayImage, setImage, transferred, answerImage } = this.state
+        const { answerDetail, questionName, questionAskId, likeButton, queryImage, questionId, setDisplayImage,
+            setImage, transferred, answerImage } = this.state
         userUid = firebase.auth().currentUser.uid
         return(
             <SafeAreaView>
@@ -184,7 +189,9 @@ class AnswerScreen extends React.Component {
                             <View style={styles.HeaderStyle1}>
                                 <Image source={LOGO} style={styles.ImageView} />
                                 <Text style={styles.HeaderStyle}>Answer Query</Text>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate("Home")} style={styles.AskButtonStyle} >
+                                <TouchableOpacity 
+                                onPress={() => this.props.navigation.navigate("Home")} 
+                                style={styles.AskButtonStyle}>
                                     <Text style = {styles.doneStyle}>DONE</Text>
                                 </TouchableOpacity>
                             </View>
@@ -198,7 +205,9 @@ class AnswerScreen extends React.Component {
 
                                 <View style={styles.ViewStyle}>
                                     <Text style={styles.QuestionlabelStyle}>Question:-</Text>  
-                                    {userUid === questionId ? <TouchableOpacity onPress={this.showAlert} style={styles.TouchableIconStyle}>
+                                    {userUid === questionId ? <TouchableOpacity 
+                                    onPress={this.showAlert} 
+                                    style={styles.TouchableIconStyle}>
                                         <Icon style={styles.IconStyle} size={20} name={'trash-outline'} />
                                     </TouchableOpacity> : null}
                                 </View>
@@ -256,7 +265,10 @@ class AnswerScreen extends React.Component {
                                             <View>
                                                 <Text style={styles.Q_ansStyle}>{item.answerQuery}</Text>
                                                 { item.answerImage ? 
-                                                <TouchableOpacity onPress={() => Linking.openURL(item.answerImage)}><Image source={{uri: item.answerImage}} style={styles.ImageStyle1} /></TouchableOpacity> : null}
+                                                <TouchableOpacity 
+                                                onPress={() => Linking.openURL(item.answerImage)}><Image 
+                                                source={{uri: item.answerImage}} 
+                                                style={styles.ImageStyle1} /></TouchableOpacity> : null}
                                                 { 
                                                 this.userUid === this.state.questionAskId ? 
                                                 item.likeAnswer ? <View style={styles.AnswerButtonStyle1}>

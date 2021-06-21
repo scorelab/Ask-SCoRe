@@ -51,7 +51,9 @@ class HomeScreen extends React.Component{
                         <View style={styles.HeaderStyle1}>
                             <Image source={LOGO} style={styles.ImageView} />
                             <Text style={styles.HeaderStyle}>Community</Text>
-                            <TouchableOpacity onPress={() => this.props.navigation.push("Question")} style={styles.AskButtonStyle} >
+                            <TouchableOpacity 
+                            onPress={() => this.props.navigation.push("Question")} 
+                            style={styles.AskButtonStyle}>
                                 <Text style = {styles.AskStyle}>ASK</Text>
                             </TouchableOpacity>
                         </View>
@@ -75,7 +77,9 @@ class HomeScreen extends React.Component{
                                                 </View>
                                                 <View>
                                                     <Text style={styles.QueryStyle}>{item.queryInput}</Text>
-                                                    { item.queryImage ? <Image source={{uri: item.queryImage}} style={styles.ImageStyle} /> : null}
+                                                    { item.queryImage ? <Image 
+                                                    source={{uri: item.queryImage}} 
+                                                    style={styles.ImageStyle} /> : null}
                                                     {item.answerPresent ? 
                                                     <View style={styles.AnswerButtonStyle1}>
                                                         <Text style = {styles.textStyle}>Answered</Text>

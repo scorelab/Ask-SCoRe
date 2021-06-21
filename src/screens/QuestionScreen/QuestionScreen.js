@@ -130,7 +130,9 @@ class QuestionScreen extends  React.Component {
                         <View style={styles.HeaderStyle1}>
                             <Image source={LOGO} style={styles.ImageView} />
                             <Text style={styles.HeaderStyle}>Query</Text>
-                            <TouchableOpacity onPress={() => this.props.navigation.navigate("Home")} style={styles.AskButtonStyle} >
+                            <TouchableOpacity 
+                            onPress={() => this.props.navigation.navigate("Home")} 
+                            style={styles.AskButtonStyle}>
                                 <Text style = {styles.DoneStyle}>DONE</Text>
                             </TouchableOpacity>
                         </View>
@@ -163,9 +165,11 @@ class QuestionScreen extends  React.Component {
                     {setDisplayImage ? null : setImage ? 
                         <Progress.Bar progress={transferred} width={230} style={styles.ProgressBarStyle}/> : null}
                         {setDisplayImage ? null : setImage ? 
-                        <Icon style={styles.IconStyle} size={30} name={'cloud-upload-outline'} onPress={this.uploadImage}/> 
+                        <Icon style={styles.IconStyle} size={30} name={'cloud-upload-outline'} 
+                        onPress={this.uploadImage}/> 
                         : 
-                        <Icon style={styles.IconStyle} size={30} name={'image-outline'} onPress={this.takePhotoFromLib}/>}
+                        <Icon style={styles.IconStyle} size={30} name={'image-outline'} 
+                        onPress={this.takePhotoFromLib}/>}
                         
                         <TouchableOpacity 
                             onPress={this.addQuery} 
