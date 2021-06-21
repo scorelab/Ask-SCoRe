@@ -1,14 +1,16 @@
 import React from 'react';
-import {View, Text, SafeAreaView, Image, TouchableOpacity, TextInput, FlatList, Alert, Linking} from 'react-native';
+import {View, Text, SafeAreaView, Image, TouchableOpacity, TextInput, FlatList, Alert, Linking, ColorPropType} from 'react-native';
 import { firebase } from '../../config/config';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { LOGO } from '../../config/styles.js';
 import styles from './styles';
 import moment from 'moment';
+import ImagePicker from 'react-native-image-crop-picker';
+import * as Progress from 'react-native-progress';
 
 class AnswerScreen extends React.Component {
     userUid = firebase.auth().currentUser.uid
-    state = {answerQuery : '', answerDetail: [], questionName: '', questionAskId : '', likeButton: false, queryImage: null, questionId: ''};
+    state = {answerQuery : '', answerDetail: [], questionName: '', questionAskId : '', likeButton: false, queryImage: null, questionId: '', transferred: 0, setImage: null, setDisplayImage: null, answerImage: null, answerPostNumber: null};
     getData() {
         const data = this.props.navigation.getParam('data');
         this.setState({
@@ -24,6 +26,52 @@ class AnswerScreen extends React.Component {
         }).catch((error) => {
             alert(error)
         });
+    }
+
+    takePhotoFromLib = () => {
+        const {setImage} = this.state
+        this.setState({transferred: 0})
+        ImagePicker.openPicker({
+          cropping: false,
+        }).then((image) => {
+          const imageUri = image.path;
+          this.setState({setImage: imageUri});
+        }).catch("Unknown Error Occured")
+    };
+
+    uploadImage = async () => {
+        const {setImage, questionAskId, answerPostNumber} = this.state
+        if(setImage == null){
+          return
+        }
+        const uri = setImage;
+        const childPath = `post/${questionAskId}/queries/${answerPostNumber}/answers/${Math.random().toString(36)}`;
+        const response = await fetch(uri);
+        const blob = await response.blob();
+
+        const task = firebase
+            .storage()
+            .ref()
+            .child(childPath)
+            .put(blob);
+
+        const taskCompleted = () => {
+            const {transferred} = this.state
+            task.snapshot.ref.getDownloadURL().then((snapshot) => {
+                this.setState({setDisplayImage: snapshot})
+            }).catch((error) => {
+                alert(error)
+            })
+        }
+
+        const taskError = snapshot => {
+            alert("Error Occured")
+        }
+
+        task.on("state_changed", snapshot => {
+            const {transferred} = this.state
+            this.setState({ transferred: Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 10000})
+        }, taskError, taskCompleted);
     }
 
     renderData(){
@@ -42,6 +90,7 @@ class AnswerScreen extends React.Component {
                         "answerQuery" : query.answerQuery,
                         "userAnswer" : userObject.data().fullName,
                         "likeAnswer" : query.likeButton,
+                        "answerImage" : query.answerImage
                     }
                 ansEntity.push(answerData)
                 this.setState({answerDetail : ansEntity})
@@ -52,6 +101,7 @@ class AnswerScreen extends React.Component {
             this.setState({questionName: doc.data().queryInput})
             this.setState({questionAskId: doc.data().id})
             this.setState({queryImage: doc.data().queryImage})
+            this.setState({answerPostNumber: doc.data().postNumber})
         })
         firebase.firestore().collection("queries").doc(this.state.data).get().then((doc) => {
             this.setState({questionId: doc.data().id})
@@ -94,17 +144,20 @@ class AnswerScreen extends React.Component {
 
     addAnswer = () => {
         var timeDate = moment()
-        const {answerQuery, likeButton} = this.state
+        const {answerQuery, likeButton, setDisplayImage} = this.state
         if(answerQuery && answerQuery.length > 0){
             firebase.firestore().collection("queries").doc(this.state.data).collection("answers").add({
                 id: firebase.auth().currentUser.uid,
                 answerQuery,
                 answerTime: timeDate.format('lll'),
                 likeButton,
-                answerDateTime: firebase.firestore.FieldValue.serverTimestamp()
+                answerDateTime: firebase.firestore.FieldValue.serverTimestamp(),
+                answerImage: setDisplayImage
             }).then((docRef) => {
                 this.setState({
-                    answerQuery: ''
+                    answerQuery: '',
+                    setDisplayImage: null,
+                    setImage: null,
                 })
                 firebase.firestore().collection("queries").doc(this.state.data).collection("answers").doc(docRef.id).update({
                     answerUid: docRef.id
@@ -122,7 +175,7 @@ class AnswerScreen extends React.Component {
     }
 
     render() {
-        const { answerDetail, questionName, questionAskId, likeButton, queryImage, questionId } = this.state
+        const { answerDetail, questionName, questionAskId, likeButton, queryImage, questionId, setDisplayImage, setImage, transferred, answerImage } = this.state
         userUid = firebase.auth().currentUser.uid
         return(
             <SafeAreaView>
@@ -167,6 +220,11 @@ class AnswerScreen extends React.Component {
                                     value = {this.state.answerQuery} 
                                     onChangeText={(answerQuery) => this.setState({answerQuery})}
                                 />
+                                {setDisplayImage ? 
+                                <TouchableOpacity onPress={this.showAlert} >
+                                    <Image source={{uri: setDisplayImage}} style={styles.ImageStyle}/>
+                                </TouchableOpacity>
+                                : null}
                                 <TouchableOpacity 
                                 style={styles.AnswerButtonStyle}
                                 onPress={this.addAnswer}
@@ -174,6 +232,14 @@ class AnswerScreen extends React.Component {
                                     <Text style = {styles.AnswerStyle}>Answer</Text>
                                 </TouchableOpacity>
                             </View>
+                        </View>
+                        <View style={{flexDirection: 'row', alignSelf:'flex-end',}}>
+                        {setDisplayImage ? null : setImage ? 
+                        <Progress.Bar progress={transferred} width={230} style={styles.ProgressBarStyle}/> : null}
+                        {setDisplayImage ? null : setImage ? 
+                        <Icon style={styles.IconStyle1} size={30} name={'cloud-upload-outline'} onPress={this.uploadImage}/> 
+                        : 
+                        <Icon style={styles.IconStyle1} size={30} name={'image-outline'} onPress={this.takePhotoFromLib}/>}
                         </View>
                     </View>
                     <View style={styles.DividerView1} />
@@ -189,6 +255,8 @@ class AnswerScreen extends React.Component {
                                             </View>
                                             <View>
                                                 <Text style={styles.Q_ansStyle}>{item.answerQuery}</Text>
+                                                { item.answerImage ? 
+                                                <TouchableOpacity onPress={() => Linking.openURL(item.answerImage)}><Image source={{uri: item.answerImage}} style={styles.ImageStyle1} /></TouchableOpacity> : null}
                                                 { 
                                                 this.userUid === this.state.questionAskId ? 
                                                 item.likeAnswer ? <View style={styles.AnswerButtonStyle1}>

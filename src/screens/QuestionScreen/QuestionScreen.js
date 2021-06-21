@@ -96,7 +96,8 @@ class QuestionScreen extends  React.Component {
                 postDateTime: firebase.firestore.FieldValue.serverTimestamp(),
                 postTime: timeDate.format('lll'),
                 answerPresent: false,
-                queryImage: setDisplayImage
+                queryImage: setDisplayImage,
+                postNumber : postNumber
             }).then((docRef) => {
                 this.setState({
                     queryInput: '',

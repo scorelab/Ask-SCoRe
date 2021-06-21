@@ -144,7 +144,14 @@ export default StyleSheet.create({
 
     IconStyle : {
         color: "gray", 
-        alignSelf: "flex-end" 
+        alignSelf: "flex-end",
+    },
+
+    IconStyle1 : {
+        color: "black", 
+        marginRight: 20,
+        marginTop: 5, 
+        alignSelf: "flex-end"   
     },
 
     QuestionNameStyle : {
@@ -210,5 +217,18 @@ export default StyleSheet.create({
         color: "gold", 
         marginRight: 10, 
         alignSelf: "flex-end" 
-    }
+    },
+
+    ImageStyle1 : {
+        borderRadius: 10, 
+        height: deviceHeight * 0.14, 
+        aspectRatio: 1, 
+        alignSelf: 'center'
+    },
+
+    ProgressBarStyle : {
+        alignSelf: 'flex-start', 
+        marginTop: 18, 
+        marginRight: "5%"
+    },
 });
