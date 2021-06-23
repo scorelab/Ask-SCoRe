@@ -7,8 +7,7 @@
 package-lock.json
 .env
 
-src/
-config/config.js
+src/config/config.js
 
 ios/Podfile.lock
 

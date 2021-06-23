@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, SafeAreaView, Image, ScrollView, Platform, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, SafeAreaView, Image, ScrollView, Alert } from 'react-native';
 import { firebase } from '../../config/config';
 import ImagePicker from 'react-native-image-crop-picker';
 import styles from './styles';
@@ -97,13 +97,12 @@ const ProfileScreen = () => {
          })
     }
 
-  const takephotofrommlib = () => {
+  const takePhotoFromLib = () => {
     ImagePicker.openPicker({
       width: 300,
       height: 300,
       cropping: true,
     }).then((image) => {
-      const imageUri = Platform.OS === 'ios' ? image.path : image.path;
       setImage(image.path);
       setImageUpload(false)
     }).catch("Unknown Error Occured")
@@ -141,9 +140,10 @@ const ProfileScreen = () => {
             { editfield ?
             <View> 
               { imageUpload ? 
-            <TouchableOpacity onPress={takephotofrommlib}>
+            <TouchableOpacity onPress={takePhotoFromLib}>
                 <Text style={styles.PickImageStyle}>Pick Image</Text>
-            </TouchableOpacity> : progressUpload ? <Text style={styles.PickImageStyle}>Uploading...</Text> : <Text style={styles.PickImageStyle}>In progress</Text>
+            </TouchableOpacity> : progressUpload ? <Text style={styles.PickImageStyle}>Uploading...</Text> : 
+            <Text style={styles.PickImageStyle}>In progress</Text>
             }
             <Progress.Bar progress={transferred} width={180} style={{alignSelf: 'center'}}/>
             </View>
