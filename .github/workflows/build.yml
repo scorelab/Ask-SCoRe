@@ -2,7 +2,7 @@ name: Build test
 on:
   push:
     branches:
-      - master
+      - GH-Branch
 jobs:
   install-and-test:
     runs-on: ubuntu-latest
