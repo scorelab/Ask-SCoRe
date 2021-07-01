@@ -1,234 +1,234 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { COLOR_LIGHT_PRIMARY, COLOR_LIGHT_SECONDARY} from '../../config/styles';
+import {StyleSheet, Dimensions, Platform} from "react-native";
+import {COLOR_LIGHT_PRIMARY, COLOR_LIGHT_SECONDARY} from "../../config/styles";
 
-let deviceWidth = Dimensions.get('window').width;
-let deviceHeight = Dimensions.get('window').height;
+let deviceWidth = Dimensions.get("window").width;
+let deviceHeight = Dimensions.get("window").height;
 
 export default StyleSheet.create({
-    HeaderStyle : {
-        fontSize: 30,
-        flex: 1,
-        marginLeft: 10, 
-        marginTop: 5,
-        marginBottom: 10
-    },
+  HeaderStyle: {
+    fontSize: 30,
+    flex: 1,
+    marginLeft: 10,
+    marginTop: 5,
+    marginBottom: 10,
+  },
 
-    ImageView : {
-        width: "13%",
-        height: "100%",
-        marginHorizontal: 5,
-    },
+  ImageView: {
+    width: "13%",
+    height: "100%",
+    marginHorizontal: 5,
+  },
 
-    HeaderStyle1 : {
-        flexDirection: 'row',  
-    },
+  HeaderStyle1: {
+    flexDirection: "row",
+  },
 
-    DividerView : {
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-        marginBottom:3,
-        marginHorizontal: 10
-    },
+  DividerView: {
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
+    marginBottom: 3,
+    marginHorizontal: 10,
+  },
 
-    DividerView1 : {
-        borderBottomColor: '#23598B',
-        borderBottomWidth: 1,
-        marginBottom:3,
-        marginHorizontal: 20
-    },
-    
-    AskButtonStyle : {
-        width: deviceWidth * 0.15,
-        height: 32,
-        backgroundColor: COLOR_LIGHT_PRIMARY,
-        borderRadius: 10,
-        right: 10,
-        justifyContent: 'center',
-        marginTop: 7
-    },
-  
-    QuestionStyle : {
-        width : "90%",
-        borderRadius: 10,
-        borderWidth: 1,
-        backgroundColor: Platform.OS === 'ios' ? '#fff' : null,
-        borderColor: '#b8b8b8',
-        shadowColor: '#000000',
-        shadowOffset: {
-        width: 0,
-        height: 2,
-        },
-        shadowOpacity: Platform.OS === 'ios' ? 0.9 : 0.8,
-        shadowRadius: Platform.OS === 'ios' ? 3 : 40,
-        elevation: Platform.OS === 'ios' ? 3 : 4,
-        alignSelf: 'center'
-    },
+  DividerView1: {
+    borderBottomColor: "#23598B",
+    borderBottomWidth: 1,
+    marginBottom: 3,
+    marginHorizontal: 20,
+  },
 
-    nameHeadlineStyle : {
-        width: "101%",
-        backgroundColor: COLOR_LIGHT_PRIMARY,
-        borderRadius: 7,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        top: 0
-    },
+  AskButtonStyle: {
+    width: deviceWidth * 0.15,
+    height: 32,
+    backgroundColor: COLOR_LIGHT_PRIMARY,
+    borderRadius: 10,
+    right: 10,
+    justifyContent: "center",
+    marginTop: 7,
+  },
 
-    nameHeadlineStyle1 : {
-        width: "101%",
-        paddingVertical: 2,
-        backgroundColor: COLOR_LIGHT_SECONDARY,
-        borderRadius: 5,
-        alignSelf: 'center',
-        justifyContent: 'space-between',
-        top: 0,
-        flexDirection: 'row'
+  QuestionStyle: {
+    width: "90%",
+    borderRadius: 10,
+    borderWidth: 1,
+    backgroundColor: Platform.OS === "ios" ? "#fff" : null,
+    borderColor: "#b8b8b8",
+    shadowColor: "#000000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-    
-    AnswerButtonStyle : {
-        width: deviceWidth * 0.15,
-        paddingVertical: 2,
-        backgroundColor: COLOR_LIGHT_PRIMARY,
-        borderRadius: 5,
-        alignSelf: 'flex-end',
-        bottom: 5,
-        right: 5,
-        justifyContent: 'center',
-    },
+    shadowOpacity: Platform.OS === "ios" ? 0.9 : 0.8,
+    shadowRadius: Platform.OS === "ios" ? 3 : 40,
+    elevation: Platform.OS === "ios" ? 3 : 4,
+    alignSelf: "center",
+  },
 
-    AnswerButtonStyle1 : {
-        width: deviceWidth * 0.15,
-        paddingVertical: 2,
-        backgroundColor: COLOR_LIGHT_SECONDARY,
-        borderRadius: 5,
-        alignSelf: 'flex-end',
-        bottom: 5,
-        right: 5,
-        justifyContent: 'center',
-    },
+  nameHeadlineStyle: {
+    width: "101%",
+    backgroundColor: COLOR_LIGHT_PRIMARY,
+    borderRadius: 7,
+    alignSelf: "center",
+    justifyContent: "center",
+    top: 0,
+  },
 
-    AnswerButtonStyle2 : {
-        width: deviceWidth * 0.15,
-        paddingVertical: 2,
-        borderRadius: 5,
-        alignSelf: 'flex-end',
-        bottom: 5,
-        right: 0,
-        justifyContent: 'flex-end',
-    },
+  nameHeadlineStyle1: {
+    width: "101%",
+    paddingVertical: 2,
+    backgroundColor: COLOR_LIGHT_SECONDARY,
+    borderRadius: 5,
+    alignSelf: "center",
+    justifyContent: "space-between",
+    top: 0,
+    flexDirection: "row",
+  },
 
-    doneStyle: {
-        color: "black", 
-        fontWeight: '500', 
-        textAlign: 'center', 
-        fontSize: 16 
-    },
+  AnswerButtonStyle: {
+    width: deviceWidth * 0.15,
+    paddingVertical: 2,
+    backgroundColor: COLOR_LIGHT_PRIMARY,
+    borderRadius: 5,
+    alignSelf: "flex-end",
+    bottom: 5,
+    right: 5,
+    justifyContent: "center",
+  },
 
-    ViewStyle : {
-        flexDirection:'row', 
-        justifyContent: 'space-between'
-    },
+  AnswerButtonStyle1: {
+    width: deviceWidth * 0.15,
+    paddingVertical: 2,
+    backgroundColor: COLOR_LIGHT_SECONDARY,
+    borderRadius: 5,
+    alignSelf: "flex-end",
+    bottom: 5,
+    right: 5,
+    justifyContent: "center",
+  },
 
-    QuestionlabelStyle : {
-        marginLeft: 10, 
-        paddingLeft: 5, 
-        marginTop: 5, 
-        fontWeight: "700"
-    },
+  AnswerButtonStyle2: {
+    width: deviceWidth * 0.15,
+    paddingVertical: 2,
+    borderRadius: 5,
+    alignSelf: "flex-end",
+    bottom: 5,
+    right: 0,
+    justifyContent: "flex-end",
+  },
 
-    TouchableIconStyle: { 
-        marginRight: 10, 
-        paddingLeft: 5, 
-        marginTop: 5, 
-        fontWeight: "700"
-    },
+  doneStyle: {
+    color: "black",
+    fontWeight: "500",
+    textAlign: "center",
+    fontSize: 16,
+  },
 
-    IconStyle : {
-        color: "gray", 
-        alignSelf: "flex-end",
-    },
+  ViewStyle: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
 
-    IconStyle1 : {
-        color: "black", 
-        marginRight: 20,
-        marginTop: 5, 
-        alignSelf: "flex-end"   
-    },
+  QuestionlabelStyle: {
+    marginLeft: 10,
+    paddingLeft: 5,
+    marginTop: 5,
+    fontWeight: "700",
+  },
 
-    QuestionNameStyle : {
-        marginLeft: 10, 
-        marginRight:5, 
-        padding:5, 
-        marginBottom: 5
-    },
+  TouchableIconStyle: {
+    marginRight: 10,
+    paddingLeft: 5,
+    marginTop: 5,
+    fontWeight: "700",
+  },
 
-    ImageStyle : {
-        height: deviceHeight * 0.14, 
-        aspectRatio: 1, 
-        alignSelf: 'center', 
-        borderRadius: 10, 
-        marginBottom: 10
-    },
+  IconStyle: {
+    color: "gray",
+    alignSelf: "flex-end",
+  },
 
-    ViewStyle1 : {
-        backgroundColor:'white', 
-        borderRadius:10
-    },
+  IconStyle1: {
+    color: "black",
+    marginRight: 20,
+    marginTop: 5,
+    alignSelf: "flex-end",
+  },
 
-    textInputStyle : {
-        padding: 10, 
-        fontSize: 13, 
-        width: "100%", 
-        marginBottom:5, 
-        color: 'black' 
-    },
+  QuestionNameStyle: {
+    marginLeft: 10,
+    marginRight: 5,
+    padding: 5,
+    marginBottom: 5,
+  },
 
-    AnswerStyle : {
-        color: "black", 
-        fontWeight: '400', 
-        textAlign: 'center', 
-        fontSize: 14 
-    },
+  ImageStyle: {
+    height: deviceHeight * 0.14,
+    aspectRatio: 1,
+    alignSelf: "center",
+    borderRadius: 10,
+    marginBottom: 10,
+  },
 
-    userAnsStyle : {
-        marginLeft: 10, 
-        marginTop: 2
-    },
+  ViewStyle1: {
+    backgroundColor: "white",
+    borderRadius: 10,
+  },
 
-    ansTimeStyle : {
-        fontSize: 10, 
-        marginTop: 5, 
-        marginRight: 5, 
-        color:'white'
-    },
+  textInputStyle: {
+    padding: 10,
+    fontSize: 13,
+    width: "100%",
+    marginBottom: 5,
+    color: "black",
+  },
 
-    Q_ansStyle : {
-        padding: 10, 
-        fontSize: 13
-    },
+  AnswerStyle: {
+    color: "black",
+    fontWeight: "400",
+    textAlign: "center",
+    fontSize: 14,
+  },
 
-    LikeStyle : {
-        color: "black", 
-        fontWeight: '400', 
-        textAlign: 'center', 
-        fontSize: 14 
-    },
+  userAnsStyle: {
+    marginLeft: 10,
+    marginTop: 2,
+  },
 
-    StarIconStyle : {
-        color: "gold", 
-        marginRight: 10, 
-        alignSelf: "flex-end" 
-    },
+  ansTimeStyle: {
+    fontSize: 10,
+    marginTop: 5,
+    marginRight: 5,
+    color: "white",
+  },
 
-    ImageStyle1 : {
-        borderRadius: 10, 
-        height: deviceHeight * 0.14, 
-        aspectRatio: 1, 
-        alignSelf: 'center'
-    },
+  Q_ansStyle: {
+    padding: 10,
+    fontSize: 13,
+  },
 
-    ProgressBarStyle : {
-        alignSelf: 'flex-start', 
-        marginTop: 18, 
-        marginRight: "5%"
-    },
+  LikeStyle: {
+    color: "black",
+    fontWeight: "400",
+    textAlign: "center",
+    fontSize: 14,
+  },
+
+  StarIconStyle: {
+    color: "gold",
+    marginRight: 10,
+    alignSelf: "flex-end",
+  },
+
+  ImageStyle1: {
+    borderRadius: 10,
+    height: deviceHeight * 0.14,
+    aspectRatio: 1,
+    alignSelf: "center",
+  },
+
+  ProgressBarStyle: {
+    alignSelf: "flex-start",
+    marginTop: 18,
+    marginRight: "5%",
+  },
 });

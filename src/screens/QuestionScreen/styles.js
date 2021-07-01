@@ -1,134 +1,134 @@
-import { StyleSheet, Dimensions } from 'react-native';
-import { COLOR_LIGHT_SECONDARY, COLOR_LIGHT_PRIMARY} from '../../config/styles';
+import {StyleSheet, Dimensions, Platform} from "react-native";
+import {COLOR_LIGHT_SECONDARY, COLOR_LIGHT_PRIMARY} from "../../config/styles";
 
-let deviceWidth = Dimensions.get('window').width;
-let deviceHeight = Dimensions.get('window').height;
+let deviceWidth = Dimensions.get("window").width;
+let deviceHeight = Dimensions.get("window").height;
 
 export default StyleSheet.create({
-    HeaderStyle : {
-        fontSize: 30,
-        flex: 1,
-        marginLeft: 10, 
-        marginTop: 5
-    },
+  HeaderStyle: {
+    fontSize: 30,
+    flex: 1,
+    marginLeft: 10,
+    marginTop: 5,
+  },
 
-    ImageView : {
-        width: 55,
-        height: 55,
-        marginHorizontal: 5
-    },
+  ImageView: {
+    width: 55,
+    height: 55,
+    marginHorizontal: 5,
+  },
 
-    HeaderStyle1 : {
-        flexDirection: 'row',    
-    },
+  HeaderStyle1: {
+    flexDirection: "row",
+  },
 
-    DividerView : {
-        borderBottomColor: 'black',
-        borderBottomWidth: 1,
-        marginBottom:3,
-        marginHorizontal: 10
-    },
-    
-    AskButtonStyle1 : {
-        width: deviceWidth * 0.15,
-        height: 30,
-        backgroundColor: COLOR_LIGHT_PRIMARY,
-        borderRadius: 10,
-        right:20,
-        alignSelf:'flex-end',
-        justifyContent: 'center',
-        marginTop: 7,
-        marginLeft: 18
-    },
+  DividerView: {
+    borderBottomColor: "black",
+    borderBottomWidth: 1,
+    marginBottom: 3,
+    marginHorizontal: 10,
+  },
 
-    AskButtonStyle : {
-        width: deviceWidth * 0.15,
-        height: 30,
-        backgroundColor: COLOR_LIGHT_PRIMARY,
-        borderRadius: 10,
-        right: 10,
-        justifyContent: 'center',
-        marginTop: 12
-    },
+  AskButtonStyle1: {
+    width: deviceWidth * 0.15,
+    height: 30,
+    backgroundColor: COLOR_LIGHT_PRIMARY,
+    borderRadius: 10,
+    right: 20,
+    alignSelf: "flex-end",
+    justifyContent: "center",
+    marginTop: 7,
+    marginLeft: 18,
+  },
 
-    QuestionStyle : {
-        width : "90%",
-        borderRadius: 10,
-        borderWidth: 1,
-        backgroundColor: Platform.OS === 'ios' ? '#fff' : null,
-        borderColor: '#b8b8b8',
-        shadowColor: '#000000',
-        shadowOffset: {
-        width: 0,
-        height: 2,
-        },
-        shadowOpacity: Platform.OS === 'ios' ? 0.9 : 0.8,
-        shadowRadius: Platform.OS === 'ios' ? 3 : 40,
-        elevation: Platform.OS === 'ios' ? 3 : 4,
-        alignSelf: 'center'
-    },
+  AskButtonStyle: {
+    width: deviceWidth * 0.15,
+    height: 30,
+    backgroundColor: COLOR_LIGHT_PRIMARY,
+    borderRadius: 10,
+    right: 10,
+    justifyContent: "center",
+    marginTop: 12,
+  },
 
-    nameHeadlineStyle : {
-        width: "101%",
-        paddingVertical: 3,
-        backgroundColor: COLOR_LIGHT_SECONDARY,
-        borderRadius: 7,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        top: 0
+  QuestionStyle: {
+    width: "90%",
+    borderRadius: 10,
+    borderWidth: 1,
+    backgroundColor: Platform.OS === "ios" ? "#fff" : null,
+    borderColor: "#b8b8b8",
+    shadowColor: "#000000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
     },
-    
-    AskButtonStyle2 : {
-        alignSelf:'flex-end',
-        justifyContent: 'center',
-        marginTop: 7,
-        flexDirection: 'row'
-    },
+    shadowOpacity: Platform.OS === "ios" ? 0.9 : 0.8,
+    shadowRadius: Platform.OS === "ios" ? 3 : 40,
+    elevation: Platform.OS === "ios" ? 3 : 4,
+    alignSelf: "center",
+  },
 
-    DoneStyle : {
-        color: "black", 
-        fontWeight: '500', 
-        textAlign: 'center', 
-        fontSize: 16 
-    },
+  nameHeadlineStyle: {
+    width: "101%",
+    paddingVertical: 3,
+    backgroundColor: COLOR_LIGHT_SECONDARY,
+    borderRadius: 7,
+    alignSelf: "center",
+    justifyContent: "center",
+    top: 0,
+  },
 
-    ViewStyle : {
-        backgroundColor:'white', 
-        borderRadius:10, 
-        minHeight: 80, 
-        marginBottom: 10
-    },
+  AskButtonStyle2: {
+    alignSelf: "flex-end",
+    justifyContent: "center",
+    marginTop: 7,
+    flexDirection: "row",
+  },
 
-    TextInputStyle : {
-        padding: 10, 
-        fontSize: 13, 
-        width: "90%", 
-        color: 'black' 
-    },
+  DoneStyle: {
+    color: "black",
+    fontWeight: "500",
+    textAlign: "center",
+    fontSize: 16,
+  },
 
-    ImageStyle : {
-        height: deviceHeight * 0.14, 
-        aspectRatio: 1, 
-        alignSelf: 'center', 
-        borderRadius: 10
-    },
+  ViewStyle: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    minHeight: 80,
+    marginBottom: 10,
+  },
 
-    ProgressBarStyle : {
-        alignSelf: 'flex-start', 
-        marginTop: 18, 
-        marginRight: "5%"
-    },
+  TextInputStyle: {
+    padding: 10,
+    fontSize: 13,
+    width: "90%",
+    color: "black",
+  },
 
-    IconStyle : {
-        color: "black", 
-        marginRight: 10, 
-        alignSelf: "flex-end" 
-    },
+  ImageStyle: {
+    height: deviceHeight * 0.14,
+    aspectRatio: 1,
+    alignSelf: "center",
+    borderRadius: 10,
+  },
 
-    PostTextStyle : {
-        color: "black", 
-        fontWeight: '500', 
-        textAlign: 'center', 
-        fontSize: 16 
-    }
+  ProgressBarStyle: {
+    alignSelf: "flex-start",
+    marginTop: 18,
+    marginRight: "5%",
+  },
+
+  IconStyle: {
+    color: "black",
+    marginRight: 10,
+    alignSelf: "flex-end",
+  },
+
+  PostTextStyle: {
+    color: "black",
+    fontWeight: "500",
+    textAlign: "center",
+    fontSize: 16,
+  },
 });

@@ -2,8 +2,6 @@
 #
 .DS_Store
 
-.eslintrc.js
-.prettierrc.js
 package-lock.json
 .env
 
