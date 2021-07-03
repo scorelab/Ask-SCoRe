@@ -1,8 +1,10 @@
 # Ask-SCoRe
 
-<img src="https://user-images.githubusercontent.com/40908684/120924798-0fd67e80-c6f3-11eb-94a5-554566c205dd.png" width="200">
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/40908684/120924798-0fd67e80-c6f3-11eb-94a5-554566c205dd.png" width="250">
+</p>
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4fb5295fe71a4a589277065334f88a59)](https://www.codacy.com/app/shehand/TrackPal?utm_source=github.com&utm_medium=referral&utm_content=scorelab/TrackPal&utm_campaign=Badge_Grade) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![Build Status](https://github.com/scorelab/Ask-SCoRe/actions/workflows/build.yml/badge.svg?event=pull_request)](https://github.com/scorelab/Ask-SCoRe/actions/workflows/build.yml) [![Codacy Badge](https://www.code-inspector.com/project/24431/score/svg)](https://frontend.code-inspector.com/public/project/24431/Ask-SCoRe/dashboard) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 ## About
 
