@@ -1,10 +1,10 @@
 import React from "react";
-import HeaderBar from "../src/components/HeaderBar/HeaderBar";
+import OnboardingScreen from "../src/screens/OnboardingScreen/OnboardingScreen";
 import renderer from "react-test-renderer";
 
 jest.useFakeTimers();
 
 test("renders Question Screen correctly", () => {
-  const tree = renderer.create(<HeaderBar />).toJSON();
+  const tree = renderer.create(<OnboardingScreen />).toJSON();
   expect(tree).toMatchSnapshot();
 });
