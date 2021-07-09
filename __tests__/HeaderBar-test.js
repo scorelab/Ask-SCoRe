@@ -1,11 +1,10 @@
-import "react-native";
 import React from "react";
-import App from "../src/App";
+import HeaderBar from "../src/components/HeaderBar/HeaderBar";
 import renderer from "react-test-renderer";
 
 jest.useFakeTimers();
 
 test("renders Question Screen correctly", () => {
-  const tree = renderer.create(<App />).toJSON();
+  const tree = renderer.create(<HeaderBar />).toJSON();
   expect(tree).toMatchSnapshot();
 });

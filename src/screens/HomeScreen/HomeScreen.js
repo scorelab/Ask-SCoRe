@@ -134,4 +134,4 @@ class HomeScreen extends React.Component {
   }
 }
 
-export default withNavigation(HomeScreen);
+export default HomeScreen;
