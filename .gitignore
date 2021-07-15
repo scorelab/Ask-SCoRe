@@ -5,8 +5,6 @@
 package-lock.json
 .env
 
-src/config/config.js
-
 ios/Podfile.lock
 
 # Xcode
