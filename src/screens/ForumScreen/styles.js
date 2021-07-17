@@ -1,4 +1,9 @@
-import {StyleSheet} from "react-native";
+/* eslint-disable no-unused-vars */
+import {StyleSheet, Dimensions} from "react-native";
+import {COLOR_LIGHT_PRIMARY} from "../../config/styles.js";
+
+let deviceWidth = Dimensions.get("window").width;
+let deviceHeight = Dimensions.get("window").height;
 
 export default StyleSheet.create({
   HeaderStyle1: {
@@ -7,13 +12,13 @@ export default StyleSheet.create({
 
   ImageView: {
     width: 55,
-    height: 55,
+    aspectRatio: 1,
     marginHorizontal: 5,
   },
 
   ImageView1: {
     width: 40,
-    height: 40,
+    aspectRatio: 1,
     marginHorizontal: 5,
   },
 
@@ -25,9 +30,9 @@ export default StyleSheet.create({
   },
 
   AskButtonStyle: {
-    width: 60,
-    height: 30,
-    backgroundColor: "#9cd683",
+    width: deviceWidth * 0.14,
+    height: 32,
+    backgroundColor: COLOR_LIGHT_PRIMARY,
     borderRadius: 10,
     right: 10,
     justifyContent: "center",
