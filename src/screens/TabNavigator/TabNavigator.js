@@ -8,6 +8,8 @@ import ForumScreen from "../ForumScreen/ForumScreen";
 import HomeScreen from "../HomeScreen/HomeScreen";
 import QuestionScreen from "../QuestionScreen/QuestionScreen";
 import AnswerScreen from "../AnswerScreen/AnswerScreen";
+import ChatScreen from "../ChatScreen/ChatScreen";
+import Addroom from "../Addroom/Addroom";
 import Icon from "react-native-vector-icons/Ionicons";
 import {COLOR_PRIMARY} from "../../config/styles";
 import {createStackNavigator} from "react-navigation-stack";
@@ -27,6 +29,21 @@ const HomeStack = createStackNavigator({
   },
   Answer: {
     screen: AnswerScreen,
+    navigationOptions: navOptionHandler,
+  },
+});
+
+const ChatStack = createStackNavigator({
+  Forum: {
+    screen: ForumScreen,
+    navigationOptions: navOptionHandler,
+  },
+  Chat: {
+    screen: ChatScreen,
+    navigationOptions: navOptionHandler,
+  },
+  AddChat: {
+    screen: Addroom,
     navigationOptions: navOptionHandler,
   },
 });
@@ -60,7 +77,7 @@ const TabNavigator = createMaterialBottomTabNavigator(
     },
 
     Forum: {
-      screen: ForumScreen,
+      screen: ChatStack,
       navigationOptions: ({navigation}) => ({
         tabBarIcon: ({tintColor}) => (
           <View>
