@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {StyleSheet, Dimensions} from "react-native";
 
 let deviceWidth = Dimensions.get("window").width;
