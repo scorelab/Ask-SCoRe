@@ -16,6 +16,7 @@ import {
 } from "react-native";
 import {firebase} from "../../config/config";
 import moment from "moment";
+import ModalHeaderNavigationBar from "../../components/ModalHeaderNavigationBar/modalHeaderNavigationBar";
 import styles from "./styles.js";
 
 class ChatScreen extends Component {
@@ -78,6 +79,10 @@ class ChatScreen extends Component {
           <View style={{flex: 1}}>
             <View style={{flex: 1}}>
               <View style={{marginBottom: 5}}>
+                <ModalHeaderNavigationBar
+                  title={this.state.data}
+                  onPress={() => this.props.navigation.goBack()}
+                />
                 <View style={styles.DividerView} />
               </View>
               <FlatList
