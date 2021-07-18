@@ -107,4 +107,20 @@ const TabNavigator = createMaterialBottomTabNavigator(
   },
 );
 
+ChatStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible;
+  if (navigation.state.routes.length > 1) {
+    navigation.state.routes.map(route => {
+      if (route.routeName === "Chat") {
+        tabBarVisible = false;
+      } else {
+        tabBarVisible = true;
+      }
+    });
+  }
+  return {
+    tabBarVisible,
+  };
+};
+
 export default createAppContainer(TabNavigator);
