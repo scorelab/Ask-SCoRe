@@ -38,7 +38,7 @@ class Addroom extends Component {
             message,
             creation: new Date().toUTCString(),
             messageTime: timeDate.format("lll"),
-            ImageURL: doc.data().downloadURL,
+            imageURL: doc.data().downloadURL,
           })
           .then(data => {
             this.setState({roomName: "", message: ""});
