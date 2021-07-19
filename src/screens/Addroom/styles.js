@@ -128,4 +128,35 @@ export default StyleSheet.create({
     marginTop: 30,
     borderRadius: 10,
   },
+
+  adminTextStyle: {
+    height: 30,
+    backgroundColor: "#dbdbdb",
+    borderRadius: 30,
+    paddingLeft: 10
+  },
+
+  ViewStyle6: {
+    borderRadius: 10,
+    marginHorizontal: 10,
+    width: "70%",
+    marginRight: 15,
+  },
+
+  TextInputStyle1: {
+    paddingHorizontal: 10,
+    flex: 1,
+    backgroundColor: "#dbdbdb",
+    borderRadius: 10,
+  },
+
+  AskButtonStyle1: {
+    width: 60,
+    height: 35,
+    backgroundColor: "#9cd683",
+    borderRadius: 10,
+    right: 10,
+    justifyContent: "center",
+  },
+
 });

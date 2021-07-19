@@ -17,13 +17,25 @@ import {
 import {firebase} from "../../config/config";
 import moment from "moment";
 import ModalHeaderNavigationBar from "../../components/ModalHeaderNavigationBar/modalHeaderNavigationBar";
+import {NO_IMAGE} from "../../config/styles.js";
 import styles from "./styles.js";
 
 class ChatScreen extends Component {
-  state = {messageList: "", data: ""};
+  state = {messageList: "", data: "", profilePresent: null};
 
   UNSAFE_componentWillMount() {
     const data = this.props.navigation.getParam("data");
+    const userID = firebase.auth().currentUser.uid;
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(userID)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          this.setState({profilePresent: doc.data().isImagePresent});
+        }
+      });
     this.setState(
       {
         data,
@@ -33,6 +45,7 @@ class ChatScreen extends Component {
   }
 
   writeUserData(message) {
+    const {profilePresent} = this.state;
     var timeDate = moment();
     firebase
       .firestore()
@@ -48,7 +61,9 @@ class ChatScreen extends Component {
             message,
             creation: new Date().toUTCString(),
             messageTime: timeDate.format("lll"),
-            imageURL: doc.data().downloadURL,
+            imageURL: profilePresent
+              ? doc.data().downloadURL
+              : "https://bit.ly/3il86S9",
           })
           .then(data => {
             this.setState({message: ""});
@@ -71,7 +86,7 @@ class ChatScreen extends Component {
   }
 
   render() {
-    const {messageList} = this.state;
+    const {messageList, profilePresent} = this.state;
     return (
       <>
         <SafeAreaView style={{flex: 0, backgroundColor: "#51AD28"}} />
@@ -139,7 +154,7 @@ class ChatScreen extends Component {
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : null}
             keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}>
-            <View style={{flexDirection: "row", height: 35}}>
+            <View style={{flexDirection: "row", height: 35, marginBottom: 5}}>
               <View style={styles.ViewStyle1}>
                 <TextInput
                   style={styles.TextInputStyle}

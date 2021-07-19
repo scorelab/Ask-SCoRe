@@ -111,7 +111,7 @@ ChatStack.navigationOptions = ({navigation}) => {
   let tabBarVisible;
   if (navigation.state.routes.length > 1) {
     navigation.state.routes.map(route => {
-      if (route.routeName === "Chat") {
+      if (route.routeName === "Chat" || "Addroom") {
         tabBarVisible = false;
       } else {
         tabBarVisible = true;

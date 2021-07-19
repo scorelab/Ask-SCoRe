@@ -46,14 +46,28 @@ class SignupForm extends Component {
           fullName,
           isImagePresent: false,
           postNumber: 0,
+          adminRights: false,
         };
         const userRef = firebase.firestore().collection("users");
+        const userRef1 = firebase.firestore().collection("userInfo");
         userRef
           .doc(uid)
           .set(data)
           .then(this.onSigninSuccess.bind(this))
           .catch(error => {
             alert(error);
+          });
+
+        userRef1
+          .doc(email)
+          .set({
+            id: uid,
+          })
+          .then(() => {
+            console.log("Document successfully written!");
+          })
+          .catch(error => {
+            console.error("Error writing document: ", error);
           });
       })
       .catch(error => {

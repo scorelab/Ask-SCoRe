@@ -19,10 +19,54 @@ import styles from "./styles.js";
 import {LOGO} from "../../config/styles.js";
 
 class Addroom extends Component {
-  state = {roomName: "", message: ""};
+  state = {
+    roomName: "",
+    profilePresent: null,
+    adminEmail: null,
+    adminRights: null,
+    message: "",
+  };
+
+  componentDidMount() {
+    const userID = firebase.auth().currentUser.uid;
+    firebase
+      .firestore()
+      .collection("users")
+      .doc(userID)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          this.setState({profilePresent: doc.data().isImagePresent});
+        }
+      });
+  }
+
+  sendAdminRights(adminEmail) {
+    firebase
+      .firestore()
+      .collection("userInfo")
+      .doc(adminEmail)
+      .get()
+      .then(doc => {
+        this.setState({adminRights: doc.data().id});
+        firebase
+          .firestore()
+          .collection("users")
+          .doc(doc.data().id)
+          .update({
+            adminRights: true,
+          })
+          .then(() => {
+            alert("Administrator Rights Sent");
+          })
+          .catch(error => {
+            alert(error);
+          });
+      });
+  }
 
   createRoom(roomName) {
-    const {message} = this.state;
+    const {message, profilePresent} = this.state;
     var timeDate = moment();
     firebase
       .firestore()
@@ -38,7 +82,9 @@ class Addroom extends Component {
             message,
             creation: new Date().toUTCString(),
             messageTime: timeDate.format("lll"),
-            imageURL: doc.data().downloadURL,
+            imageURL: profilePresent
+              ? doc.data().downloadURL
+              : "https://bit.ly/3il86S9",
           })
           .then(data => {
             this.setState({roomName: "", message: ""});
@@ -54,7 +100,7 @@ class Addroom extends Component {
     return (
       <SafeAreaView style={{flex: 1}}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-          <View>
+          <View style={{flex: 1}}>
             <View style={{marginBottom: 15}}>
               <View style={styles.HeaderStyle1}>
                 <Image source={LOGO} style={styles.ImageView} />
@@ -148,6 +194,36 @@ class Addroom extends Component {
             </View>
           </View>
         </TouchableWithoutFeedback>
+        <View style={{flexDirection: "column", justifyContent: "center"}}>
+          <Text style={{marginLeft: "8%", color: "#9e9e9e"}}>
+            Send User Admin Rights
+          </Text>
+          <View
+            style={{
+              flexDirection: "row",
+              height: 35,
+              justifyContent: "center",
+            }}>
+            <View style={styles.ViewStyle6}>
+              <TextInput
+                style={styles.TextInputStyle1}
+                value={this.state.adminEmail}
+                autoCapitalize="none"
+                placeholder="Enter Email here"
+                onChangeText={adminEmail => this.setState({adminEmail})}
+              />
+            </View>
+
+            <View>
+              <TouchableOpacity
+                style={styles.AskButtonStyle1}
+                onPress={() => this.sendAdminRights(this.state.adminEmail)}
+                value={this.state.adminEmail}>
+                <Text style={styles.TextStyle}>SEND</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
       </SafeAreaView>
     );
   }

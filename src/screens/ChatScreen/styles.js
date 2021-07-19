@@ -76,6 +76,7 @@ export default StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     borderRadius: 20,
+    paddingVertical: 2,
   },
 
   TextStyle: {
