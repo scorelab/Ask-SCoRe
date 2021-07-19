@@ -133,7 +133,7 @@ export default StyleSheet.create({
     height: 30,
     backgroundColor: "#dbdbdb",
     borderRadius: 30,
-    paddingLeft: 10
+    paddingLeft: 10,
   },
 
   ViewStyle6: {
@@ -158,5 +158,4 @@ export default StyleSheet.create({
     right: 10,
     justifyContent: "center",
   },
-
 });
