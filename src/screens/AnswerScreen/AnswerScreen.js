@@ -193,7 +193,7 @@ class AnswerScreen extends React.Component {
 
   showAlert = () => {
     const {setDisplayImage} = this.state;
-    Alert.alert("Alert Title", "My Alert Msg", [
+    Alert.alert("DELETE!", "Are you Sure?", [
       {
         text: "Cancel",
         onPress: () => console.log("Cancel Pressed"),

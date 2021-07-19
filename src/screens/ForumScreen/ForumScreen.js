@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-undef */
 /* eslint-disable react-native/no-inline-styles */
 import React from "react";
@@ -9,13 +10,20 @@ import {
   Image,
   SafeAreaView,
   FlatList,
+  Alert,
 } from "react-native";
 import {firebase} from "../../config/config.js";
 import {LOGO} from "../../config/styles.js";
 import styles from "./styles";
 
 class ForumScreen extends Component {
-  state = {dialogvisible: false, forumtext: "", roomArray: [], isAdmin: null};
+  state = {
+    dialogvisible: false,
+    forumtext: "",
+    roomArray: [],
+    isAdmin: null,
+    isSelected: false,
+  };
   componentDidMount() {
     const {roomArray} = this.state;
     const userID = firebase.auth().currentUser.uid;
@@ -43,7 +51,7 @@ class ForumScreen extends Component {
   }
 
   render() {
-    const {roomArray, isAdmin} = this.state;
+    const {roomArray, isAdmin, isSelected} = this.state;
     return (
       <SafeAreaView>
         <View>
@@ -78,6 +86,35 @@ class ForumScreen extends Component {
               return (
                 <View>
                   <TouchableOpacity
+                    onLongPress={() => {
+                      this.setState({isSelected: true});
+                      isAdmin
+                        ? isSelected
+                          ? Alert.alert("DELETE!", "Are you Sure?", [
+                              {
+                                text: "Cancel",
+                                onPress: () => console.log("Cancel Pressed"),
+                                style: "cancel",
+                              },
+                              {
+                                text: "Delete",
+                                onPress: () => {
+                                  firebase
+                                    .database()
+                                    .ref(item)
+                                    .remove()
+                                    .then(() => {
+                                      alert("Deleted");
+                                    })
+                                    .catch(error => {
+                                      alert(error);
+                                    });
+                                },
+                              },
+                            ])
+                          : null
+                        : null;
+                    }}
                     onPress={() =>
                       this.props.navigation.push("Chat", {
                         data: item,
