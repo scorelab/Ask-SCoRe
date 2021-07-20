@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable no-alert */
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-unused-vars */
@@ -14,6 +15,7 @@ import {
   FlatList,
   Platform,
   Linking,
+  Alert,
 } from "react-native";
 import {firebase} from "../../config/config";
 import moment from "moment";
@@ -89,7 +91,6 @@ class ChatScreen extends Component {
         .getDownloadURL()
         .then(snapshot => {
           this.setState({setDisplayImage: snapshot});
-          console.log(setDisplayImage);
         })
         .catch(error => {
           alert(error);
@@ -158,6 +159,23 @@ class ChatScreen extends Component {
         this.setState({messageList: Object.values(snapshot.val())});
       });
   }
+
+  showAlert = () => {
+    const {setImage, setDisplayImage} = this.state;
+    Alert.alert("Alert", "", [
+      {text: "Show", onPress: () => Linking.openURL(setDisplayImage)},
+      {
+        text: "Remove",
+        onPress: () => {
+          this.setState({
+            setDisplayImage: null,
+            setImage: null,
+          });
+        },
+      },
+      {text: "Cancel", onPress: () => null, style: "cancel"},
+    ]);
+  };
 
   render() {
     const {

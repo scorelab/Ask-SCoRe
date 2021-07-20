@@ -196,7 +196,7 @@ class AnswerScreen extends React.Component {
     Alert.alert("DELETE!", "Are you Sure?", [
       {
         text: "Cancel",
-        onPress: () => console.log("Cancel Pressed"),
+        onPress: () => null,
         style: "cancel",
       },
       {text: "Delete", onPress: this.deleteData},

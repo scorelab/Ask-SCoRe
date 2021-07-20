@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-alert */
 /* eslint-disable no-undef */
 /* eslint-disable react-native/no-inline-styles */
@@ -35,7 +36,6 @@ class ForumScreen extends Component {
         snapshot.forEach(element => {
           newroomArray.push(element.key);
           this.setState({roomArray: newroomArray});
-          console.log(roomArray);
         });
       });
     firebase
@@ -93,7 +93,7 @@ class ForumScreen extends Component {
                           ? Alert.alert("DELETE!", "Are you Sure?", [
                               {
                                 text: "Cancel",
-                                onPress: () => console.log("Cancel Pressed"),
+                                onPress: () => null,
                                 style: "cancel",
                               },
                               {

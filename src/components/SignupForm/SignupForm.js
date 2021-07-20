@@ -39,7 +39,6 @@ class SignupForm extends Component {
             alert("Verification Email Sent. Please Verify your Email");
           });
         const uid = response.user.uid;
-        console.log(uid);
         const data = {
           id: uid,
           email,
@@ -67,7 +66,7 @@ class SignupForm extends Component {
             console.log("Document successfully written!");
           })
           .catch(error => {
-            console.error("Error writing document: ", error);
+            alert(error);
           });
       })
       .catch(error => {
