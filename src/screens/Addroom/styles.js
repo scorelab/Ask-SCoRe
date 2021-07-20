@@ -1,5 +1,10 @@
 /* eslint-disable no-unused-vars */
 import {StyleSheet, Dimensions} from "react-native";
+import {
+  COLOR_PRIMARY,
+  COLOR_LIGHT_PRIMARY,
+  COLOR_GRAY_PRIMARY,
+} from "../../config/styles";
 
 let deviceWidth = Dimensions.get("window").width;
 
@@ -24,7 +29,7 @@ export default StyleSheet.create({
   AskButtonStyle: {
     width: 60,
     height: 30,
-    backgroundColor: "#9cd683",
+    backgroundColor: COLOR_LIGHT_PRIMARY,
     borderRadius: 10,
     right: 10,
     justifyContent: "center",
@@ -39,7 +44,7 @@ export default StyleSheet.create({
   },
 
   DividerView1: {
-    borderBottomColor: "#51AD28",
+    borderBottomColor: COLOR_PRIMARY,
     borderBottomWidth: 2,
     marginBottom: 3,
   },
@@ -74,7 +79,7 @@ export default StyleSheet.create({
   ViewStyle1: {
     width: 250,
     height: 60,
-    backgroundColor: "#dbdbdb",
+    backgroundColor: COLOR_GRAY_PRIMARY,
     justifyContent: "center",
     borderBottomColor: "gray",
     borderBottomWidth: 2,
@@ -83,7 +88,7 @@ export default StyleSheet.create({
   ViewStyle2: {
     width: 250,
     minHeight: 100,
-    backgroundColor: "#dbdbdb",
+    backgroundColor: COLOR_GRAY_PRIMARY,
     padding: 10,
     borderBottomColor: "gray",
     borderBottomWidth: 2,
@@ -103,18 +108,18 @@ export default StyleSheet.create({
   ViewStyle3: {
     width: 250,
     height: 60,
-    backgroundColor: "#dbdbdb",
+    backgroundColor: COLOR_GRAY_PRIMARY,
     justifyContent: "center",
-    borderBottomColor: "#51AD28",
+    borderBottomColor: COLOR_PRIMARY,
     borderBottomWidth: 2,
   },
 
   ViewStyle4: {
     width: 250,
     minHeight: 100,
-    backgroundColor: "#dbdbdb",
+    backgroundColor: COLOR_GRAY_PRIMARY,
     padding: 10,
-    borderBottomColor: "#51AD28",
+    borderBottomColor: COLOR_PRIMARY,
     borderBottomWidth: 2,
     marginTop: 10,
     borderRadius: 10,
@@ -123,7 +128,7 @@ export default StyleSheet.create({
   ViewStyle5: {
     height: 40,
     width: 250,
-    backgroundColor: "#51AD28",
+    backgroundColor: COLOR_PRIMARY,
     justifyContent: "center",
     marginTop: 30,
     borderRadius: 10,
@@ -131,7 +136,7 @@ export default StyleSheet.create({
 
   adminTextStyle: {
     height: 30,
-    backgroundColor: "#dbdbdb",
+    backgroundColor: COLOR_GRAY_PRIMARY,
     borderRadius: 30,
     paddingLeft: 10,
   },
@@ -146,14 +151,14 @@ export default StyleSheet.create({
   TextInputStyle1: {
     paddingHorizontal: 10,
     flex: 1,
-    backgroundColor: "#dbdbdb",
+    backgroundColor: COLOR_GRAY_PRIMARY,
     borderRadius: 10,
   },
 
   AskButtonStyle1: {
     width: 60,
     height: 35,
-    backgroundColor: "#9cd683",
+    backgroundColor: COLOR_LIGHT_PRIMARY,
     borderRadius: 10,
     right: 10,
     justifyContent: "center",

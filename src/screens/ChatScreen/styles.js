@@ -1,4 +1,9 @@
-import {StyleSheet} from "react-native";
+/* eslint-disable no-unused-vars */
+import {StyleSheet, Dimensions} from "react-native";
+import {COLOR_LIGHT_PRIMARY, COLOR_GRAY_SECONDARY} from "../../config/styles";
+
+let deviceWidth = Dimensions.get("window").width;
+let deviceHeight = Dimensions.get("window").height;
 
 export default StyleSheet.create({
   HeaderStyle1: {
@@ -21,7 +26,7 @@ export default StyleSheet.create({
   AskButtonStyle: {
     width: 60,
     height: 30,
-    backgroundColor: "#9cd683",
+    backgroundColor: COLOR_LIGHT_PRIMARY,
     borderRadius: 10,
     right: 10,
     justifyContent: "center",
@@ -31,9 +36,9 @@ export default StyleSheet.create({
   AskButtonStyle1: {
     width: 60,
     height: 35,
-    backgroundColor: "#9cd683",
+    backgroundColor: COLOR_LIGHT_PRIMARY,
     borderRadius: 10,
-    right: 10,
+    right: 5,
     justifyContent: "center",
   },
 
@@ -54,7 +59,7 @@ export default StyleSheet.create({
     height: 28,
     width: 28,
     borderRadius: 5,
-    backgroundColor: "#d4d4d4",
+    backgroundColor: COLOR_GRAY_SECONDARY,
     marginRight: 7,
   },
   ViewStyle: {
@@ -67,16 +72,43 @@ export default StyleSheet.create({
     borderWidth: 2,
     borderRadius: 20,
     marginHorizontal: 10,
-    width: "77%",
-    marginRight: 15,
+    minHeight: 35,
+    width: "70%",
+    marginRight: 5,
+  },
+
+  ViewStyle7: {
+    backgroundColor: "white",
+    borderRadius: 10,
+    minHeight: 30,
+    marginBottom: 5,
+    width: "65%",
+    borderColor: "black",
+    borderWidth: 1,
   },
 
   TextInputStyle: {
-    paddingHorizontal: 10,
-    flex: 1,
+    padding: 10,
+    fontSize: 13,
+    borderRadius: 10,
+    width: "90%",
+    color: "black",
     backgroundColor: "white",
-    borderRadius: 20,
-    paddingVertical: 2,
+  },
+
+  ImageStyle: {
+    height: deviceHeight * 0.14,
+    aspectRatio: 1,
+    borderRadius: 10,
+    marginVertical: 5,
+  },
+
+  ImageStyle1: {
+    height: deviceHeight * 0.14,
+    aspectRatio: 1,
+    borderRadius: 10,
+    marginVertical: 5,
+    alignSelf: "center",
   },
 
   TextStyle: {
@@ -90,5 +122,11 @@ export default StyleSheet.create({
     color: "gray",
     fontSize: 10,
     marginTop: 2,
+  },
+
+  IconStyle: {
+    color: "black",
+    marginRight: 10,
+    alignSelf: "flex-end",
   },
 });

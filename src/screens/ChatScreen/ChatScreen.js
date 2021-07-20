@@ -13,15 +13,27 @@ import {
   KeyboardAvoidingView,
   FlatList,
   Platform,
+  Linking,
 } from "react-native";
 import {firebase} from "../../config/config";
 import moment from "moment";
+import Icon from "react-native-vector-icons/Ionicons";
 import ModalHeaderNavigationBar from "../../components/ModalHeaderNavigationBar/modalHeaderNavigationBar";
-import {NO_IMAGE} from "../../config/styles.js";
+import {NO_IMAGE_LINK} from "../../config/styles.js";
 import styles from "./styles.js";
+import ImagePicker from "react-native-image-crop-picker";
 
 class ChatScreen extends Component {
-  state = {messageList: "", data: "", profilePresent: null};
+  state = {
+    messageList: "",
+    data: "",
+    profilePresent: null,
+    setImage: null,
+    setDisplayImage: null,
+    transferred: 0,
+    messageImage: null,
+    message: "",
+  };
 
   UNSAFE_componentWillMount() {
     const data = this.props.navigation.getParam("data");
@@ -44,8 +56,66 @@ class ChatScreen extends Component {
     );
   }
 
+  takePhotoFromLib = () => {
+    const {setImage} = this.state;
+    this.setState({transferred: 0});
+    ImagePicker.openPicker({
+      cropping: false,
+    })
+      .then(image => {
+        const imageUri = image.path;
+        this.setState({setImage: imageUri});
+      })
+      .catch("Unknown Error Occured");
+  };
+
+  uploadImage = async () => {
+    const {setImage} = this.state;
+    if (setImage == null) {
+      return;
+    }
+    const uri = setImage;
+    const childPath = `forum/${this.state.data}/${
+      firebase.auth().currentUser.uid
+    }/${Math.random().toString(36)}`;
+    const response = await fetch(uri);
+    const blob = await response.blob();
+
+    const task = firebase.storage().ref().child(childPath).put(blob);
+
+    const taskCompleted = () => {
+      const {transferred, setDisplayImage} = this.state;
+      task.snapshot.ref
+        .getDownloadURL()
+        .then(snapshot => {
+          this.setState({setDisplayImage: snapshot});
+          console.log(setDisplayImage);
+        })
+        .catch(error => {
+          alert(error);
+        });
+    };
+
+    const taskError = snapshot => {
+      alert("Error Occured");
+    };
+
+    task.on(
+      "state_changed",
+      snapshot => {
+        const {transferred} = this.state;
+        this.setState({
+          transferred:
+            Math.round(snapshot.bytesTransferred / snapshot.totalBytes) * 10000,
+        });
+      },
+      taskError,
+      taskCompleted,
+    );
+  };
+
   writeUserData(message) {
-    const {profilePresent} = this.state;
+    const {profilePresent, setDisplayImage} = this.state;
     var timeDate = moment();
     firebase
       .firestore()
@@ -61,12 +131,16 @@ class ChatScreen extends Component {
             message,
             creation: new Date().toUTCString(),
             messageTime: timeDate.format("lll"),
-            imageURL: profilePresent
-              ? doc.data().downloadURL
-              : "https://bit.ly/3il86S9",
+            imageURL: profilePresent ? doc.data().downloadURL : NO_IMAGE_LINK,
+            messageImage: setDisplayImage,
           })
           .then(data => {
-            this.setState({message: ""});
+            this.setState({
+              message: "",
+              messageImage: null,
+              setImage: null,
+              setDisplayImage: null,
+            });
           })
           .catch(error => {
             alert(error);
@@ -86,7 +160,14 @@ class ChatScreen extends Component {
   }
 
   render() {
-    const {messageList, profilePresent} = this.state;
+    const {
+      messageList,
+      profilePresent,
+      setImage,
+      setDisplayImage,
+      messageImage,
+      message,
+    } = this.state;
     return (
       <>
         <SafeAreaView style={{flex: 0, backgroundColor: "#51AD28"}} />
@@ -135,6 +216,17 @@ class ChatScreen extends Component {
                                     {item.messageTime}
                                   </Text>
                                 </View>
+                                {item.messageImage ? (
+                                  <TouchableOpacity
+                                    onPress={() =>
+                                      Linking.openURL(item.messageImage)
+                                    }>
+                                    <Image
+                                      source={{uri: item.messageImage}}
+                                      style={styles.ImageStyle}
+                                    />
+                                  </TouchableOpacity>
+                                ) : null}
                                 <Text style={{fontSize: 13, fontWeight: "300"}}>
                                   {item.message}
                                 </Text>
@@ -154,19 +246,54 @@ class ChatScreen extends Component {
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : null}
             keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}>
-            <View style={{flexDirection: "row", height: 35, marginBottom: 5}}>
-              <View style={styles.ViewStyle1}>
+            <View
+              style={{
+                flexDirection: "row",
+                minHeight: 35,
+                alignSelf: "center",
+              }}>
+              <View style={styles.ViewStyle7}>
+                {setDisplayImage ? (
+                  <TouchableOpacity onPress={this.showAlert}>
+                    <Image
+                      source={{uri: setDisplayImage}}
+                      style={styles.ImageStyle1}
+                    />
+                  </TouchableOpacity>
+                ) : null}
                 <TextInput
                   style={styles.TextInputStyle}
+                  multiline
+                  placeholderTextColor={"gray"}
                   value={this.state.message}
                   placeholder="Enter Message here"
                   onChangeText={message => this.setState({message})}
                 />
               </View>
 
-              <View>
+              <View style={{flexDirection: "row", marginLeft: 10}}>
+                {setImage ? (
+                  <TouchableOpacity>
+                    <Icon
+                      style={styles.IconStyle}
+                      size={30}
+                      name={"cloud-upload-outline"}
+                      onPress={this.uploadImage}
+                    />
+                  </TouchableOpacity>
+                ) : (
+                  <TouchableOpacity>
+                    <Icon
+                      style={styles.IconStyle}
+                      size={30}
+                      name={"image-outline"}
+                      onPress={this.takePhotoFromLib}
+                    />
+                  </TouchableOpacity>
+                )}
                 <TouchableOpacity
                   style={styles.AskButtonStyle1}
+                  disabled={message.length === 0 || setDisplayImage === 0}
                   onPress={() => this.writeUserData(this.state.message)}
                   value={this.state.message}>
                   <Text style={styles.TextStyle}>SEND</Text>
