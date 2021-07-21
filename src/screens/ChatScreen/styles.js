@@ -1,6 +1,9 @@
-/* eslint-disable no-unused-vars */
 import {StyleSheet, Dimensions} from "react-native";
-import {COLOR_LIGHT_PRIMARY, COLOR_GRAY_SECONDARY} from "../../config/styles";
+import {
+  COLOR_LIGHT_PRIMARY,
+  COLOR_GRAY_SECONDARY,
+  COLOR_PRIMARY,
+} from "../../config/styles";
 
 let deviceWidth = Dimensions.get("window").width;
 let deviceHeight = Dimensions.get("window").height;
@@ -129,4 +132,36 @@ export default StyleSheet.create({
     marginRight: 10,
     alignSelf: "flex-end",
   },
+
+  SafeAreaViewStyle: {flex: 0, backgroundColor: COLOR_PRIMARY},
+
+  FlexStyle: {flex: 1},
+
+  ViewStyle2: {marginBottom: 5},
+
+  ViewStyle3: {flexDirection: "column", flex: 1},
+
+  ViewStyle4: {flexDirection: "row"},
+
+  ViewStyle5: {
+    flexDirection: "column",
+    marginLeft: 5,
+  },
+
+  ViewStyle6: {
+    flexDirection: "row",
+    marginBottom: 5,
+  },
+
+  TextStyle2: {fontWeight: "500", marginRight: 7},
+
+  TextStyle3: {fontSize: 13, fontWeight: "300"},
+
+  ViewStyle8: {
+    flexDirection: "row",
+    minHeight: 35,
+    alignSelf: "center",
+  },
+
+  ViewStyle9: {flexDirection: "row", marginLeft: 10},
 });

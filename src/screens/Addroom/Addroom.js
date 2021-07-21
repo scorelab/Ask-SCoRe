@@ -1,7 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-shadow */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable no-alert */
 import React, {Component} from "react";
 import {
   View,
@@ -82,9 +78,7 @@ class Addroom extends Component {
             message,
             creation: new Date().toUTCString(),
             messageTime: timeDate.format("lll"),
-            imageURL: profilePresent
-              ? doc.data().downloadURL
-              : "https://bit.ly/3il86S9",
+            imageURL: profilePresent ? doc.data().downloadURL : "",
           })
           .then(data => {
             this.setState({roomName: "", message: ""});

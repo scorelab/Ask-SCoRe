@@ -1,7 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-alert */
-/* eslint-disable no-undef */
-/* eslint-disable react-native/no-inline-styles */
 import React from "react";
 import {Component} from "react";
 import {
@@ -55,7 +51,7 @@ class ForumScreen extends Component {
     return (
       <SafeAreaView>
         <View>
-          <View style={{marginBottom: 15}}>
+          <View style={styles.ViewStyle}>
             <View style={styles.HeaderStyle1}>
               <Image source={LOGO} style={styles.ImageView} />
               <Text style={styles.HeaderStyle}>Forums</Text>
@@ -65,15 +61,7 @@ class ForumScreen extends Component {
                   onPress={() => {
                     this.props.navigation.navigate("AddChat");
                   }}>
-                  <Text
-                    style={{
-                      color: "black",
-                      fontWeight: "500",
-                      textAlign: "center",
-                      fontSize: 16,
-                    }}>
-                    +
-                  </Text>
+                  <Text style={styles.TextStyle2}>+</Text>
                 </TouchableOpacity>
               ) : null}
             </View>
@@ -121,17 +109,9 @@ class ForumScreen extends Component {
                       })
                     }>
                     <View>
-                      <View style={{flexDirection: "row", marginLeft: 10}}>
+                      <View style={styles.ViewStyle1}>
                         <Image source={LOGO} style={styles.ImageView1} />
-                        <Text
-                          style={{
-                            alignSelf: "center",
-                            fontSize: 16,
-                            marginHorizontal: 15,
-                            marginBottom: 2,
-                          }}>
-                          {item}
-                        </Text>
+                        <Text style={styles.TextStyle3}>{item}</Text>
                       </View>
                     </View>
                   </TouchableOpacity>

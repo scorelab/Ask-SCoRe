@@ -7,4 +7,3 @@ export const COLOR_LIGHT_SECONDARY = "#79AEE0";
 // IMAGES
 export const LOGO = require("../../assets/Ask-SCORE-Logo.png");
 export const NO_IMAGE = require("../../assets/no-image.png");
-export const NO_IMAGE_LINK = "https://bit.ly/3il86S9";

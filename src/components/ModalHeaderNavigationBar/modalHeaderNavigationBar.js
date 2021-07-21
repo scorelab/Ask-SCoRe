@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Text, View, TouchableOpacity} from "react-native";
 import styles from "./styles";
 import Ionicons from "react-native-vector-icons/FontAwesome";
+
 export default class modalHeaderNavigationBar extends Component {
   render() {
     return (

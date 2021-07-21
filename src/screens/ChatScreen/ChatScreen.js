@@ -1,7 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-alert */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable no-unused-vars */
 import React from "react";
 import {Component} from "react";
 import {
@@ -21,7 +17,7 @@ import {firebase} from "../../config/config";
 import moment from "moment";
 import Icon from "react-native-vector-icons/Ionicons";
 import ModalHeaderNavigationBar from "../../components/ModalHeaderNavigationBar/modalHeaderNavigationBar";
-import {NO_IMAGE_LINK} from "../../config/styles.js";
+import {NO_IMAGE} from "../../config/styles.js";
 import styles from "./styles.js";
 import ImagePicker from "react-native-image-crop-picker";
 
@@ -37,7 +33,7 @@ class ChatScreen extends Component {
     message: "",
   };
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     const data = this.props.navigation.getParam("data");
     const userID = firebase.auth().currentUser.uid;
     firebase
@@ -97,8 +93,8 @@ class ChatScreen extends Component {
         });
     };
 
-    const taskError = snapshot => {
-      alert("Error Occured");
+    const taskError = error => {
+      alert(error);
     };
 
     task.on(
@@ -132,7 +128,7 @@ class ChatScreen extends Component {
             message,
             creation: new Date().toUTCString(),
             messageTime: timeDate.format("lll"),
-            imageURL: profilePresent ? doc.data().downloadURL : NO_IMAGE_LINK,
+            imageURL: profilePresent ? doc.data().downloadURL : "",
             messageImage: setDisplayImage,
           })
           .then(data => {
@@ -188,11 +184,11 @@ class ChatScreen extends Component {
     } = this.state;
     return (
       <>
-        <SafeAreaView style={{flex: 0, backgroundColor: "#51AD28"}} />
-        <SafeAreaView style={{flex: 1}}>
-          <View style={{flex: 1}}>
-            <View style={{flex: 1}}>
-              <View style={{marginBottom: 5}}>
+        <SafeAreaView style={styles.SafeAreaViewStyle} />
+        <SafeAreaView style={styles.FlexStyle}>
+          <View style={styles.FlexStyle}>
+            <View style={styles.FlexStyle}>
+              <View style={styles.ViewStyle2}>
                 <ModalHeaderNavigationBar
                   title={this.state.data}
                   onPress={() => this.props.navigation.goBack()}
@@ -209,25 +205,20 @@ class ChatScreen extends Component {
                   return (
                     <View>
                       <View style={styles.ViewStyle}>
-                        <View style={{flexDirection: "column", flex: 1}}>
-                          <View style={{flexDirection: "row"}}>
+                        <View style={styles.ViewStyle3}>
+                          <View style={styles.ViewStyle4}>
                             <Image
-                              source={{uri: item.imageURL}}
+                              source={
+                                item.imageURL < 4
+                                  ? NO_IMAGE
+                                  : {uri: item.imageURL}
+                              }
                               style={styles.ImageView1}
                             />
                             <View>
-                              <View
-                                style={{
-                                  flexDirection: "column",
-                                  marginLeft: 5,
-                                }}>
-                                <View
-                                  style={{
-                                    flexDirection: "row",
-                                    marginBottom: 5,
-                                  }}>
-                                  <Text
-                                    style={{fontWeight: "500", marginRight: 7}}>
+                              <View style={styles.ViewStyle5}>
+                                <View style={styles.ViewStyle6}>
+                                  <Text style={styles.TextStyle2}>
                                     {item.name}
                                   </Text>
                                   <Text style={styles.TextStyle1}>
@@ -245,7 +236,7 @@ class ChatScreen extends Component {
                                     />
                                   </TouchableOpacity>
                                 ) : null}
-                                <Text style={{fontSize: 13, fontWeight: "300"}}>
+                                <Text style={styles.TextStyle3}>
                                   {item.message}
                                 </Text>
                               </View>
@@ -264,12 +255,7 @@ class ChatScreen extends Component {
           <KeyboardAvoidingView
             behavior={Platform.OS === "ios" ? "padding" : null}
             keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}>
-            <View
-              style={{
-                flexDirection: "row",
-                minHeight: 35,
-                alignSelf: "center",
-              }}>
+            <View style={styles.ViewStyle8}>
               <View style={styles.ViewStyle7}>
                 {setDisplayImage ? (
                   <TouchableOpacity onPress={this.showAlert}>
@@ -289,7 +275,7 @@ class ChatScreen extends Component {
                 />
               </View>
 
-              <View style={{flexDirection: "row", marginLeft: 10}}>
+              <View style={styles.ViewStyle9}>
                 {setImage ? (
                   <TouchableOpacity>
                     <Icon

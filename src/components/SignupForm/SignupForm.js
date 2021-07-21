@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import React from "react";
 import {Component} from "react";
 import {firebase} from "../../config/config";
@@ -48,7 +47,7 @@ class SignupForm extends Component {
           adminRights: false,
         };
         const userRef = firebase.firestore().collection("users");
-        const userRef1 = firebase.firestore().collection("userInfo");
+        const userInf = firebase.firestore().collection("userInfo");
         userRef
           .doc(uid)
           .set(data)
@@ -57,13 +56,13 @@ class SignupForm extends Component {
             alert(error);
           });
 
-        userRef1
+        userInf
           .doc(email)
           .set({
             id: uid,
           })
           .then(() => {
-            console.log("Document successfully written!");
+            null;
           })
           .catch(error => {
             alert(error);

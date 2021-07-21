@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable no-undef */
 import React from "react";
 import {firebase} from "../../config/config";
 import {

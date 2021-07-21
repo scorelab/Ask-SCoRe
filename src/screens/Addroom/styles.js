@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {StyleSheet, Dimensions} from "react-native";
 import {
   COLOR_PRIMARY,

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {StyleSheet, Dimensions} from "react-native";
 import {COLOR_LIGHT_PRIMARY} from "../../config/styles.js";
 
@@ -62,6 +61,24 @@ export default StyleSheet.create({
   },
 
   TextStyle1: {
+    alignSelf: "center",
+    fontSize: 16,
+    marginHorizontal: 15,
+    marginBottom: 2,
+  },
+
+  ViewStyle: {marginBottom: 15},
+
+  TextStyle2: {
+    color: "black",
+    fontWeight: "500",
+    textAlign: "center",
+    fontSize: 16,
+  },
+
+  ViewStyle1: {flexDirection: "row", marginLeft: 10},
+
+  TextStyle3: {
     alignSelf: "center",
     fontSize: 16,
     marginHorizontal: 15,

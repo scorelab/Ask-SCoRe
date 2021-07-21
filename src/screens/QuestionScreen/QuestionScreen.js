@@ -1,6 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-alert */
 import React from "react";
 import {
   View,

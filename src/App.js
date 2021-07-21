@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, {Component} from "react";
 import "react-native-paper";
 import OnboardingScreen from "./screens/OnboardingScreen/OnboardingScreen";
