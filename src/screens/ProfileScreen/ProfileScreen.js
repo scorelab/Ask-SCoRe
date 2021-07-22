@@ -1,7 +1,3 @@
-/* eslint-disable no-shadow */
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-alert */
 import React, {useState, useEffect} from "react";
 import {
   View,

@@ -1,6 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-alert */
 import React from "react";
 import {
   View,
@@ -100,9 +97,9 @@ class QuestionScreen extends React.Component {
   };
 
   showAlert = () => {
-    const {setImage} = this.state;
-    const {setDisplayImage} = this.state;
-    Alert.alert("Alert Title", "My Alert Msg", [
+    const {setImage, setDisplayImage} = this.state;
+    Alert.alert("Alert", "", [
+      {text: "Show", onPress: () => Linking.openURL(setDisplayImage)},
       {
         text: "Remove",
         onPress: () => {
@@ -111,9 +108,8 @@ class QuestionScreen extends React.Component {
             setImage: null,
           });
         },
-        style: "cancel",
       },
-      {text: "Show", onPress: () => Linking.openURL(setDisplayImage)},
+      {text: "Cancel", onPress: () => null, style: "cancel"},
     ]);
   };
 
@@ -141,7 +137,6 @@ class QuestionScreen extends React.Component {
             setImage: null,
             postNumber: this.state.postNumber + 1,
           });
-          console.log(postNumber);
           firebase
             .firestore()
             .collection("users")

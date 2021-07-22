@@ -1,7 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable no-alert */
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 import React from "react";
 import {
   View,
@@ -193,10 +189,10 @@ class AnswerScreen extends React.Component {
 
   showAlert = () => {
     const {setDisplayImage} = this.state;
-    Alert.alert("Alert Title", "My Alert Msg", [
+    Alert.alert("DELETE!", "Are you Sure?", [
       {
         text: "Cancel",
-        onPress: () => console.log("Cancel Pressed"),
+        onPress: () => null,
         style: "cancel",
       },
       {text: "Delete", onPress: this.deleteData},

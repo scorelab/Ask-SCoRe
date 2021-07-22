@@ -1,5 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
-/* eslint-disable no-alert */
 import React, {Component} from "react";
 import {View, Text, TouchableOpacity, TextInput} from "react-native";
 import {firebase} from "../../config/config";

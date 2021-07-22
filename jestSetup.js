@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import {NativeModules as RNNativeModules} from "react-native";
 RNNativeModules.UIManager = RNNativeModules.UIManager || {};
 RNNativeModules.UIManager.RCTView = RNNativeModules.UIManager.RCTView || {};

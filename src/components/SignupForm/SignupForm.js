@@ -1,4 +1,3 @@
-/* eslint-disable no-alert */
 import React from "react";
 import {Component} from "react";
 import {firebase} from "../../config/config";
@@ -39,19 +38,32 @@ class SignupForm extends Component {
             alert("Verification Email Sent. Please Verify your Email");
           });
         const uid = response.user.uid;
-        console.log(uid);
         const data = {
           id: uid,
           email,
           fullName,
           isImagePresent: false,
           postNumber: 0,
+          adminRights: false,
         };
         const userRef = firebase.firestore().collection("users");
+        const userInf = firebase.firestore().collection("userInfo");
         userRef
           .doc(uid)
           .set(data)
           .then(this.onSigninSuccess.bind(this))
+          .catch(error => {
+            alert(error);
+          });
+
+        userInf
+          .doc(email)
+          .set({
+            id: uid,
+          })
+          .then(() => {
+            null;
+          })
           .catch(error => {
             alert(error);
           });
