@@ -4,8 +4,8 @@ import {View, Text} from "react-native";
 class MediumActivity extends Component {
   render() {
     return (
-      <View>
-        <Text>Medium Activity</Text>
+      <View style={{justifyContent: "center", flex: 1}}>
+        <Text style={{alignSelf: "center"}}>Medium Screen</Text>
       </View>
     );
   }
