@@ -15,15 +15,32 @@ export default StyleSheet.create({
     borderBottomRightRadius: 20,
     borderTopRightRadius: 20,
     flexDirection: "row",
+    flex: 1,
   },
 
   TextStyle: {
     fontSize: 17,
-    fontWeight: Platform.OS === "ios" ? "400" : "bold",
-    marginVertical: 5,
+    fontWeight: Platform.OS === "ios" ? "400" : "normal",
+    marginHorizontal: 5,
+    marginTop: 2,
   },
 
-  TextStyle1: {fontSize: 11, fontWeight: "normal"},
+  TextStyle1: {
+    fontSize: 11,
+    fontWeight: "300",
+    marginHorizontal: 5,
+    maxHeight: 40,
+    maxWidth: 260,
+  },
+
+  TextStyle2: {
+    color: "#23598B",
+    fontSize: 12,
+    fontWeight: "normal",
+    marginHorizontal: 5,
+    maxHeight: 35,
+    marginTop: 5,
+  },
 
   ViewStyle2: {alignSelf: "flex-end", flex: 2.6},
 
@@ -33,7 +50,7 @@ export default StyleSheet.create({
     borderBottomColor: "#d4d4d4",
     borderBottomWidth: 1,
     marginBottom: 3,
-    marginHorizontal: 10,
+    marginHorizontal: "2%",
     marginVertical: 3,
   },
 
@@ -49,4 +66,6 @@ export default StyleSheet.create({
     borderBottomRightRadius: 20,
     borderTopRightRadius: 20,
   },
+
+  ViewStyle5: {flex: 7.4, padding: 5, marginLeft: 5},
 });

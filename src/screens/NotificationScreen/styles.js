@@ -11,11 +11,12 @@ let deviceHeight = Dimensions.get("window").height;
 export default StyleSheet.create({
   WholeTabBar: {
     width: "100%",
-    height: 50,
+    height: 55,
     backgroundColor: COLOR_PRIMARY,
     alignSelf: "center",
     borderRadius: 3,
     flexDirection: "row",
+    paddingVertical: 5,
   },
 
   LoginTabBar: {
@@ -79,4 +80,6 @@ export default StyleSheet.create({
   IconStyle: {color: COLOR_GRAY_PRIMARY, alignSelf: "center"},
 
   IconStyle1: {color: "white", alignSelf: "center"},
+
+  TextStyle: {alignSelf: "center", color: "white"},
 });

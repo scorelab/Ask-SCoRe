@@ -1,4 +1,4 @@
-import {ALREADY_LAUNCHED, MEDIUM_API} from "@env";
+import {ALREADY_LAUNCHED, MEDIUM_API, GITHUB_API} from "@env";
 import * as firebase from "firebase";
 
 import "@firebase/auth";
@@ -27,4 +27,5 @@ export {firebase};
 export default {
   ALREADY_LAUNCHED,
   MEDIUM_API,
+  GITHUB_API,
 };
