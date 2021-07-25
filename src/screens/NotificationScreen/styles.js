@@ -57,7 +57,6 @@ export default StyleSheet.create({
   ViewStyle: {
     backgroundColor: "white",
     flex: 1,
-    alignItems: "center",
     justifyContent: "flex-start",
   },
 

@@ -23,7 +23,7 @@ class NotificationScreen extends Component {
     switch (this.state.showingup) {
       case true:
         return (
-          <View>
+          <View style={{flex: 1}}>
             <MediumActivity />
           </View>
         );
@@ -113,7 +113,7 @@ class NotificationScreen extends Component {
               </TouchableOpacity>
             )}
           </View>
-          <View>{this.renderContent()}</View>
+          <View style={{flex: 1}}>{this.renderContent()}</View>
         </View>
       </>
     );
