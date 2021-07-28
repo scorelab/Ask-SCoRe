@@ -1,17 +1,5 @@
 import React, {Component} from "react";
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  Image,
-  StyleSheet,
-  SafeAreaView,
-} from "react-native";
-import {
-  COLOR_PRIMARY,
-  COLOR_GRAY_SECONDARY,
-  COLOR_GRAY_PRIMARY,
-} from "../../config/styles";
+import {View, Text, TouchableOpacity, SafeAreaView} from "react-native";
 import MediumActivity from "../MediumActivity/MediumActivity";
 import GithubActivity from "../GithubActivity/GithubActivity";
 import Icon from "react-native-vector-icons/Ionicons";

@@ -1,4 +1,7 @@
-import {StyleSheet, Platform} from "react-native";
+import {StyleSheet, Platform, Dimensions} from "react-native";
+
+let deviceWidth = Dimensions.get("window").width;
+let deviceHeight = Dimensions.get("window").height;
 
 export default StyleSheet.create({
   SafeAreaStyle: {backgroundColor: "#e6e6e6"},
@@ -60,7 +63,7 @@ export default StyleSheet.create({
   },
 
   ImageStyle: {
-    width: 90,
+    width: deviceWidth * 0.235,
     height: 100,
     alignSelf: "flex-end",
     borderBottomRightRadius: 20,
