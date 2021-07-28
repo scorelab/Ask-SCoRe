@@ -12,13 +12,13 @@ class NotificationScreen extends Component {
       case true:
         return (
           <View style={{flex: 1}}>
-            <MediumActivity />
+            <GithubActivity />
           </View>
         );
       case false:
         return (
           <View>
-            <GithubActivity />
+            <MediumActivity />
           </View>
         );
       default:
@@ -42,9 +42,9 @@ class NotificationScreen extends Component {
                   <Icon
                     style={styles.IconStyle1}
                     size={26}
-                    name={"newspaper-outline"}
+                    name={"logo-github"}
                   />
-                  <Text style={styles.TextStyle}>Medium</Text>
+                  <Text style={styles.TextStyle}>Github</Text>
                 </View>
                 <View style={styles.DividerView} />
               </TouchableOpacity>
@@ -58,9 +58,9 @@ class NotificationScreen extends Component {
                   <Icon
                     style={styles.IconStyle}
                     size={26}
-                    name={"newspaper-outline"}
+                    name={"logo-github"}
                   />
-                  <Text style={styles.TextStyle}>Medium</Text>
+                  <Text style={styles.TextStyle}>Github</Text>
                 </View>
                 <View style={styles.DividerView1} />
               </TouchableOpacity>
@@ -75,9 +75,9 @@ class NotificationScreen extends Component {
                   <Icon
                     style={styles.IconStyle1}
                     size={26}
-                    name={"logo-github"}
+                    name={"newspaper-outline"}
                   />
-                  <Text style={styles.TextStyle}>Github</Text>
+                  <Text style={styles.TextStyle}>Medium</Text>
                 </View>
                 <View style={styles.DividerView} />
               </TouchableOpacity>
@@ -91,9 +91,9 @@ class NotificationScreen extends Component {
                   <Icon
                     style={styles.IconStyle}
                     size={26}
-                    name={"logo-github"}
+                    name={"newspaper-outline"}
                   />
-                  <Text style={styles.TextStyle}>Github</Text>
+                  <Text style={styles.TextStyle}>Medium</Text>
                 </View>
                 <View style={styles.DividerView1} />
               </TouchableOpacity>
