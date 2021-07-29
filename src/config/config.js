@@ -24,6 +24,11 @@ firebase.firestore().settings({experimentalForceLongPolling: true});
 
 export {firebase};
 
+export const MEDIUM_API =
+  "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/scorelab";
+export const GITHUB_API =
+  "https://api.github.com/orgs/scorelab/repos?sort=pushed&per_page=10";
+
 export default {
   ALREADY_LAUNCHED,
 };

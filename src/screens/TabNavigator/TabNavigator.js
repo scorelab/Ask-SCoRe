@@ -61,6 +61,17 @@ const TabNavigator = createMaterialBottomTabNavigator(
       }),
     },
 
+    Forum: {
+      screen: ChatStack,
+      navigationOptions: ({navigation}) => ({
+        tabBarIcon: ({tintColor}) => (
+          <View>
+            <Icon style={[{color: tintColor}]} size={25} name={"chatbox"} />
+          </View>
+        ),
+      }),
+    },
+
     Notification: {
       screen: NotificationScreen,
       navigationOptions: ({navigation}) => ({
@@ -71,17 +82,6 @@ const TabNavigator = createMaterialBottomTabNavigator(
               size={25}
               name={"notifications"}
             />
-          </View>
-        ),
-      }),
-    },
-
-    Forum: {
-      screen: ChatStack,
-      navigationOptions: ({navigation}) => ({
-        tabBarIcon: ({tintColor}) => (
-          <View>
-            <Icon style={[{color: tintColor}]} size={25} name={"chatbox"} />
           </View>
         ),
       }),
