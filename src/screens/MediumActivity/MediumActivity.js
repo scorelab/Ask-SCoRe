@@ -22,7 +22,6 @@ class MediumActivity extends Component {
     request.onreadystatechange = () => {
       if (request.readyState == 4 && request.status == 200) {
         var Obj = JSON.parse(request.responseText);
-        console.log(Obj.items);
         this.setState({mdata: Obj.items});
       }
     };
