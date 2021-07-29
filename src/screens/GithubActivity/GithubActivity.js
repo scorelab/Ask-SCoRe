@@ -10,7 +10,7 @@ import {
   Linking,
 } from "react-native";
 import styles from "./styles";
-import config from "../../config/config";
+import {GITHUB_API} from "../../config/config";
 
 class GithubActivity extends Component {
   state = {githubData: []};
@@ -18,7 +18,7 @@ class GithubActivity extends Component {
   componentDidMount() {
     const {githubData} = this.state;
     axios
-      .get(config.GITHUB_API)
+      .get(GITHUB_API)
       .then(response => {
         this.setState({githubData: response.data});
       })

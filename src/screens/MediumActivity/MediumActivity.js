@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import styles from "./styles";
-import config from "../../config/config";
+import {MEDIUM_API} from "../../config/config";
 
 class MediumActivity extends Component {
   state = {
@@ -25,7 +25,7 @@ class MediumActivity extends Component {
         this.setState({mdata: Obj.items});
       }
     };
-    request.open("GET", config.MEDIUM_API, true);
+    request.open("GET", MEDIUM_API, true);
     request.send();
   }
 
