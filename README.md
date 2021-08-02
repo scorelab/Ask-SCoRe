@@ -10,8 +10,8 @@
 
 What Open Source Organisations aims is for more productivity, which can be achieved when the organisation's members promote, collaborates, co-operates with each other. And hence Ask-SCoRe application helps in achieving the motive.
 
-Ask SCoRe app is the community app, which will help organisation in Collaboration, teamwork, promotion, cooperation with their members(Mentors, Mentees, Students). 
-Ask SCoRe application will be implemented using React-Native. This app will also use Go-Social Framework in order to create and use the components.
+Ask SCoRe app is the community app, which helps organisation in Collaboration, teamwork, promotion, cooperation with their members(Mentors, Mentees, Students). 
+Ask SCoRe application is implemented using React-Native. This app also uses Go-Social Framework in order to create and use the components.
 This app aims to resolve queries by anyone in the organisation and let members communicate in the Forums/Channels.
 
 **Table of Contents**
@@ -27,6 +27,9 @@ This app aims to resolve queries by anyone in the organisation and let members c
 - Onboarding Screens
 - Firebase Integration
 - Login and register a new user
+- User can ask Query and Answer others
+- Topic Specific Forum Threads
+- Stay updated with Medium and Github Activities
 
 ## Setup and run
 **NOTE : XCODE / Android Studio is necessary in order to setup the project.**
@@ -53,20 +56,20 @@ This app aims to resolve queries by anyone in the organisation and let members c
 
 - Rename file `.env.example` to `.env`
 
-- Setup your project on Firebase and copy the credentials
-- Replace the credentials in file `/src/config/config.example.js` given below-
+- Setup your project on Firebase (including firebase firestore and RTDB) and copy the credentials
+- Replace the credentials in file `/src/config/config.js` given below-
 - ```
   const firebaseConfig = {
-    apiKey: "",
-    authDomain: "",
-    projectId: "",
-    storageBucket: "",
-    messagingSenderId: "",
-    appId: "",
-    measurementId: "Y"
+    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+    storageBucket: `${process.env.REACT_APP_FIREBASE_PROJECT_ID}.appspot.com`,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FIREBASE_APP_ID,
+    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENTID,
   };
   ```
-- Rename the `config.example.js` file to `config.js`
 - Enable authentication using email/password in Authentication Tab of Firebase Console.
 
 ### Run app on iOS
