@@ -27,7 +27,7 @@ Array [
           "backgroundColor": "#51AD28",
           "borderRadius": 3,
           "flexDirection": "row",
-          "height": 55,
+          "height": 60,
           "paddingVertical": 5,
           "width": "100%",
         }
@@ -92,7 +92,7 @@ Array [
           style={
             Object {
               "borderBottomColor": "#23598B",
-              "borderBottomWidth": 3,
+              "borderBottomWidth": 7,
               "marginHorizontal": 0,
               "marginVertical": 3,
             }
