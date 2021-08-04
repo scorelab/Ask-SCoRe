@@ -13,12 +13,6 @@ export default StyleSheet.create({
     flexDirection: "row",
   },
 
-  ImageView: {
-    width: 55,
-    height: 55,
-    marginHorizontal: 5,
-  },
-
   HeaderStyle: {
     fontSize: 30,
     flex: 1,
@@ -26,19 +20,9 @@ export default StyleSheet.create({
     marginTop: 5,
   },
 
-  AskButtonStyle: {
-    width: 60,
-    height: 30,
-    backgroundColor: COLOR_LIGHT_PRIMARY,
-    borderRadius: 10,
-    right: 10,
-    justifyContent: "center",
-    marginTop: 7,
-  },
-
   AskButtonStyle1: {
-    width: 60,
-    height: 35,
+    width: deviceWidth * 0.15,
+    height: deviceHeight * 0.046,
     backgroundColor: COLOR_LIGHT_PRIMARY,
     borderRadius: 10,
     right: 5,
@@ -59,8 +43,8 @@ export default StyleSheet.create({
   },
 
   ImageView1: {
-    height: 28,
-    width: 28,
+    height: deviceHeight * 0.034,
+    aspectRatio: 1,
     borderRadius: 5,
     backgroundColor: COLOR_GRAY_SECONDARY,
     marginRight: 7,
