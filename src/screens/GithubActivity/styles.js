@@ -11,7 +11,7 @@ export default StyleSheet.create({
   ViewStyle1: {
     width: "90%",
     alignSelf: "center",
-    height: 100,
+    height: deviceHeight * 0.15,
     backgroundColor: "white",
     marginBottom: 20,
     borderRadius: 7,
@@ -64,7 +64,7 @@ export default StyleSheet.create({
 
   ImageStyle: {
     width: deviceWidth * 0.235,
-    height: 100,
+    height: deviceHeight * 0.15,
     alignSelf: "flex-end",
     borderBottomRightRadius: 20,
     borderTopRightRadius: 20,
