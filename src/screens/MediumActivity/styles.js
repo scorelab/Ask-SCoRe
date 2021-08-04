@@ -46,9 +46,11 @@ export default StyleSheet.create({
 
   ImageStyle: {
     width: deviceWidth * 0.235,
-    height: 100,
+    height: deviceHeight * 0.144,
     alignSelf: "flex-end",
     borderBottomRightRadius: 20,
     borderTopRightRadius: 20,
   },
+
+  ViewStyle5: {flex: 7.4, padding: 5, marginLeft: 5},
 });

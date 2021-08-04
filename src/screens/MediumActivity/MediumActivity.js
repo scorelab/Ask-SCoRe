@@ -46,7 +46,7 @@ class MediumActivity extends Component {
                 <View>
                   <TouchableOpacity onPress={() => Linking.openURL(item.guid)}>
                     <View style={styles.ViewStyle1}>
-                      <View style={{flex: 7.4, padding: 5, marginLeft: 5}}>
+                      <View style={styles.ViewStyle5}>
                         <Text style={styles.TextStyle}>{item.title}</Text>
                         <View style={styles.DividerView} />
                         <Text style={styles.TextStyle1}>{item.author}</Text>
