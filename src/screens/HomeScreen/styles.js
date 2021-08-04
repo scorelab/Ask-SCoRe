@@ -36,7 +36,7 @@ export default StyleSheet.create({
     borderRadius: 10,
     right: 10,
     justifyContent: "center",
-    marginTop: 12,
+    marginTop: Platform.OS == "ios" ? 7 : 12,
   },
 
   QuestionStyle: {
