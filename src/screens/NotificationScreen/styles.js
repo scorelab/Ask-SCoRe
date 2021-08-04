@@ -11,7 +11,7 @@ let deviceHeight = Dimensions.get("window").height;
 export default StyleSheet.create({
   WholeTabBar: {
     width: "100%",
-    height: 55,
+    height: 60,
     backgroundColor: COLOR_PRIMARY,
     alignSelf: "center",
     borderRadius: 3,
@@ -31,12 +31,6 @@ export default StyleSheet.create({
     width: "50%",
     backgroundColor: COLOR_PRIMARY,
     borderRadius: 3,
-  },
-
-  ImageView: {
-    height: 80,
-    width: 80,
-    marginBottom: 20,
   },
 
   BarStyle: {
@@ -63,7 +57,7 @@ export default StyleSheet.create({
 
   DividerView: {
     borderBottomColor: "#23598B",
-    borderBottomWidth: 3,
+    borderBottomWidth: 7,
     marginVertical: 3,
     marginHorizontal: 0,
   },
