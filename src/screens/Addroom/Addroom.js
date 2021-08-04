@@ -92,10 +92,10 @@ class Addroom extends Component {
   render() {
     const {roomName, message} = this.state;
     return (
-      <SafeAreaView style={{flex: 1}}>
+      <SafeAreaView style={styles.SafeAreaViewStyle}>
         <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-          <View style={{flex: 1}}>
-            <View style={{marginBottom: 15}}>
+          <View style={styles.SafeAreaViewStyle}>
+            <View style={{marginBottom: 5}}>
               <View style={styles.HeaderStyle1}>
                 <Image source={LOGO} style={styles.ImageView} />
                 <Text style={styles.HeaderStyle}>Add room</Text>
@@ -179,25 +179,16 @@ class Addroom extends Component {
                     disabled={roomName.length === 0}
                     style={styles.ViewStyle5}
                     onPress={() => this.createRoom(this.state.roomName)}>
-                    <Text style={{alignSelf: "center", fontSize: 20}}>
-                      CREATE
-                    </Text>
+                    <Text style={styles.TextStyle4}>CREATE</Text>
                   </TouchableOpacity>
                 </View>
               )}
             </View>
           </View>
         </TouchableWithoutFeedback>
-        <View style={{flexDirection: "column", justifyContent: "center"}}>
-          <Text style={{marginLeft: "8%", color: "#9e9e9e"}}>
-            Send User Admin Rights
-          </Text>
-          <View
-            style={{
-              flexDirection: "row",
-              height: 35,
-              justifyContent: "center",
-            }}>
+        <View style={styles.ViewStyle7}>
+          <Text style={styles.TextStyle3}>Send User Admin Rights</Text>
+          <View style={styles.ViewStyle8}>
             <View style={styles.ViewStyle6}>
               <TextInput
                 style={styles.TextInputStyle1}
