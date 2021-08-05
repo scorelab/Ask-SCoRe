@@ -39,12 +39,12 @@ export default StyleSheet.create({
 
   AskButtonStyle: {
     width: deviceWidth * 0.15,
-    height: 32,
+    height: deviceHeight * 0.046,
     backgroundColor: COLOR_LIGHT_PRIMARY,
     borderRadius: 10,
     right: 10,
     justifyContent: "center",
-    marginTop: 7,
+    marginTop: Platform.OS == "ios" ? 7 : 10,
   },
 
   QuestionStyle: {

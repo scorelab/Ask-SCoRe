@@ -10,13 +10,13 @@ export default StyleSheet.create({
   },
 
   ImageView: {
-    width: 55,
+    width: deviceWidth * 0.13,
     aspectRatio: 1,
     marginHorizontal: 5,
   },
 
   ImageView1: {
-    width: 40,
+    width: deviceWidth * 0.1,
     aspectRatio: 1,
     marginHorizontal: 5,
   },
@@ -30,7 +30,7 @@ export default StyleSheet.create({
 
   AskButtonStyle: {
     width: deviceWidth * 0.14,
-    height: 32,
+    height: deviceHeight * 0.04,
     backgroundColor: COLOR_LIGHT_PRIMARY,
     borderRadius: 10,
     right: 10,

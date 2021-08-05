@@ -252,9 +252,9 @@ exports[`renders Question Screen correctly 1`] = `
                                       source="test-file-stub"
                                       style={
                                         Object {
-                                          "height": 55,
+                                          "aspectRatio": 1,
                                           "marginHorizontal": 5,
-                                          "width": 55,
+                                          "width": 97.5,
                                         }
                                       }
                                     />
@@ -284,9 +284,9 @@ exports[`renders Question Screen correctly 1`] = `
                                         Object {
                                           "backgroundColor": "#9cd683",
                                           "borderRadius": 10,
-                                          "height": 32,
+                                          "height": 53.36,
                                           "justifyContent": "center",
-                                          "marginTop": 12,
+                                          "marginTop": 7,
                                           "opacity": 1,
                                           "right": 10,
                                           "width": 105.00000000000001,
