@@ -7,7 +7,7 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {AsyncStorage} from "react-native";
 import {useEffect} from "react";
 import config from "./config/config";
-import SplashScreen from "react-native-splash-screen";
+import RNBootSplash from "react-native-bootsplash";
 
 const AppStack = createStackNavigator();
 
@@ -15,7 +15,9 @@ class App extends Component {
   state = {isFirstLaunch: null};
 
   componentDidMount() {
-    SplashScreen.hide();
+    setTimeout(() => {
+      RNBootSplash.hide();
+    }, 2000);
     const {isFirstLaunch} = this.state;
     AsyncStorage.getItem(config.ALREADY_LAUNCHED).then(value => {
       if (value == null) {
