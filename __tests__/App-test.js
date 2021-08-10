@@ -5,7 +5,7 @@ import renderer from "react-test-renderer";
 
 jest.useFakeTimers();
 
-jest.mock("react-native-splash-screen", () => {
+jest.mock("react-native-bootsplash", () => {
   return {
     hide: jest.fn(),
   };
