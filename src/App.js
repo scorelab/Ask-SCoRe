@@ -7,37 +7,42 @@ import {createStackNavigator} from "@react-navigation/stack";
 import {AsyncStorage} from "react-native";
 import {useEffect} from "react";
 import config from "./config/config";
+import SplashScreen from "react-native-splash-screen";
 
 const AppStack = createStackNavigator();
 
-const App = () => {
-  const [isFirstLaunch, setIsFirstLaunch] = React.useState(null);
+class App extends Component {
+  state = {isFirstLaunch: null};
 
-  useEffect(() => {
+  componentDidMount() {
+    SplashScreen.hide();
+    const {isFirstLaunch} = this.state;
     AsyncStorage.getItem(config.ALREADY_LAUNCHED).then(value => {
       if (value == null) {
         AsyncStorage.setItem(config.ALREADY_LAUNCHED, "true");
-        setIsFirstLaunch(true);
+        this.setState({isFirstLaunch: true});
       } else {
-        setIsFirstLaunch(false);
+        this.setState({isFirstLaunch: false});
       }
     });
-  }, []);
-
-  if (isFirstLaunch === null) {
-    return null;
-  } else if (isFirstLaunch === true) {
-    return (
-      <NavigationContainer>
-        <AppStack.Navigator headerMode="none">
-          <AppStack.Screen name="Onboarding" component={OnboardingScreen} />
-          <AppStack.Screen name="Start" component={StartScreen} />
-        </AppStack.Navigator>
-      </NavigationContainer>
-    );
-  } else {
-    return <StartScreen />;
   }
-};
 
+  render() {
+    const {isFirstLaunch} = this.state;
+    if (isFirstLaunch === null) {
+      return null;
+    } else if (isFirstLaunch === true) {
+      return (
+        <NavigationContainer>
+          <AppStack.Navigator headerMode="none">
+            <AppStack.Screen name="Onboarding" component={OnboardingScreen} />
+            <AppStack.Screen name="Start" component={StartScreen} />
+          </AppStack.Navigator>
+        </NavigationContainer>
+      );
+    } else {
+      return <StartScreen />;
+    }
+  }
+}
 export default App;
