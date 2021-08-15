@@ -71,6 +71,7 @@ This app aims to resolve queries by anyone in the organisation and let members c
   };
   ```
 - Enable authentication using email/password in Authentication Tab of Firebase Console.
+- Replace the Security Rules of Firestore and Realtime Database with given rules in the files `firestore.rules` and `rtdb.rules.json` respectively.
 
 ### Run app on iOS
 
