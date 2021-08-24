@@ -28,56 +28,58 @@ class LoginSignupScreen extends Component {
 
   render() {
     return (
-      <View style={styles.ViewStyle}>
-        <View>
-          <Image source={LOGO} style={styles.ImageView} />
-        </View>
-        <View style={styles.WholeTabBar}>
-          {this.state.showingup ? (
-            <TouchableOpacity
-              style={styles.SignupTabBar}
-              onPress={() => {
-                this.setState({showingup: true});
-              }}>
-              <View>
-                <Text style={styles.BarStyle}>LOGIN</Text>
-              </View>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              style={styles.LoginTabBar}
-              onPress={() => {
-                this.setState({showingup: true});
-              }}>
-              <View>
-                <Text style={styles.BarStyle1}>LOGIN</Text>
-              </View>
-            </TouchableOpacity>
-          )}
+      <View style={styles.ViewStyle1}>
+        <View style={styles.ViewStyle}>
+          <View>
+            <Image source={LOGO} style={styles.ImageView} />
+          </View>
+          <View style={styles.WholeTabBar}>
+            {this.state.showingup ? (
+              <TouchableOpacity
+                style={styles.SignupTabBar}
+                onPress={() => {
+                  this.setState({showingup: true});
+                }}>
+                <View>
+                  <Text style={styles.BarStyle}>LOGIN</Text>
+                </View>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={styles.LoginTabBar}
+                onPress={() => {
+                  this.setState({showingup: true});
+                }}>
+                <View>
+                  <Text style={styles.BarStyle1}>LOGIN</Text>
+                </View>
+              </TouchableOpacity>
+            )}
 
-          {this.state.showingup === false ? (
-            <TouchableOpacity
-              style={styles.SignupTabBar}
-              onPress={() => {
-                this.setState({showingup: false});
-              }}>
-              <View>
-                <Text style={styles.BarStyle}>SIGNUP</Text>
-              </View>
-            </TouchableOpacity>
-          ) : (
-            <TouchableOpacity
-              style={styles.LoginTabBar}
-              onPress={() => {
-                this.setState({showingup: false});
-              }}>
-              <View>
-                <Text style={styles.BarStyle1}>SIGNUP</Text>
-              </View>
-            </TouchableOpacity>
-          )}
+            {this.state.showingup === false ? (
+              <TouchableOpacity
+                style={styles.SignupTabBar}
+                onPress={() => {
+                  this.setState({showingup: false});
+                }}>
+                <View>
+                  <Text style={styles.BarStyle}>SIGNUP</Text>
+                </View>
+              </TouchableOpacity>
+            ) : (
+              <TouchableOpacity
+                style={styles.LoginTabBar}
+                onPress={() => {
+                  this.setState({showingup: false});
+                }}>
+                <View>
+                  <Text style={styles.BarStyle1}>SIGNUP</Text>
+                </View>
+              </TouchableOpacity>
+            )}
+          </View>
+          {this.renderContent()}
         </View>
-        {this.renderContent()}
       </View>
     );
   }
