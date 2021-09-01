@@ -58,4 +58,5 @@ export default StyleSheet.create({
     alignItems: "center",
     marginBottom: "20%",
   },
+  ViewStyle1: {backgroundColor: "white", flex: 1},
 });

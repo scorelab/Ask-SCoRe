@@ -224,6 +224,7 @@ export default StyleSheet.create({
     height: deviceHeight * 0.14,
     aspectRatio: 1,
     alignSelf: "center",
+    marginBottom: 10,
   },
 
   ProgressBarStyle: {

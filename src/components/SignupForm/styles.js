@@ -41,10 +41,12 @@ export default StyleSheet.create({
 
   TextStyle1: {
     flex: 1,
+    color: "black",
   },
 
   TextStyle2: {
     flex: 1,
+    color: "black",
   },
 
   TextStyle4: {

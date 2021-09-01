@@ -430,7 +430,7 @@ class AnswerScreen extends React.Component {
               );
             }}
             keyExtractor={(item, index) => "key" + index}
-            ListFooterComponent={<View style={{height: 520}} />}
+            ListFooterComponent={<View style={{height: 640}} />}
           />
         </View>
       </SafeAreaView>
